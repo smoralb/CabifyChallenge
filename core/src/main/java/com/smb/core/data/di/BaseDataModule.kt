@@ -1,6 +1,5 @@
 package com.smb.core.data.di
 
-import com.smb.core.BuildConfig
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import okhttp3.HttpUrl
@@ -14,7 +13,6 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 
 
 const val BASE_URL = "https://api.nytimes.com"
-const val API_KEY = "api-key"
 
 val dataModule = module {
 
@@ -31,7 +29,6 @@ val dataModule = module {
                 val original: Request = chain.request()
                 val originalHttpUrl: HttpUrl = original.url
                 val url = originalHttpUrl.newBuilder()
-                    .addQueryParameter(API_KEY, BuildConfig.API_KEY)
                     .build()
                 val requestBuilder: Request.Builder = original.newBuilder()
                     .url(url)

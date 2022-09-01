@@ -3,11 +3,6 @@ package com.smb.core.data
 import retrofit2.HttpException
 import retrofit2.Response
 
-/**
- * Here we can handle different types or errors retrieved from api and propagate them
- * to the presentation layer
- */
-
 suspend fun <T, R> safeApiCall(
     apiCall: suspend () -> Response<T>,
     mapper: (T) -> R
