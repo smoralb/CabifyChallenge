@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.smb.cabify.presentation.main.secondView.SecondViewModel" />
+            type="com.smb.cabify.presentation.secondView.SecondViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

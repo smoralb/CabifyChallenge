@@ -12,9 +12,9 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
 
-const val BASE_URL = "https://api.nytimes.com"
+const val BASE_URL = "https://gist.githubusercontent.com"
 
-val dataModule = module {
+val baseDataModule = module {
 
     fun provideMoshiInstance(): Moshi {
         return Moshi.Builder().addLast(KotlinJsonAdapterFactory()).build()

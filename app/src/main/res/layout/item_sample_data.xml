@@ -8,7 +8,7 @@
 
         <variable
             name="item"
-            type="com.smb.cabify.presentation.main.home.adapter.HomeDataItems.HomeDataItem" />
+            type="com.smb.cabify.presentation.home.adapter.HomeDataItems.HomeDataItem" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -24,7 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/margin_item_image_view"
-            android:text="@{item.title}"
+            android:text="@{item.code}"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="@string/item_view_sample_data_title"  />
@@ -33,7 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_start_item_title"
-            android:text="@{item.description}"
+            android:text="@{item.name}"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ivSampleData"
             tools:text="@string/item_view_sample_data_title" />

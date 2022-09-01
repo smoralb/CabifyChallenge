@@ -10,5 +10,5 @@ import kotlinx.coroutines.launch
  * when the ViewModel is cleared
  */
 fun ViewModel.execute(useCase: suspend () -> Unit) {
-    viewModelScope.launch(Dispatchers.IO) { useCase() }
+    viewModelScope.launch { useCase() }
 }

@@ -8,7 +8,7 @@
 
         <variable
             name="viewModel"
-            type="com.smb.cabify.presentation.main.home.HomeViewModel" />
+            type="com.smb.cabify.presentation.home.HomeViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
