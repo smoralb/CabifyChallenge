@@ -8,7 +8,7 @@
 
         <variable
             name="item"
-            type="com.smb.cabify.presentation.main.firstView.adapter.SampleDataItems.SampleDataItem" />
+            type="com.smb.cabify.presentation.main.home.adapter.HomeDataItems.HomeDataItem" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

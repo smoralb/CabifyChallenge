@@ -1,9 +1,9 @@
 package com.smb.cabify.presentation
 
 import com.smb.cabify.domain.usecases.GetSampleDataUseCase
-import com.smb.cabify.presentation.main.firstView.FirstViewModel
-import com.smb.cabify.presentation.main.firstView.FirstViewState.HideLoading
-import com.smb.cabify.presentation.main.firstView.mapper.FirstFragmentMapper
+import com.smb.cabify.presentation.main.home.HomeViewModel
+import com.smb.cabify.presentation.main.home.HomeViewState.HideLoading
+import com.smb.cabify.presentation.main.home.mapper.FirstFragmentMapper
 import com.smb.cabify.presentation.mocks.sampleResponseChildModelMock
 import com.smb.core.data.Result
 import com.smb.core.test.BaseViewModelUnitTest
@@ -21,7 +21,7 @@ import org.mockito.kotlin.verify
 import org.mockito.kotlin.whenever
 
 @ExperimentalCoroutinesApi
-class FirstViewModelTest : BaseViewModelUnitTest() {
+class HomeViewModelTest : BaseViewModelUnitTest() {
 
     @Mock
     private lateinit var getSampleDataUseCase: GetSampleDataUseCase
@@ -29,11 +29,11 @@ class FirstViewModelTest : BaseViewModelUnitTest() {
     @Mock
     private lateinit var mapper: FirstFragmentMapper
 
-    private lateinit var viewModel: FirstViewModel
+    private lateinit var viewModel: HomeViewModel
 
     @BeforeEach
     fun setUp() {
-        viewModel = FirstViewModel(getSampleDataUseCase, mapper)
+        viewModel = HomeViewModel(getSampleDataUseCase, mapper)
     }
 
     @TestFactory

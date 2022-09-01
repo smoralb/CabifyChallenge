@@ -8,13 +8,13 @@
 
         <variable
             name="viewModel"
-            type="com.smb.cabify.presentation.main.firstView.FirstViewModel" />
+            type="com.smb.cabify.presentation.main.home.HomeViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.smb.cabify.presentation.main.firstView.FirstFragment">
+        tools:context="com.smb.cabify.presentation.main.home.HomeFragment">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/toolbar"

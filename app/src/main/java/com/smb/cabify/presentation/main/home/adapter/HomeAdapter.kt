@@ -1,4 +1,4 @@
-package com.smb.cabify.presentation.main.firstView.adapter
+package com.smb.cabify.presentation.main.home.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -10,9 +10,9 @@ import com.smb.cabify.R
 import com.smb.core.presentation.adapters.BaseAdapter
 import com.smb.core.presentation.adapters.BaseViewHolder
 
-class FirstFragmentAdapter : BaseAdapter<SampleDataItems.SampleDataItem>() {
+class HomeAdapter : BaseAdapter<HomeDataItems.HomeDataItem>() {
 
-    override fun updateData(newItems: List<SampleDataItems.SampleDataItem>) {
+    override fun updateData(newItems: List<HomeDataItems.HomeDataItem>) {
         items = newItems
     }
 
@@ -24,7 +24,7 @@ class FirstFragmentAdapter : BaseAdapter<SampleDataItems.SampleDataItem>() {
 
     override fun getItemViewType(position: Int) =
         when (items[position]) {
-            is SampleDataItems.SampleDataItem -> ITEM_TYPE
+            is HomeDataItems.HomeDataItem -> ITEM_TYPE
             else -> throw IllegalArgumentException()
         }
 
@@ -39,7 +39,7 @@ class FirstFragmentAdapter : BaseAdapter<SampleDataItems.SampleDataItem>() {
         )
 
     inner class FirstFragmentItemViewHolder(binding: ViewDataBinding) :
-        BaseViewHolder<SampleDataItems.SampleDataItem>(BR.item, binding)
+        BaseViewHolder<HomeDataItems.HomeDataItem>(BR.item, binding)
 
     companion object {
         const val ITEM_TYPE = 0
