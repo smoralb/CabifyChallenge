@@ -7,8 +7,8 @@ import com.smb.cabify.R
 import com.smb.cabify.databinding.FragmentFirstBinding
 import com.smb.cabify.presentation.home.HomeViewState.HideLoading
 import com.smb.cabify.presentation.home.HomeViewState.Loading
-import com.smb.cabify.presentation.home.HomeViewState.NavigateToSecondFragment
 import com.smb.cabify.presentation.home.adapter.HomeAdapter
+import com.smb.cabify.presentation.home.adapter.HomeDataItems.HomeDataItem
 import com.smb.core.presentation.base.BaseFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -19,7 +19,10 @@ class HomeFragment : BaseFragment<HomeViewState, FragmentFirstBinding, HomeViewM
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.rvBookList.adapter = HomeAdapter()
+        binding.rvBookList.adapter =
+            HomeAdapter() {
+                navigateTo(HomeFragmentDirections.toSecondFragment((it as HomeDataItem).code))
+            }
         viewModel.initialize()
     }
 
@@ -27,8 +30,6 @@ class HomeFragment : BaseFragment<HomeViewState, FragmentFirstBinding, HomeViewM
         when (state) {
             is Loading -> binding.plItemsLoader.visibility = View.VISIBLE
             is HideLoading -> binding.plItemsLoader.visibility = View.GONE
-            is NavigateToSecondFragment ->
-                navigateTo(HomeFragmentDirections.toSecondFragment(state.productCode))
         }
     }
 }

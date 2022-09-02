@@ -6,11 +6,6 @@ sealed class HomeDataItems : BaseItem {
     data class HomeDataItem(
         val code: String,
         val name: String,
-        val price: Float,
-        val onItemClickListener: (String) -> Unit
-    ) : HomeDataItems() {
-        override fun onItemClick() {
-            onItemClickListener(code)
-        }
-    }
+        val price: Float
+    ) : HomeDataItems()
 }

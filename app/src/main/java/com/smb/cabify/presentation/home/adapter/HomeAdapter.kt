@@ -7,12 +7,13 @@ import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 import com.smb.cabify.BR
 import com.smb.cabify.R
+import com.smb.cabify.presentation.home.adapter.HomeDataItems.HomeDataItem
 import com.smb.core.presentation.adapters.BaseAdapter
-import com.smb.core.presentation.adapters.BaseViewHolder
+import com.smb.core.presentation.adapters.BaseItem
 
-class HomeAdapter : BaseAdapter<HomeDataItems.HomeDataItem>() {
+class HomeAdapter(onItemClicked: (BaseItem) -> Unit) : BaseAdapter<HomeDataItem>(onItemClicked) {
 
-    override fun updateData(newItems: List<HomeDataItems.HomeDataItem>) {
+    override fun updateData(newItems: List<HomeDataItem>) {
         items = newItems
     }
 
@@ -24,7 +25,7 @@ class HomeAdapter : BaseAdapter<HomeDataItems.HomeDataItem>() {
 
     override fun getItemViewType(position: Int) =
         when (items[position]) {
-            is HomeDataItems.HomeDataItem -> ITEM_TYPE
+            is HomeDataItem -> ITEM_TYPE
             else -> throw IllegalArgumentException()
         }
 
@@ -39,7 +40,7 @@ class HomeAdapter : BaseAdapter<HomeDataItems.HomeDataItem>() {
         )
 
     inner class FirstFragmentItemViewHolder(binding: ViewDataBinding) :
-        BaseViewHolder<HomeDataItems.HomeDataItem>(BR.item, binding)
+        BaseViewHolder<HomeDataItem>(BR.item, binding)
 
     companion object {
         const val ITEM_TYPE = 0

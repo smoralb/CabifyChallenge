@@ -3,8 +3,10 @@ package com.smb.core.presentation.adapters
 import android.annotation.SuppressLint
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
+
 @SuppressLint("NotifyDataSetChanged")
-abstract class BaseAdapter<T: BaseItem> : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+abstract class BaseAdapter<T : BaseItem>(var onItemClicked: (BaseItem) -> Unit) :
+    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     var items = listOf<T>()
         set(value) {
@@ -20,14 +22,19 @@ abstract class BaseAdapter<T: BaseItem> : RecyclerView.Adapter<RecyclerView.View
         (holder as BaseViewHolder<BaseItem>).bind(items[position])
 
     override fun getItemCount() = items.size
-}
 
-open class BaseViewHolder<T>(
-    private val itemVariableId: Int,
-    private val binding: ViewDataBinding) :
-    RecyclerView.ViewHolder(binding.root) {
-    fun bind(item: T) {
-        binding.setVariable(itemVariableId, item)
-        binding.executePendingBindings()
+    open inner class BaseViewHolder<T>(
+        private val itemVariableId: Int,
+        private val binding: ViewDataBinding
+    ) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(item: T) {
+            binding.apply {
+                setVariable(itemVariableId, item)
+                executePendingBindings()
+                root.setOnClickListener { onItemClicked(item as BaseItem) }
+            }
+
+        }
     }
 }

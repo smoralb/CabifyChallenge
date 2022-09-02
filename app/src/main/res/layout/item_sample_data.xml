@@ -13,10 +13,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        android:onClick="@{() -> item.onItemClick()}"
-        android:background="@android:color/white">
+        android:layout_height="wrap_content">
 
         <TextView
             style="@style/TextLarge.Bold"

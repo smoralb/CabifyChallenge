@@ -4,7 +4,6 @@ import androidx.lifecycle.MutableLiveData
 import com.smb.cabify.domain.usecases.GetProductListUseCase
 import com.smb.cabify.presentation.home.HomeViewState.HideLoading
 import com.smb.cabify.presentation.home.HomeViewState.Loading
-import com.smb.cabify.presentation.home.HomeViewState.NavigateToSecondFragment
 import com.smb.cabify.presentation.home.adapter.HomeDataItems.HomeDataItem
 import com.smb.cabify.presentation.home.mapper.HomePresentationMapper
 import com.smb.core.extensions.EMPTY_STRING
@@ -20,10 +19,6 @@ class HomeViewModel(
     val firstViewModelText: MutableLiveData<String> = MutableLiveData(EMPTY_STRING)
     val itemList: MutableLiveData<List<HomeDataItem>> = MutableLiveData(emptyList())
 
-    private val onItemClickListener: (String) -> Unit = {
-        viewState update NavigateToSecondFragment(productCode = it)
-    }
-
     fun initialize() {
         getProductList()
     }
@@ -33,7 +28,7 @@ class HomeViewModel(
         execute {
             getProductListUseCase(Unit).fold(
                 handleSuccess = { productList ->
-                    itemList update mapper.mapItems(productList, onItemClickListener)
+                    itemList update mapper.mapItems(productList)
                     viewState update HideLoading
                 },
                 handleError = {
