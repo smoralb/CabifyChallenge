@@ -33,7 +33,7 @@ class HomeAdapter(onItemClicked: (BaseItem) -> Unit) : BaseAdapter<HomeDataItem>
         FirstFragmentItemViewHolder(
             DataBindingUtil.inflate(
                 LayoutInflater.from(parent.context),
-                R.layout.item_sample_data,
+                R.layout.item_store,
                 parent,
                 false
             )

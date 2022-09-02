@@ -34,7 +34,6 @@ abstract class BaseAdapter<T : BaseItem>(var onItemClicked: (BaseItem) -> Unit) 
                 executePendingBindings()
                 root.setOnClickListener { onItemClicked(item as BaseItem) }
             }
-
         }
     }
 }

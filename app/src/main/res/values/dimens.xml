@@ -6,12 +6,14 @@
     <dimen name="text_l">18sp</dimen>
     <dimen name="text_xl">20sp</dimen>
 
-
     <dimen name="fab_margin">16dp</dimen>
 
     <!-- Item sample data -->
-    <dimen name="margin_item_image_view">14dp</dimen>
-    <dimen name="margin_start_item_title">14dp</dimen>
+    <dimen name="padding_horizontal_item_title">14dp</dimen>
+    <dimen name="padding_bottom_item_store">14dp</dimen>
+    <dimen name="padding_bottom_item_store_image">14dp</dimen>
+    <dimen name="margin_top_item_store_price">14dp</dimen>
+    <dimen name="corner_radius_item_store">20dp</dimen>
 
     <!-- Second fragment -->
     <dimen name="margin_top_item_title">14dp</dimen>
