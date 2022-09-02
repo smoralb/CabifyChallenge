@@ -8,12 +8,15 @@
 
     <dimen name="fab_margin">16dp</dimen>
 
-    <!-- Item sample data -->
+    <!-- Item store -->
     <dimen name="padding_horizontal_item_title">14dp</dimen>
     <dimen name="padding_bottom_item_store">14dp</dimen>
     <dimen name="padding_bottom_item_store_image">14dp</dimen>
     <dimen name="margin_top_item_store_price">14dp</dimen>
     <dimen name="corner_radius_item_store">20dp</dimen>
+
+    <!-- Fragment home -->
+    <dimen name="padding_items_store">12dp</dimen>
 
     <!-- Second fragment -->
     <dimen name="margin_top_item_title">14dp</dimen>
