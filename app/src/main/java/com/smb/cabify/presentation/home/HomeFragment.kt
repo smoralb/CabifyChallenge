@@ -4,7 +4,8 @@ import android.os.Bundle
 import android.view.View
 import com.smb.cabify.BR
 import com.smb.cabify.R
-import com.smb.cabify.databinding.FragmentFirstBinding
+import com.smb.cabify.databinding.FragmentHomeBinding
+import com.smb.cabify.domain.model.ProductModel
 import com.smb.cabify.presentation.home.HomeViewState.HideLoading
 import com.smb.cabify.presentation.home.HomeViewState.Loading
 import com.smb.cabify.presentation.home.adapter.HomeAdapter
@@ -12,8 +13,8 @@ import com.smb.cabify.presentation.home.adapter.HomeDataItems.HomeDataItem
 import com.smb.core.presentation.base.BaseFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class HomeFragment : BaseFragment<HomeViewState, FragmentFirstBinding, HomeViewModel>
-    (R.layout.fragment_first, BR.viewModel) {
+class HomeFragment : BaseFragment<HomeViewState, FragmentHomeBinding, HomeViewModel>
+    (R.layout.fragment_home, BR.viewModel) {
 
     override val viewModel by viewModel<HomeViewModel>()
 
@@ -21,7 +22,18 @@ class HomeFragment : BaseFragment<HomeViewState, FragmentFirstBinding, HomeViewM
         super.onViewCreated(view, savedInstanceState)
         binding.rvBookList.adapter =
             HomeAdapter() {
-                navigateTo(HomeFragmentDirections.toSecondFragment((it as HomeDataItem).code))
+                // This will be modified for another navigation model
+                navigateTo(
+                    HomeFragmentDirections.toSecondFragment(
+                        ProductModel(
+                            code = (it as HomeDataItem).code,
+                            name = it.name,
+                            description = it.description,
+                            price = 10f,
+                            image = it.image
+                        )
+                    )
+                )
             }
         viewModel.initialize()
     }

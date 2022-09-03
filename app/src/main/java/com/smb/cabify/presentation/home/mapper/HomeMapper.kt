@@ -1,11 +1,11 @@
 package com.smb.cabify.presentation.home.mapper
 
 import com.smb.cabify.domain.model.ProductModel
-import com.smb.cabify.presentation.home.adapter.HomeDataItems
+import com.smb.cabify.presentation.home.adapter.HomeDataItems.HomeDataItem
 
 interface HomePresentationMapper {
     fun mapItems(model: List<ProductModel>)
-            : List<HomeDataItems.HomeDataItem>
+            : List<HomeDataItem>
 }
 
 class HomePresentationMapperImpl : HomePresentationMapper {
@@ -13,10 +13,12 @@ class HomePresentationMapperImpl : HomePresentationMapper {
     override fun mapItems(
         model: List<ProductModel>
     ) = model.map {
-        HomeDataItems.HomeDataItem(
+        HomeDataItem(
             code = it.code,
             name = it.name,
-            price = it.price
+            price = "${it.price} E",
+            image = it.image,
+            description = it.description
         )
     }
 }

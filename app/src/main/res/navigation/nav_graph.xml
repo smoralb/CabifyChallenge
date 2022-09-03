@@ -8,22 +8,27 @@
     <fragment
         android:id="@+id/FirstFragment"
         android:name="com.smb.cabify.presentation.home.HomeFragment"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first">
+        android:label="@string/store_view_label"
+        tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/toSecondFragment"
-            app:destination="@id/SecondFragment" />
+            app:destination="@id/SecondFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_right">
+            <argument
+                android:name="productModel"
+                app:argType="com.smb.cabify.domain.model.ProductModel" />
+        </action>
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
-        android:name="com.smb.cabify.presentation.secondView.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
-        <action
-            android:id="@+id/toFirstFragment"
-            app:destination="@+id/FirstFragment" />
+        android:name="com.smb.cabify.presentation.detail.DetailFragment"
+        android:label="@string/details_view_label"
+        tools:layout="@layout/fragment_detail">
         <argument
-            android:name="isbn"
-            app:argType="string" />
+            android:name="productModel"
+            app:argType="com.smb.cabify.domain.model.ProductModel" />
     </fragment>
 </navigation>

@@ -1,10 +1,8 @@
 package com.smb.core.presentation.adapters
 
-import android.annotation.SuppressLint
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 
-@SuppressLint("NotifyDataSetChanged")
 abstract class BaseAdapter<T : BaseItem>(var onItemClicked: (BaseItem) -> Unit) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -34,7 +32,6 @@ abstract class BaseAdapter<T : BaseItem>(var onItemClicked: (BaseItem) -> Unit) 
                 executePendingBindings()
                 root.setOnClickListener { onItemClicked(item as BaseItem) }
             }
-
         }
     }
 }
