@@ -7,6 +7,8 @@ import com.smb.ft_store.data.entity.ProductType.TSHIRT
 import com.smb.ft_store.data.entity.ProductType.VOUCHER
 import com.smb.ft_store.data.entity.ProductsListEntity
 import com.smb.ft_store.domain.model.ProductModel
+import java.util.Currency
+import java.util.Locale
 
 private const val VOUCHER_IMAGE_URL =
     "https://images.unsplash.com/photo-1494426383302-7b9d36a1a028?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1738&q=80"
@@ -28,6 +30,8 @@ interface StoreDataMapper {
 
 class StoreDataMapperImpl : StoreDataMapper {
 
+    private val currency = Currency.getInstance(Locale.getDefault())
+
     override fun toDomainModel(entity: ProductsListEntity): List<ProductModel> =
         entity.products?.map { product ->
             ProductModel(
@@ -35,7 +39,8 @@ class StoreDataMapperImpl : StoreDataMapper {
                 name = product.name.orEmpty(),
                 description = FAKE_DESCRIPTION,
                 price = product.price.orDefault(),
-                image = getFakeImage(product.code)
+                image = getFakeImage(product.code),
+                currency = currency?.symbol.orEmpty()
             )
         }.orEmpty()
 
@@ -47,7 +52,8 @@ class StoreDataMapperImpl : StoreDataMapper {
             name = product?.name.orEmpty(),
             description = FAKE_DESCRIPTION,
             price = product?.price.orDefault(),
-            image = getFakeImage(product?.code)
+            image = getFakeImage(product?.code),
+            currency = currency?.symbol.orEmpty()
         )
     }
 

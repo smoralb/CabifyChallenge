@@ -6,9 +6,11 @@ import com.smb.core.extensions.execute
 import com.smb.core.extensions.update
 import com.smb.core.presentation.base.BaseViewModel
 import com.smb.ft_store.domain.usecase.GetProductDetailsUseCase
+import com.smb.ft_store.ui.detail.mapper.DetailUiMapper
 
 class DetailViewModel(
-    private val getProductDetailsUseCase: GetProductDetailsUseCase
+    private val getProductDetailsUseCase: GetProductDetailsUseCase,
+    private val mapper: DetailUiMapper
 ) : BaseViewModel<DetailState>() {
 
     val name: MutableLiveData<String> = MutableLiveData(EMPTY_STRING)
@@ -23,7 +25,7 @@ class DetailViewModel(
                     name update it.name
                     description update it.description
                     image update it.image
-                    price update "${it.price} E"
+                    price update mapper.mapProductPrice(it.price, it.currency)
                 },
                 handleError = {}
             )

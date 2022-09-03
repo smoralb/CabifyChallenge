@@ -16,9 +16,12 @@ class StoreUiMapperImpl : StoreUiMapper {
         StoreDataItem(
             id = it.code,
             name = it.name,
-            price = "${it.price} E",
+            price = mapProductPrice(it.price, it.currency),
             image = it.image,
             description = it.description
         )
     }
+
+    private fun mapProductPrice(price: Float, currency: String) =
+        "$price $currency"
 }
