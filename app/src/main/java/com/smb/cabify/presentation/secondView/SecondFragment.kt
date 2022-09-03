@@ -6,6 +6,7 @@ import androidx.navigation.fragment.navArgs
 import com.smb.cabify.BR
 import com.smb.cabify.R
 import com.smb.cabify.databinding.FragmentSecondBinding
+import com.smb.cabify.domain.model.ProductModel
 import com.smb.core.presentation.base.BaseFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -17,10 +18,10 @@ class SecondFragment : BaseFragment<SecondViewState, FragmentSecondBinding, Seco
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.init(args.isbn)
+        viewModel.init(args.productModel)
 
         binding.tbHeader.setNavigationOnClickListener {
-            navigateTo(SecondFragmentDirections.toFirstFragment())
+
         }
     }
 

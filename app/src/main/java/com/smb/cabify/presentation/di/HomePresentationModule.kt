@@ -12,5 +12,5 @@ val homePresentationModule = module {
     factory<HomePresentationMapper> { HomePresentationMapperImpl() }
 
     viewModel { HomeViewModel(get(), get()) }
-    viewModel { SecondViewModel(get()) }
+    viewModel { SecondViewModel() }
 }
