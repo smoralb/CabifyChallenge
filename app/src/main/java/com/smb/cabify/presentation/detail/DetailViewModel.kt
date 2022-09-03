@@ -17,7 +17,7 @@ class DetailViewModel : BaseViewModel<DetailState>() {
     fun init(productModel: ProductModel) {
         code update productModel.code
         name update productModel.name
-        description update productModel.name
+        description update productModel.description
         image update productModel.image
     }
 

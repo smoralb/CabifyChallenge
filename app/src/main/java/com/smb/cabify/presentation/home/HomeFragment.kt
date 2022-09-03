@@ -28,6 +28,7 @@ class HomeFragment : BaseFragment<HomeViewState, FragmentHomeBinding, HomeViewMo
                         ProductModel(
                             code = (it as HomeDataItem).code,
                             name = it.name,
+                            description = it.description,
                             price = 10f,
                             image = it.image
                         )

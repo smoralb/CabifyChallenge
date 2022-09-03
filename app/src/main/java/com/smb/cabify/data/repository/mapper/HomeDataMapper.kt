@@ -16,6 +16,8 @@ private const val MUG_IMAGE_URL =
     "https://images.unsplash.com/photo-1516390118834-21602d501886?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1836&q=80"
 private const val DEFAULT_IMAGE =
     "https://upload.wikimedia.org/wikipedia/commons/5/58/Cabify-logo-purple.png"
+private const val FAKE_DESCRIPTION =
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum"
 
 interface HomeDataMapper {
 
@@ -29,6 +31,7 @@ class HomeDataMapperImpl : HomeDataMapper {
             ProductModel(
                 code = product.code?.value.orEmpty(),
                 name = product.name.orEmpty(),
+                description = FAKE_DESCRIPTION,
                 price = product.price.orDefault(),
                 image = getFakeImage(product.code)
             )

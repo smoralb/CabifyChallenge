@@ -17,7 +17,8 @@ class HomePresentationMapperImpl : HomePresentationMapper {
             code = it.code,
             name = it.name,
             price = "${it.price} E",
-            image = it.image
+            image = it.image,
+            description = it.description
         )
     }
 }
