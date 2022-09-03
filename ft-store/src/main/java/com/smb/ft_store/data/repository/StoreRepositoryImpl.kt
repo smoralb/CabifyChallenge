@@ -11,4 +11,6 @@ class StoreRepositoryImpl(private val remoteSource: StoreRemoteSource) :
     override suspend fun getProductList(): Result<List<ProductModel>> =
         remoteSource.getProductList()
 
+    override suspend fun getProductDetails(productId: String): Result<ProductModel> =
+        remoteSource.getProductDetails(productId)
 }

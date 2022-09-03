@@ -17,4 +17,10 @@ class StoreRemoteSourceImpl(
             { entity -> mapper.toDomainModel(entity) }
         )
     }
+
+    override suspend fun getProductDetails(productId: String): Result<ProductModel> =
+        safeApiCall(
+            { api.getProductList() },
+            { entity -> mapper.toDomainModelDetails(productId, entity) }
+        )
 }

@@ -14,7 +14,7 @@ class StoreUiMapperImpl : StoreUiMapper {
         model: List<ProductModel>
     ) = model.map {
         StoreDataItem(
-            code = it.code,
+            id = it.code,
             name = it.name,
             price = "${it.price} E",
             image = it.image,

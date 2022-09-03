@@ -22,6 +22,8 @@ private const val FAKE_DESCRIPTION =
 interface StoreDataMapper {
 
     fun toDomainModel(entity: ProductsListEntity): List<ProductModel>
+
+    fun toDomainModelDetails(productId: String, entity: ProductsListEntity): ProductModel
 }
 
 class StoreDataMapperImpl : StoreDataMapper {
@@ -36,6 +38,19 @@ class StoreDataMapperImpl : StoreDataMapper {
                 image = getFakeImage(product.code)
             )
         }.orEmpty()
+
+    override fun toDomainModelDetails(productId: String, entity: ProductsListEntity): ProductModel {
+        val product = entity.products?.first { it.code?.value == productId }
+
+        return ProductModel(
+            code = product?.code?.value.orEmpty(),
+            name = product?.name.orEmpty(),
+            description = FAKE_DESCRIPTION,
+            price = product?.price.orDefault(),
+            image = getFakeImage(product?.code)
+        )
+    }
+
 
     private fun getFakeImage(code: ProductType?): String =
         when (code) {

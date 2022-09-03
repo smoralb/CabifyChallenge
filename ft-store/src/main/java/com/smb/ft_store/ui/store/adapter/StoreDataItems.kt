@@ -4,7 +4,7 @@ import com.smb.core.presentation.adapters.BaseItem
 
 sealed class StoreDataItems : BaseItem {
     data class StoreDataItem(
-        val code: String,
+        override var id: String,
         val name: String,
         val price: String,
         val description: String,

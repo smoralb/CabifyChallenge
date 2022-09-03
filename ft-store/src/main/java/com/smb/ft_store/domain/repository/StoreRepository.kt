@@ -6,4 +6,6 @@ import com.smb.ft_store.domain.model.ProductModel
 interface StoreRepository {
 
     suspend fun getProductList(): Result<List<ProductModel>>
+
+    suspend fun getProductDetails(productId: String): Result<ProductModel>
 }

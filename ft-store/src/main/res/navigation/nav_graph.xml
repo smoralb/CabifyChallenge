@@ -18,8 +18,8 @@
             app:popEnterAnim="@anim/slide_in_right"
             app:popExitAnim="@anim/slide_out_right">
             <argument
-                android:name="productModel"
-                app:argType="com.smb.ft_store.domain.model.ProductModel" />
+                android:name="productId"
+                app:argType="string" />
         </action>
     </fragment>
     <fragment
@@ -28,7 +28,7 @@
         android:label="@string/details_view_label"
         tools:layout="@layout/fragment_detail">
         <argument
-            android:name="productModel"
-            app:argType="com.smb.ft_store.domain.model.ProductModel" />
+            android:name="productId"
+            app:argType="string" />
     </fragment>
 </navigation>

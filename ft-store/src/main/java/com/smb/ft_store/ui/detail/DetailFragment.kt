@@ -17,7 +17,7 @@ class DetailFragment : BaseFragment<DetailState, FragmentDetailBinding, DetailVi
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.init(args.productModel)
+        viewModel.init(args.productId)
 
         binding.tbHeader.setNavigationOnClickListener {
 
