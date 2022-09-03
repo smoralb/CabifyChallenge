@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/FirstFragment">
+
+    <fragment
+        android:id="@+id/FirstFragment"
+        android:name="com.smb.ft_store.ui.store.StoreFragment"
+        android:label="@string/store_view_label"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/toSecondFragment"
+            app:destination="@id/SecondFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_right">
+            <argument
+                android:name="productModel"
+                app:argType="com.smb.ft_store.domain.model.ProductModel" />
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/SecondFragment"
+        android:name="com.smb.ft_store.ui.detail.DetailFragment"
+        android:label="@string/details_view_label"
+        tools:layout="@layout/fragment_detail">
+        <argument
+            android:name="productModel"
+            app:argType="com.smb.ft_store.domain.model.ProductModel" />
+    </fragment>
+</navigation>

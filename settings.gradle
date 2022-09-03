@@ -1,3 +1,6 @@
 rootProject.name = "CabifyShop"
 include ':core', ':app'
 include ':ft-payment'
+include ':navigator'
+include ':ft-store'
+include ':resources'
