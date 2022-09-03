@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/FirstFragment"
         android:name="com.smb.cabify.presentation.home.HomeFragment"
-        android:label="@string/first_fragment_label"
+        android:label="@string/store_view_label"
         tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/toSecondFragment"
@@ -16,7 +16,7 @@
             app:enterAnim="@anim/slide_in_left"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_right"
-            app:popExitAnim="@anim/slide_out_right" >
+            app:popExitAnim="@anim/slide_out_right">
             <argument
                 android:name="productModel"
                 app:argType="com.smb.cabify.domain.model.ProductModel" />
@@ -24,9 +24,9 @@
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
-        android:name="com.smb.cabify.presentation.secondView.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
+        android:name="com.smb.cabify.presentation.detail.DetailFragment"
+        android:label="@string/details_view_label"
+        tools:layout="@layout/fragment_detail">
         <argument
             android:name="productModel"
             app:argType="com.smb.cabify.domain.model.ProductModel" />

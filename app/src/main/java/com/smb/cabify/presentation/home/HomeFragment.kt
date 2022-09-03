@@ -11,7 +11,6 @@ import com.smb.cabify.presentation.home.HomeViewState.Loading
 import com.smb.cabify.presentation.home.adapter.HomeAdapter
 import com.smb.cabify.presentation.home.adapter.HomeDataItems.HomeDataItem
 import com.smb.core.presentation.base.BaseFragment
-import kotlinx.coroutines.processNextEventInCurrentThread
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : BaseFragment<HomeViewState, FragmentHomeBinding, HomeViewModel>
@@ -24,14 +23,16 @@ class HomeFragment : BaseFragment<HomeViewState, FragmentHomeBinding, HomeViewMo
         binding.rvBookList.adapter =
             HomeAdapter() {
                 // This will be modified for another navigation model
-                navigateTo(HomeFragmentDirections.toSecondFragment(
-                    ProductModel(
-                        code = (it as HomeDataItem).code,
-                        name = it.name,
-                        price = 10f,
-                        image = ""
+                navigateTo(
+                    HomeFragmentDirections.toSecondFragment(
+                        ProductModel(
+                            code = (it as HomeDataItem).code,
+                            name = it.name,
+                            price = 10f,
+                            image = it.image
+                        )
                     )
-                ))
+                )
             }
         viewModel.initialize()
     }

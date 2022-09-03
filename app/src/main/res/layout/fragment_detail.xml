@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.smb.cabify.presentation.secondView.SecondViewModel" />
+            type="com.smb.cabify.presentation.detail.DetailViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -29,11 +29,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="?attr/colorPrimary"
-                app:popupTheme="@style/AppTheme.PopupOverlay"
                 app:navigationIcon="@android:drawable/arrow_down_float"
+                app:popupTheme="@style/AppTheme.PopupOverlay"
                 app:title="@string/app_name" />
 
         </com.google.android.material.appbar.AppBarLayout>
+
+        <ImageView
+            android:id="@+id/ivImage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar"
+            app:setImageUrl="@{viewModel.image}" />
 
         <TextView
             android:id="@+id/tvTitle"
@@ -41,11 +50,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_top_item_title"
-            android:text="@{viewModel.title}"
+            android:text="@{viewModel.name}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar"
-            tools:text="@string/hello_second_fragment" />
+            app:layout_constraintTop_toBottomOf="@+id/ivImage" />
 
         <TextView
             android:id="@+id/tvDescription"
@@ -56,17 +64,29 @@
             android:text="@{viewModel.description}"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvTitle"
-            tools:text="Test description" />
+            app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
 
         <TextView
-            android:id="@+id/tvPublisher"
+            android:id="@+id/tvPrice"
             style="@style/TextSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/margin_item_publisher"
-            android:text="@{viewModel.publisher}"
+            android:text="@{viewModel.price}"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvDescription" />
+
+        <Button
+            android:id="btAddToCart"
+            style="@style/TextLarge.Bold.White"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_add_to_cart_button"
+            android:background="@color/colorPrimary"
+            android:onClick="@{() -> viewModel.addToCart()}"
+            android:text="@string/add_to_cart"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

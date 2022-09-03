@@ -38,7 +38,15 @@
         <item name="android:textSize">@dimen/text_l</item>
     </style>
 
+    <style name="TextLargeWhite" parent="TextParentWhite">
+        <item name="android:textSize">@dimen/text_l</item>
+    </style>
+
     <style name="TextLarge.Bold" parent="TextLarge">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextLarge.Bold.White" parent="TextLargeWhite">
         <item name="android:textStyle">bold</item>
     </style>
 
@@ -52,6 +60,10 @@
 
     <style name="TextParent">
         <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <style name="TextParentWhite">
+        <item name="android:textColor">@android:color/white</item>
     </style>
 
 </resources>
