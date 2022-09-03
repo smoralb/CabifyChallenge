@@ -1,6 +1,6 @@
-package com.smb.cabify.data.repository
+package com.smb.ft_store.data.repository
 
-import com.smb.cabify.data.source.StoreRemoteSource
+import com.smb.ft_store.data.source.StoreRemoteSource
 import com.smb.core.data.Result
 import com.smb.core.data.Result.Success
 import com.smb.core.test.BaseUnitTest

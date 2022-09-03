@@ -1,10 +1,10 @@
-package com.smb.cabify.data.source
+package com.smb.ft_store.data.source
 
 import com.smb.cabify.data.productDataModelEmptyMock
 import com.smb.cabify.data.productsDataListEntityMock
 import com.smb.cabify.data.productsDataListEntityNullMock
 import com.smb.cabify.data.productsDataListNullEntityMock
-import com.smb.cabify.data.repository.StoreDataMapper
+import com.smb.ft_store.data.repository.StoreDataMapper
 import com.smb.ft_store.data.service.StoreApi
 import com.smb.core.extensions.EMPTY_STRING
 import com.smb.core.test.BaseUnitTest
@@ -33,11 +33,11 @@ class StoreRemoteSourceTest : BaseUnitTest() {
     @Mock
     private lateinit var mapper: StoreDataMapper
 
-    private lateinit var remoteSource: com.smb.cabify.data.source.StoreRemoteSource
+    private lateinit var remoteSource: com.smb.ft_store.data.source.StoreRemoteSource
 
     @BeforeEach
     fun setUp() {
-        remoteSource = com.smb.cabify.data.source.StoreRemoteSourceImpl(api, mapper)
+        remoteSource = com.smb.ft_store.data.source.StoreRemoteSourceImpl(api, mapper)
     }
 
     @TestFactory
