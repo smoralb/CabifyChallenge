@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.smb.cabify.presentation.MainActivity"
+            android:name="com.smb.ft_store.StoreActivity"
             android:label="@string/app_name"
             android:theme="@style/LaunchTheme">
             <intent-filter>

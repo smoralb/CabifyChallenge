@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Store View -->
+    <string name="store_view_label">Store view</string>
+    <!-- Details view -->
+    <string name="details_view_label">Details view</string>
+    <string name="add_to_cart">ADD TO CART</string>
+</resources>

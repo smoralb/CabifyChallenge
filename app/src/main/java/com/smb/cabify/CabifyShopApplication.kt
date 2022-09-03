@@ -1,10 +1,11 @@
 package com.smb.cabify
 
 import android.app.Application
-import com.smb.cabify.data.di.homeDataModule
-import com.smb.cabify.domain.di.homeDomainModule
-import com.smb.cabify.presentation.di.homePresentationModule
 import com.smb.core.data.di.baseDataModule
+import com.smb.ft_navigation.di.navigatorModule
+import com.smb.ft_store.data.di.storeDataModule
+import com.smb.ft_store.domain.di.storeDomainModule
+import com.smb.ft_store.ui.di.storePresentationModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -18,10 +19,11 @@ class CabifyShopApplication : Application() {
             androidContext(this@CabifyShopApplication)
             modules(
                 listOf(
-                    homePresentationModule,
+                    storePresentationModule,
                     baseDataModule,
-                    homeDataModule,
-                    homeDomainModule
+                    storeDataModule,
+                    storeDomainModule,
+                    navigatorModule
                 )
             )
         }

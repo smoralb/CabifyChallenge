@@ -3,7 +3,7 @@ package com.smb.core.presentation.adapters
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 
-abstract class BaseAdapter<T : BaseItem>(var onItemClicked: (BaseItem) -> Unit) :
+abstract class BaseAdapter<T : BaseItem>(var onItemClicked: (String) -> Unit) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     var items = listOf<T>()
@@ -30,7 +30,7 @@ abstract class BaseAdapter<T : BaseItem>(var onItemClicked: (BaseItem) -> Unit) 
             binding.apply {
                 setVariable(itemVariableId, item)
                 executePendingBindings()
-                root.setOnClickListener { onItemClicked(item as BaseItem) }
+                root.setOnClickListener { onItemClicked((item as BaseItem).id) }
             }
         }
     }
