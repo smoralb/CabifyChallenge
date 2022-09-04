@@ -24,7 +24,7 @@ class StoreViewModel(
         viewState update NavigateToProductDetail(it)
     }
 
-    fun initialize() {
+    internal fun initialize() {
         getProductList()
     }
 

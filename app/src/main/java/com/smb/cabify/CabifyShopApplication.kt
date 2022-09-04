@@ -2,6 +2,9 @@ package com.smb.cabify
 
 import android.app.Application
 import com.smb.core.data.di.baseDataModule
+import com.smb.ft_checkout.data.di.checkoutDataModule
+import com.smb.ft_checkout.domain.di.checkoutDomainModule
+import com.smb.ft_checkout.ui.di.checkoutUiModule
 import com.smb.ft_navigation.di.navigatorModule
 import com.smb.ft_store.data.di.storeDataModule
 import com.smb.ft_store.domain.di.storeDomainModule
@@ -20,10 +23,14 @@ class CabifyShopApplication : Application() {
             modules(
                 listOf(
                     storePresentationModule,
+
                     baseDataModule,
                     storeDataModule,
                     storeDomainModule,
-                    navigatorModule
+                    navigatorModule,
+                    checkoutUiModule,
+                    checkoutDomainModule,
+                    checkoutDataModule
                 )
             )
         }

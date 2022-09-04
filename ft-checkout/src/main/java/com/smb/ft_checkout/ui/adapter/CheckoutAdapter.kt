@@ -1,4 +1,4 @@
-package com.smb.ft_store.ui.store.adapter
+package com.smb.ft_checkout.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,40 +6,42 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 import com.smb.core.presentation.adapters.BaseAdapter
-import com.smb.ft_store.BR
-import com.smb.ft_store.R
-import com.smb.ft_store.ui.store.adapter.StoreDataItems.StoreDataItem
+import com.smb.ft_checkout.BR
+import com.smb.ft_checkout.R
+import com.smb.ft_checkout.ui.adapter.CheckoutDataItems.CheckoutDataItem
 
-private const val ITEM_TYPE = 0
+private const val ITEM_STORE = 0
 
-class StoreAdapter : BaseAdapter<StoreDataItem>() {
+class CheckoutAdapter : BaseAdapter<CheckoutDataItem>() {
 
-    override fun updateData(newItems: List<StoreDataItem>) {
+    override fun updateData(newItems: List<CheckoutDataItem>) {
         items = newItems
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder =
         when (viewType) {
-            ITEM_TYPE -> createItemViewHolder(parent)
+            ITEM_STORE -> createItemViewHolder(parent)
             else -> throw IllegalArgumentException()
         }
 
-    override fun getItemViewType(position: Int) =
+    override fun getItemViewType(position: Int): Int =
         when (items[position]) {
-            is StoreDataItem -> ITEM_TYPE
+            is CheckoutDataItem -> ITEM_STORE
             else -> throw IllegalArgumentException()
         }
 
     private fun createItemViewHolder(parent: ViewGroup) =
-        StoreItemViewHolder(
+        CheckoutViewHolder(
             DataBindingUtil.inflate(
                 LayoutInflater.from(parent.context),
-                R.layout.item_store,
+                R.layout.item_checkout,
                 parent,
                 false
             )
         )
 
-    inner class StoreItemViewHolder(binding: ViewDataBinding) :
-        BaseViewHolder<StoreDataItem>(BR.item, binding)
+    inner class CheckoutViewHolder(
+        binding: ViewDataBinding
+    ) : BaseViewHolder<CheckoutDataItem>(BR.item, binding)
 }
+
