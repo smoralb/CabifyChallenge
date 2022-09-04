@@ -18,12 +18,10 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:headerNavigationIcon="@{viewModel.navigationIcon}"
-            app:headerTitle="@{viewModel.title}"
-            app:navigationIconClickListener="@{viewModel.onHeaderClickListener}"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:menuIconClickListener="@{viewModel.onHeaderClickListener}" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvProducts"
