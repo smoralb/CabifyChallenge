@@ -1,14 +1,14 @@
 package com.smb.ft_checkout.data.repository
 
-import com.smb.core.data.Result
 import com.smb.ft_checkout.data.source.CheckoutLocalSource
 import com.smb.ft_checkout.domain.model.CheckoutModel
 import com.smb.ft_checkout.domain.repository.CheckoutRepository
+import kotlinx.coroutines.flow.Flow
 
 class CheckoutRepositoryImpl(
     private val localSource: CheckoutLocalSource
-): CheckoutRepository {
+) : CheckoutRepository {
 
-    override fun getCheckoutItems(): Result<List<CheckoutModel>> =
+    override fun getCheckoutItems(): Flow<List<CheckoutModel>> =
         localSource.getCheckoutItems()
 }

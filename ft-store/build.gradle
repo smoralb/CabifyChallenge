@@ -8,9 +8,4 @@ apply from: "$project.rootDir/base.gradle"
 dependencies {
     implementation project (':core')
     implementation project (':resources')
-    implementation basic.values()
-    implementation navigation.values()
-    implementation koin.values()
-    implementation coil.values()
-    implementation testing.values()
 }
