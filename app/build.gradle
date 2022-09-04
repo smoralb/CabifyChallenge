@@ -5,7 +5,6 @@ apply plugin: 'androidx.navigation.safeargs.kotlin'
 dependencies {
     implementation project (':core')
     implementation project (':ft-store')
-    implementation project (':resources')
     implementation project (':navigator')
     implementation basic.values()
     implementation koin.values()

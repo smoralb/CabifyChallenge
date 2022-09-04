@@ -3,6 +3,7 @@ apply from: "$project.rootDir/base.gradle"
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation project (':resources')
     api basic.values()
     api koin.values()
     api navigation.values()
