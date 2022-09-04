@@ -7,15 +7,18 @@ import com.smb.core.extensions.update
 import com.smb.core.presentation.base.BaseViewModel
 import com.smb.ft_store.R
 import com.smb.ft_store.domain.usecase.GetProductListUseCase
+import com.smb.ft_store.ui.navigation.StoreNavigator
 import com.smb.ft_store.ui.store.StoreState.HideLoading
 import com.smb.ft_store.ui.store.StoreState.Loading
 import com.smb.ft_store.ui.store.StoreState.NavigateToProductDetail
+import com.smb.ft_store.ui.store.StoreState.NavigateToStore
 import com.smb.ft_store.ui.store.adapter.StoreDataItems.StoreDataItem
 import com.smb.ft_store.ui.store.mapper.StoreUiMapper
 
 class StoreViewModel(
     private val getProductListUseCase: GetProductListUseCase,
-    private val mapper: StoreUiMapper
+    private val mapper: StoreUiMapper,
+    private val navigator: StoreNavigator
 ) : BaseViewModel<StoreState>() {
 
     val errorMessage: MutableLiveData<String> = MutableLiveData(EMPTY_STRING)
@@ -27,8 +30,16 @@ class StoreViewModel(
         viewState update NavigateToProductDetail(it)
     }
 
+    val onHeaderClickListener: () -> Unit = {
+        viewState update NavigateToStore
+    }
+
     internal fun initialize() {
         getProductList()
+    }
+
+    internal fun navigateToStore() {
+        navigator.navigateToShoppingCart()
     }
 
     private fun getProductList() {

@@ -9,6 +9,7 @@ import com.smb.ft_store.databinding.FragmentStoreBinding
 import com.smb.ft_store.ui.store.StoreState.HideLoading
 import com.smb.ft_store.ui.store.StoreState.Loading
 import com.smb.ft_store.ui.store.StoreState.NavigateToProductDetail
+import com.smb.ft_store.ui.store.StoreState.NavigateToStore
 import com.smb.ft_store.ui.store.adapter.StoreAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -29,6 +30,8 @@ class StoreFragment : BaseFragment<StoreState, FragmentStoreBinding, StoreViewMo
             is HideLoading -> binding.plItemsLoader.visibility = View.GONE
             is NavigateToProductDetail ->
                 navigateTo(StoreFragmentDirections.toSecondFragment(state.code))
+            is NavigateToStore -> viewModel.navigateToStore()
+
         }
     }
 }

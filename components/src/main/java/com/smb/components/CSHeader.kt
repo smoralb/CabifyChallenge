@@ -14,11 +14,11 @@ class CSHeader(context: Context, attributeSet: AttributeSet) : FrameLayout(conte
         CsHeaderBinding.inflate(LayoutInflater.from(context), this)
 
     @SuppressLint("UseCompatLoadingForDrawables")
-    fun setNavigationIcon(icon: Int) {
+    fun setHeaderNavigationIcon(icon: Int) {
         binding.ivToolbarCart.setImageDrawable(context.getDrawable(icon))
     }
 
-    fun setNavigationTitle(title: Int) {
+    fun setHeaderTitle(title: Int) {
         binding.tvToolbarTitle.text = context.getString(title)
     }
 
@@ -31,13 +31,13 @@ class CSHeader(context: Context, attributeSet: AttributeSet) : FrameLayout(conte
         @JvmStatic
         @BindingAdapter("headerTitle")
         fun setTitle(view: CSHeader, title: Int) {
-            view.setNavigationTitle(title)
+            view.setHeaderTitle(title)
         }
 
         @JvmStatic
         @BindingAdapter("headerNavigationIcon")
         fun setNavigationIcon(view: CSHeader, icon: Int) {
-            view.setNavigationIcon(icon)
+            view.setHeaderNavigationIcon(icon)
         }
 
         @JvmStatic
