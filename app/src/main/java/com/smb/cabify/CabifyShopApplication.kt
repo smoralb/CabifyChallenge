@@ -12,18 +12,18 @@ import com.smb.ft_store.ui.di.storePresentationModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
+import org.koin.core.logger.Level
 
 class CabifyShopApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
         startKoin {
-            androidLogger()
+            androidLogger(if (BuildConfig.DEBUG) Level.ERROR else Level.NONE)
             androidContext(this@CabifyShopApplication)
             modules(
                 listOf(
                     storePresentationModule,
-
                     baseDataModule,
                     storeDataModule,
                     storeDomainModule,

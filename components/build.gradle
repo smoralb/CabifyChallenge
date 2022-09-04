@@ -5,8 +5,13 @@ plugins {
 }
 apply from: "$project.rootDir/base.gradle"
 
+android {
+    viewBinding {
+        enabled = true
+    }
+}
+
 dependencies {
-    implementation project (':core')
-    implementation project (':resources')
-    implementation project (':components')
+    implementation project(':resources')
+    implementation basic.values()
 }

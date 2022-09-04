@@ -5,6 +5,7 @@ import com.smb.core.extensions.EMPTY_STRING
 import com.smb.core.extensions.execute
 import com.smb.core.extensions.update
 import com.smb.core.presentation.base.BaseViewModel
+import com.smb.ft_store.R
 import com.smb.ft_store.domain.usecase.GetProductListUseCase
 import com.smb.ft_store.ui.store.StoreState.HideLoading
 import com.smb.ft_store.ui.store.StoreState.Loading
@@ -19,6 +20,8 @@ class StoreViewModel(
 
     val errorMessage: MutableLiveData<String> = MutableLiveData(EMPTY_STRING)
     val itemList: MutableLiveData<List<StoreDataItem>> = MutableLiveData(emptyList())
+    val title: MutableLiveData<Int> = MutableLiveData(R.string.app_name)
+    val navigationIcon: MutableLiveData<Int> = MutableLiveData(R.drawable.ic_shopping_cart)
 
     private val onItemClickListener: (String) -> Unit = {
         viewState update NavigateToProductDetail(it)
