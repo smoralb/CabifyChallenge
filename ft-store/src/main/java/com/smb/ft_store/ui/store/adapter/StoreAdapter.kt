@@ -11,7 +11,7 @@ import com.smb.ft_store.BR
 import com.smb.ft_store.R
 import com.smb.ft_store.ui.store.adapter.StoreDataItems.StoreDataItem
 
-class StoreAdapter(onItemClicked: (String) -> Unit) : BaseAdapter<StoreDataItem>(onItemClicked) {
+class StoreAdapter : BaseAdapter<StoreDataItem>() {
 
     override fun updateData(newItems: List<StoreDataItem>) {
         items = newItems

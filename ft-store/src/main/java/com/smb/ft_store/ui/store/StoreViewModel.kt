@@ -8,6 +8,7 @@ import com.smb.core.presentation.base.BaseViewModel
 import com.smb.ft_store.domain.usecase.GetProductListUseCase
 import com.smb.ft_store.ui.store.StoreState.HideLoading
 import com.smb.ft_store.ui.store.StoreState.Loading
+import com.smb.ft_store.ui.store.StoreState.NavigateToProductDetail
 import com.smb.ft_store.ui.store.adapter.StoreDataItems.StoreDataItem
 import com.smb.ft_store.ui.store.mapper.StoreUiMapper
 
@@ -19,6 +20,10 @@ class StoreViewModel(
     val errorMessage: MutableLiveData<String> = MutableLiveData(EMPTY_STRING)
     val itemList: MutableLiveData<List<StoreDataItem>> = MutableLiveData(emptyList())
 
+    private val onItemClickListener: (String) -> Unit = {
+        viewState update NavigateToProductDetail(it)
+    }
+
     fun initialize() {
         getProductList()
     }
@@ -28,7 +33,7 @@ class StoreViewModel(
         execute {
             getProductListUseCase(Unit).fold(
                 handleSuccess = { productList ->
-                    itemList update mapper.mapItems(productList)
+                    itemList update mapper.mapItems(productList, onItemClickListener)
                     viewState update HideLoading
                 },
                 handleError = {

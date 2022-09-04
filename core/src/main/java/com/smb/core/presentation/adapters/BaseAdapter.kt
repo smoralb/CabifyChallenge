@@ -3,15 +3,13 @@ package com.smb.core.presentation.adapters
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 
-abstract class BaseAdapter<T : BaseItem>(var onItemClicked: (String) -> Unit) :
+abstract class BaseAdapter<T : BaseItem> :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     var items = listOf<T>()
         set(value) {
-            if (value.isNotEmpty()) {
-                field = value
-                notifyDataSetChanged()
-            }
+            field = value
+            notifyDataSetChanged()
         }
 
     abstract fun updateData(newItems: List<T>)
@@ -30,7 +28,6 @@ abstract class BaseAdapter<T : BaseItem>(var onItemClicked: (String) -> Unit) :
             binding.apply {
                 setVariable(itemVariableId, item)
                 executePendingBindings()
-                root.setOnClickListener { onItemClicked((item as BaseItem).id) }
             }
         }
     }
