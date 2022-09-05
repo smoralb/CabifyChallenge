@@ -7,6 +7,8 @@ import com.smb.core.presentation.base.BaseFragment
 import com.smb.ft_store.BR
 import com.smb.ft_store.R
 import com.smb.ft_store.databinding.FragmentDetailBinding
+import com.smb.ft_store.ui.detail.DetailState.HideLoading
+import com.smb.ft_store.ui.detail.DetailState.Loading
 import com.smb.ft_store.ui.detail.DetailState.NavigateUp
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -23,6 +25,8 @@ class DetailFragment : BaseFragment<DetailState, FragmentDetailBinding, DetailVi
 
     override fun checkViewState(state: DetailState) {
         when (state) {
+            Loading -> binding.plDetailsLoader.visibility = View.VISIBLE
+            HideLoading -> binding.plDetailsLoader.visibility = View.GONE
             NavigateUp -> navigateUp()
         }
     }

@@ -13,5 +13,4 @@
     <!-- Details fragment -->
     <dimen name="margin_top_item_title">14dp</dimen>
     <dimen name="margin_item_description">14dp</dimen>
-    <dimen name="margin_add_to_cart_button">12dp</dimen>
 </resources>

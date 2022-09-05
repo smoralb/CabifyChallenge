@@ -70,17 +70,23 @@
             app:layout_constraintTop_toBottomOf="@+id/tvTitle"
             tools:text="Description" />
 
-        <Button
+        <com.smb.components.CSButton
             android:id="@+id/btAddToCart"
-            style="@style/TextLarge.Bold.White"
-            android:layout_width="@dimen/match_constraint"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/margin_add_to_cart_button"
-            android:background="@color/colorPrimary"
-            android:onClick="@{() -> viewModel.addToCart()}"
-            android:text="@string/add_to_cart"
+            app:addToCartClickListener="@{viewModel.onAddToCartListener}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent" />
+
+        <ProgressBar
+            android:id="@+id/plDetailsLoader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

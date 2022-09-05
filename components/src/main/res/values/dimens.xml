@@ -2,4 +2,7 @@
 <resources>
     <dimen name="margin_left_header_title">10dp</dimen>
     <dimen name="padding_horizontal_header">14dp</dimen>
+
+    <dimen name="margin_horizontal_button">12dp</dimen>
+    <dimen name="margin_horizontal_quantity">12dp</dimen>
 </resources>
