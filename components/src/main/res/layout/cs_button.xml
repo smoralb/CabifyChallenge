@@ -3,18 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginHorizontal="@dimen/margin_horizontal_button">
+    android:layout_height="wrap_content">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="@dimen/margin_horizontal_button">
 
         <ImageButton
             android:id="@+id/btSubtract"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/margin_horizontal_quantity"
+            android:layout_marginRight="@dimen/margin_right_quantity_button"
             android:background="@drawable/round_button"
             android:src="@drawable/ic_subtract"
             app:layout_constraintBottom_toBottomOf="@+id/btAddToCart"
@@ -27,6 +27,7 @@
             style="@style/TextLarge.Bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/margin_right_quantity_button"
             app:layout_constraintBottom_toBottomOf="@+id/btSubtract"
             app:layout_constraintLeft_toRightOf="@+id/btSubtract"
             app:layout_constraintRight_toLeftOf="@+id/btAdd"
@@ -37,7 +38,7 @@
             android:id="@+id/btAdd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/margin_horizontal_quantity"
+            android:layout_marginRight="@dimen/margin_right_quantity_button"
             android:background="@drawable/round_button"
             android:src="@drawable/ic_add"
             app:layout_constraintBottom_toBottomOf="@+id/btAddToCart"
@@ -50,7 +51,7 @@
             style="@style/TextLarge.Bold.White"
             android:layout_width="@dimen/match_constraint"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
+            android:background="@drawable/cs_button_shape"
             android:text="@string/add_to_cart"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toRightOf="@+id/btAdd"

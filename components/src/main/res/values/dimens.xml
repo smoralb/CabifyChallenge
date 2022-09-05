@@ -4,5 +4,5 @@
     <dimen name="padding_horizontal_header">14dp</dimen>
 
     <dimen name="margin_horizontal_button">12dp</dimen>
-    <dimen name="margin_horizontal_quantity">12dp</dimen>
+    <dimen name="margin_right_quantity_button">12dp</dimen>
 </resources>
