@@ -41,7 +41,7 @@ class CheckoutViewModel(
                 items update mapper.mapCheckoutItems(it, onItemClickListener)
                 if (it.isNotEmpty()) {
                     viewState update ShowTotalAmount
-                    mapper.mapTotalPrice(it)
+                    total update mapper.mapTotalPrice(it)
                 } else viewState update HideTotalAmount
             }
         }

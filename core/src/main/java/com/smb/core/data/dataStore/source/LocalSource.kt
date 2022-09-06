@@ -4,9 +4,11 @@ import androidx.datastore.core.DataStore
 import com.smb.core.ShoppingCart
 import com.smb.core.data.dataStore.source.mapper.LocalDataMapper
 import com.smb.core.domain.dataStore.model.ProductModel
+import com.smb.core.extensions.DEFAULT_FLOAT
 import com.smb.core.extensions.DEFAULT_INT
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
@@ -24,10 +26,14 @@ class LocalSourceImpl(
 ) : LocalSource {
 
     override suspend fun getItems(): Flow<List<ProductModel>> =
-        dataStore.data.map {
-            if (it.itemsCount != 0) {
-                it.itemsList.map { item -> mapper.toDomainModel(item) }
-            } else emptyList()
+        flow {
+            dataStore.data.collect {
+                var items = emptyList<ProductModel>()
+                if (it.itemsCount != 0) {
+                    items = it.itemsList.map { item -> mapper.toDomainModel(item) }
+                }
+                emit(items)
+            }
         }
 
     override suspend fun addNewItem(newItem: ProductModel) {
@@ -38,7 +44,8 @@ class LocalSourceImpl(
             if (index != -1) {
                 val storedItem = builder.itemsList[index]
                 val updatedItem =
-                    storedItem.toBuilder().setQuantity(storedItem.quantity.plus(item.quantity))
+                    storedItem.toBuilder()
+                        .setQuantity(storedItem.quantity.plus(item.quantity))
                 builder.setItems(index, updatedItem)
             } else builder.addItems(item)
             builder.build()
