@@ -7,8 +7,8 @@ import com.smb.core.presentation.base.BaseFragment
 import com.smb.ft_checkout.BR
 import com.smb.ft_checkout.R
 import com.smb.ft_checkout.databinding.FragmentCheckoutBinding
-import com.smb.ft_checkout.ui.CheckoutState.HideTotalAmount
 import com.smb.ft_checkout.ui.CheckoutState.NavigateUp
+import com.smb.ft_checkout.ui.CheckoutState.ShowEmptyLayout
 import com.smb.ft_checkout.ui.CheckoutState.ShowTotalAmount
 import com.smb.ft_checkout.ui.adapter.CheckoutAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -37,7 +37,10 @@ class CheckoutFragment : BaseFragment<CheckoutState, FragmentCheckoutBinding, Ch
     override fun checkViewState(state: CheckoutState) {
         when (state) {
             NavigateUp -> viewModel.navigateBack(requireActivity())
-            HideTotalAmount -> binding.csTotalAmount.visibility = View.GONE
+            ShowEmptyLayout -> {
+                binding.emptyLayout.visibility = View.VISIBLE
+                binding.csTotalAmount.visibility = View.GONE
+            }
             ShowTotalAmount -> binding.csTotalAmount.visibility = View.VISIBLE
         }
     }

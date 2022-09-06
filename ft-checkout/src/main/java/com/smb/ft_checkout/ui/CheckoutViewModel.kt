@@ -8,8 +8,8 @@ import com.smb.core.extensions.EMPTY_STRING
 import com.smb.core.extensions.execute
 import com.smb.core.extensions.update
 import com.smb.core.presentation.base.BaseViewModel
-import com.smb.ft_checkout.ui.CheckoutState.HideTotalAmount
 import com.smb.ft_checkout.ui.CheckoutState.NavigateUp
+import com.smb.ft_checkout.ui.CheckoutState.ShowEmptyLayout
 import com.smb.ft_checkout.ui.CheckoutState.ShowTotalAmount
 import com.smb.ft_checkout.ui.adapter.CheckoutDataItems.CheckoutDataItem
 import com.smb.ft_checkout.ui.navigator.CheckoutNavigator
@@ -42,7 +42,7 @@ class CheckoutViewModel(
                 if (it.isNotEmpty()) {
                     viewState update ShowTotalAmount
                     total update mapper.mapTotalPrice(it)
-                } else viewState update HideTotalAmount
+                } else viewState update ShowEmptyLayout
             }
         }
     }

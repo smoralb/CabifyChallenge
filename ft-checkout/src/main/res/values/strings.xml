@@ -2,4 +2,5 @@
 <resources>
     <string name="checkout_proceed_payment">Proceed to pay</string>
     <string name="checkout_quantity">x %d</string>
+    <string name="empty_title">Add items to your shopping cart!</string>
 </resources>
