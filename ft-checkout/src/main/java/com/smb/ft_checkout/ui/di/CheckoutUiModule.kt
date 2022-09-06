@@ -10,5 +10,5 @@ val checkoutUiModule = module {
 
     factory<CheckoutUiMapper> { CheckoutUiMapperImpl(context = androidContext()) }
 
-    factory { CheckoutViewModel(mapper = get(), repository = get()) }
+    factory { CheckoutViewModel(mapper = get(), repository = get(), navigator = get()) }
 }

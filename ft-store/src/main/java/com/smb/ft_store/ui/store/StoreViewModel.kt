@@ -1,11 +1,11 @@
 package com.smb.ft_store.ui.store
 
+import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import com.smb.core.extensions.EMPTY_STRING
 import com.smb.core.extensions.execute
 import com.smb.core.extensions.update
 import com.smb.core.presentation.base.BaseViewModel
-import com.smb.ft_store.R
 import com.smb.ft_store.domain.usecase.GetProductListUseCase
 import com.smb.ft_store.ui.navigation.StoreNavigator
 import com.smb.ft_store.ui.store.StoreState.HideLoading
@@ -36,8 +36,8 @@ class StoreViewModel(
         getProductList()
     }
 
-    internal fun navigateToStore() {
-        navigator.navigateToShoppingCart()
+    internal fun navigateToStore(context: Context) {
+        navigator.navigateToShoppingCart(context)
     }
 
     private fun getProductList() {

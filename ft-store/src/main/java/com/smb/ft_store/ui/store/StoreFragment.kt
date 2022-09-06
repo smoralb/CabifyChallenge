@@ -29,8 +29,8 @@ class StoreFragment : BaseFragment<StoreState, FragmentStoreBinding, StoreViewMo
             is Loading -> binding.plItemsLoader.visibility = View.VISIBLE
             is HideLoading -> binding.plItemsLoader.visibility = View.GONE
             is NavigateToProductDetail ->
-                navigateTo(StoreFragmentDirections.toSecondFragment(state.code))
-            is NavigateToStore -> viewModel.navigateToStore()
+                navigateTo(StoreFragmentDirections.toDetailFragment(state.code))
+            is NavigateToStore -> viewModel.navigateToStore(requireActivity())
 
         }
     }

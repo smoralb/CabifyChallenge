@@ -1,19 +1,23 @@
 package com.smb.ft_checkout.ui
 
+import android.app.Activity
 import androidx.lifecycle.MutableLiveData
 import com.smb.core.domain.dataStore.model.CheckoutModel
 import com.smb.core.domain.dataStore.repository.CheckoutRepository
 import com.smb.core.extensions.EMPTY_STRING
 import com.smb.core.extensions.execute
 import com.smb.core.extensions.update
+import com.smb.core.presentation.base.BaseActivity
 import com.smb.core.presentation.base.BaseViewModel
 import com.smb.ft_checkout.ui.CheckoutState.NavigateUp
 import com.smb.ft_checkout.ui.adapter.CheckoutDataItems.CheckoutDataItem
+import com.smb.ft_checkout.ui.navigator.CheckoutNavigator
 import kotlinx.coroutines.flow.collect
 
 class CheckoutViewModel(
     private val mapper: CheckoutUiMapper,
-    private val repository: CheckoutRepository
+    private val repository: CheckoutRepository,
+    private val navigator: CheckoutNavigator
 ) : BaseViewModel<CheckoutState>() {
 
     val items = MutableLiveData<List<CheckoutDataItem>>(emptyList())
@@ -42,5 +46,9 @@ class CheckoutViewModel(
                 items update mapper.mapCheckoutItems(it, onItemClickListener)
             }
         }
+    }
+
+    internal fun navigateBack(activity: Activity) {
+        navigator.navigateBack(activity)
     }
 }
