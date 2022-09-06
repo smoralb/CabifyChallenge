@@ -11,6 +11,7 @@ import com.smb.ft_checkout.ui.CheckoutState.NavigateUp
 import com.smb.ft_checkout.ui.adapter.CheckoutDataItems.CheckoutDataItem
 import com.smb.ft_checkout.ui.navigator.CheckoutNavigator
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.flow
 
 class CheckoutViewModel(
     private val mapper: CheckoutUiMapper,
@@ -26,14 +27,16 @@ class CheckoutViewModel(
     }
 
     private val onItemClickListener: (String) -> Unit = {
-
+        execute {
+            repository.clearItem(it)
+        }
     }
 
     internal fun initialize() {
         execute {
             repository.getItems().collect {
                 items update mapper.mapCheckoutItems(it, onItemClickListener)
-                mapper.mapTotalPrice(it)
+                if (it.isNotEmpty()) mapper.mapTotalPrice(it)
             }
         }
     }

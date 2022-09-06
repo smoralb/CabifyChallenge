@@ -14,7 +14,7 @@ import kotlinx.coroutines.flow.map
 interface LocalSource {
     suspend fun getItems(): Flow<List<ProductModel>>
     suspend fun addNewItem(newItem: ProductModel)
-    suspend fun clearItem(productId: String): Flow<Boolean>
+    suspend fun clearItem(productId: String)
     suspend fun clearAllItems(): Flow<Boolean>
 }
 
@@ -25,7 +25,9 @@ class LocalSourceImpl(
 
     override suspend fun getItems(): Flow<List<ProductModel>> =
         dataStore.data.map {
-            it.itemsList.map { item -> mapper.toDomainModel(item) }
+            if (it.itemsCount != 0) {
+                it.itemsList.map { item -> mapper.toDomainModel(item) }
+            } else emptyList()
         }
 
     override suspend fun addNewItem(newItem: ProductModel) {
@@ -43,18 +45,14 @@ class LocalSourceImpl(
         }
     }
 
-    override suspend fun clearItem(productId: String): Flow<Boolean> =
-        flow {
-            dataStore.updateData { shoppingCart ->
-                shoppingCart.toBuilder().apply {
-                    this.itemsList.find {
-                        it.id == productId
-                    }?.let {
-                        emit(this.itemsList.remove(it))
-                    }
-                }.build()
-            }
-        }.flowOn(Dispatchers.IO)
+    override suspend fun clearItem(productId: String) {
+        dataStore.updateData { shoppingCart ->
+            val builder = shoppingCart.toBuilder()
+            val index = builder.itemsList.indexOfFirst { it.id == productId }
+            builder.removeItems(index).build()
+        }
+    }
+
 
     override suspend fun clearAllItems() =
         flow {

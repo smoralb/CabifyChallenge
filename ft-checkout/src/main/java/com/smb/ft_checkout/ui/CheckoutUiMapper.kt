@@ -10,6 +10,7 @@ interface CheckoutUiMapper {
         items: List<ProductModel>,
         onItemClickListener: (String) -> Unit
     ): List<CheckoutDataItem>
+
     fun mapTotalPrice(items: List<ProductModel>): String
 }
 
@@ -21,16 +22,22 @@ class CheckoutUiMapperImpl(
         items: List<ProductModel>,
         onItemClickListener: (String) -> Unit
     ): List<CheckoutDataItem> =
-        items.map { product ->
-            CheckoutDataItem(
-                id = product.id,
-                title = product.title,
-                price = product.price.toString(),
-                image = product.image,
-                quantity = String.format(context.getString(R.string.checkout_quantity), product.quantity),
-                onItemClickListener = onItemClickListener
-            )
-        }
+        if (items.isNotEmpty()) {
+            items.map { product ->
+                CheckoutDataItem(
+                    id = product.id,
+                    title = product.title,
+                    price = product.price.toString(),
+                    image = product.image,
+                    quantity = String.format(
+                        context.getString(R.string.checkout_quantity),
+                        product.quantity
+                    ),
+                    onItemClickListener = onItemClickListener
+                )
+            }
+        } else emptyList()
+
 
     override fun mapTotalPrice(items: List<ProductModel>): String {
         items.filter { it.id == "" }

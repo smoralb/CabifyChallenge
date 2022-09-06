@@ -15,4 +15,7 @@ class LocalRepositoryImpl(
     override suspend fun addNewItem(newItem: ProductModel) {
         localSource.addNewItem(newItem)
     }
+
+    override suspend fun clearItem(productId: String) =
+        localSource.clearItem(productId)
 }
