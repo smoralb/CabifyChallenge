@@ -16,11 +16,21 @@ class CSTotal(context: Context, attributeSet: AttributeSet) :
         binding.tvTotalQuantity.text = total
     }
 
+    fun setTotalVisibility(visibility: Int) {
+        binding.content.visibility = visibility
+    }
+
     companion object {
         @JvmStatic
         @BindingAdapter("totalQuantity")
         fun setTotalQuantity(view: CSTotal, total: String) {
             view.setTotalQuantity(total)
+        }
+
+        @JvmStatic
+        @BindingAdapter("visibility")
+        fun setVisibility(view: CSTotal, visibility: Int) {
+            view.setTotalVisibility(visibility)
         }
     }
 }

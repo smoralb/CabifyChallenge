@@ -3,15 +3,17 @@ package com.smb.ft_checkout.ui
 import android.app.Activity
 import androidx.lifecycle.MutableLiveData
 import com.smb.core.domain.dataStore.repository.LocalRepository
+import com.smb.core.extensions.DEFAULT_INT
 import com.smb.core.extensions.EMPTY_STRING
 import com.smb.core.extensions.execute
 import com.smb.core.extensions.update
 import com.smb.core.presentation.base.BaseViewModel
+import com.smb.ft_checkout.ui.CheckoutState.HideTotalAmount
 import com.smb.ft_checkout.ui.CheckoutState.NavigateUp
+import com.smb.ft_checkout.ui.CheckoutState.ShowTotalAmount
 import com.smb.ft_checkout.ui.adapter.CheckoutDataItems.CheckoutDataItem
 import com.smb.ft_checkout.ui.navigator.CheckoutNavigator
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.flow
 
 class CheckoutViewModel(
     private val mapper: CheckoutUiMapper,
@@ -21,6 +23,7 @@ class CheckoutViewModel(
 
     val items = MutableLiveData<List<CheckoutDataItem>>(emptyList())
     val total = MutableLiveData<String>(EMPTY_STRING)
+    val visibility = MutableLiveData<Int>(DEFAULT_INT)
 
     val onNavigationClickListener: () -> Unit = {
         viewState update NavigateUp
@@ -36,7 +39,10 @@ class CheckoutViewModel(
         execute {
             repository.getItems().collect {
                 items update mapper.mapCheckoutItems(it, onItemClickListener)
-                if (it.isNotEmpty()) mapper.mapTotalPrice(it)
+                if (it.isNotEmpty()) {
+                    viewState update ShowTotalAmount
+                    mapper.mapTotalPrice(it)
+                } else viewState update HideTotalAmount
             }
         }
     }
