@@ -3,12 +3,13 @@ package com.smb.ft_checkout.ui
 import android.content.Context
 import com.smb.core.domain.dataStore.model.ProductModel
 import com.smb.core.extensions.DEFAULT_FLOAT
+import com.smb.core.presentation.base.BaseUiMapper
 import com.smb.ft_checkout.R
 import com.smb.ft_checkout.ui.adapter.CheckoutDataItems.CheckoutDataItem
 import java.util.Currency
 import java.util.Locale
 
-interface CheckoutUiMapper {
+interface CheckoutUiMapper: BaseUiMapper {
     fun mapCheckoutItems(
         items: List<ProductModel>,
         onItemClickListener: (String) -> Unit
@@ -20,8 +21,6 @@ interface CheckoutUiMapper {
 class CheckoutUiMapperImpl(
     private val context: Context
 ) : CheckoutUiMapper {
-
-    private val currency = Currency.getInstance(Locale.getDefault())
 
     override fun mapCheckoutItems(
         items: List<ProductModel>,
@@ -47,7 +46,7 @@ class CheckoutUiMapperImpl(
     override fun mapTotalPrice(items: List<ProductModel>): String {
         var totalAmount = DEFAULT_FLOAT
         items.forEach { totalAmount += it.quantity * it.price }
-        return "$totalAmount ${currency.symbol}"
+        return mapAmount(totalAmount)
     }
 
 }
