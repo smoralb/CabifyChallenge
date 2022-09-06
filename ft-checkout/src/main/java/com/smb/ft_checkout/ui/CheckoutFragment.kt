@@ -6,6 +6,7 @@ import com.smb.core.presentation.base.BaseFragment
 import com.smb.ft_checkout.BR
 import com.smb.ft_checkout.R
 import com.smb.ft_checkout.databinding.FragmentCheckoutBinding
+import com.smb.ft_checkout.ui.CheckoutState.NavigateUp
 import com.smb.ft_checkout.ui.adapter.CheckoutAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -22,6 +23,8 @@ class CheckoutFragment : BaseFragment<CheckoutState, FragmentCheckoutBinding, Ch
     }
 
     override fun checkViewState(state: CheckoutState) {
-        //Not yet implemented
+        when(state) {
+            NavigateUp -> navigateUp()
+        }
     }
 }

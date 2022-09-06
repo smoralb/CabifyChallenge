@@ -15,7 +15,7 @@ class CSButton(context: Context, attributeSet: AttributeSet) : FrameLayout(conte
             binding.tvQuantity.text = quantity.toString()
         }
 
-    private var binding: CsButtonBinding =
+    private val binding: CsButtonBinding =
         CsButtonBinding.inflate(LayoutInflater.from(context), this)
 
     init {

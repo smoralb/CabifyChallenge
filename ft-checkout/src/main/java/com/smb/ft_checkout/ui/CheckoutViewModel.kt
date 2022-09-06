@@ -3,9 +3,11 @@ package com.smb.ft_checkout.ui
 import androidx.lifecycle.MutableLiveData
 import com.smb.core.domain.dataStore.model.CheckoutModel
 import com.smb.core.domain.dataStore.repository.CheckoutRepository
+import com.smb.core.extensions.EMPTY_STRING
 import com.smb.core.extensions.execute
 import com.smb.core.extensions.update
 import com.smb.core.presentation.base.BaseViewModel
+import com.smb.ft_checkout.ui.CheckoutState.NavigateUp
 import com.smb.ft_checkout.ui.adapter.CheckoutDataItems.CheckoutDataItem
 import kotlinx.coroutines.flow.collect
 
@@ -15,6 +17,11 @@ class CheckoutViewModel(
 ) : BaseViewModel<CheckoutState>() {
 
     val items = MutableLiveData<List<CheckoutDataItem>>(emptyList())
+    val total = MutableLiveData<String>(EMPTY_STRING)
+
+    val onNavigationClickListener: () -> Unit = {
+        viewState update NavigateUp
+    }
 
     private val onItemClickListener: (String) -> Unit = {
 

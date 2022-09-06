@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="@dimen/padding_vertical_total">
+
+        <View
+            android:id="@+id/vSeparator"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_total_separator"
+            android:layout_marginHorizontal="@dimen/margin_horizontal_separator"
+            android:background="@color/colorPrimaryDark"
+            app:layout_constraintBottom_toTopOf="@+id/tvTotal"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvTotal"
+            style="@style/TextLarge.Bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top_total_quantity"
+            android:layout_marginRight="@dimen/margin_right_total"
+            android:text="@string/total"
+            app:layout_constraintRight_toLeftOf="@+id/tvTotalQuantity"
+            app:layout_constraintTop_toBottomOf="@+id/vSeparator"
+            tools:text="TOTAL" />
+
+        <TextView
+            android:id="@+id/tvTotalQuantity"
+            style="@style/TextMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/margin_right_total"
+            app:layout_constraintBottom_toBottomOf="@+id/tvTotal"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvTotal"
+            tools:text="120.0" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</merge>

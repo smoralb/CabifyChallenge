@@ -7,4 +7,5 @@ apply from: "$project.rootDir/base.gradle"
 
 dependencies {
     implementation project (':core')
+    implementation project (':components')
 }
