@@ -1,9 +1,9 @@
-package com.smb.ft_checkout.domain.model
+package com.smb.core.domain.dataStore.model
 
 data class CheckoutModel(
     val id: String,
     val title: String,
     val image: String,
-    val price: Int,
+    val price: Float,
     val quantity: Int
 )

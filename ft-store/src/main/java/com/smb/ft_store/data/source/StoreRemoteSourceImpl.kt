@@ -2,7 +2,6 @@ package com.smb.ft_store.data.source
 
 import com.smb.core.data.Result
 import com.smb.core.data.safeApiCall
-import com.smb.ft_store.data.repository.StoreDataMapper
 import com.smb.ft_store.data.service.StoreApi
 import com.smb.ft_store.domain.model.ProductModel
 

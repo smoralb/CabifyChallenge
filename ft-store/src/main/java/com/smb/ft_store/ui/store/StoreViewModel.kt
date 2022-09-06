@@ -23,8 +23,6 @@ class StoreViewModel(
 
     val errorMessage: MutableLiveData<String> = MutableLiveData(EMPTY_STRING)
     val itemList: MutableLiveData<List<StoreDataItem>> = MutableLiveData(emptyList())
-    val title: MutableLiveData<Int> = MutableLiveData(R.string.app_name)
-    val navigationIcon: MutableLiveData<Int> = MutableLiveData(R.drawable.ic_shopping_cart)
 
     private val onItemClickListener: (String) -> Unit = {
         viewState update NavigateToProductDetail(it)

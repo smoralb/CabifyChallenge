@@ -1,4 +1,4 @@
-package com.smb.ft_checkout.data.proto
+package com.smb.core.data.dataStore.proto
 
 import androidx.datastore.core.CorruptionException
 import androidx.datastore.core.Serializer

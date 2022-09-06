@@ -29,7 +29,7 @@ class DetailViewModel(
 
     val onAddToCartListener: (Int) -> Unit = { quantity ->
         this.quantity update quantity
-        //Store in db
+
     }
 
     internal fun init(productId: String) {

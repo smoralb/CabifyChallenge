@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="margin_pay_button">12dp</dimen>
+    <dimen name="margin_horizontal_item_title">12dp</dimen>
+    <dimen name="margin_horizontal_item_price">12dp</dimen>
+    <dimen name="margin_horizontal_item_delete">12dp</dimen>
+    <dimen name="margin_horizontal_item_quantity">12dp</dimen>
+    <dimen name="margin_horizontal_item_image">10dp</dimen>
+    <dimen name="item_icon_size">80dp</dimen>
 </resources>

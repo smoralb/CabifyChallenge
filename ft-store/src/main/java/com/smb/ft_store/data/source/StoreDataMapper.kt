@@ -1,4 +1,4 @@
-package com.smb.ft_store.data.repository
+package com.smb.ft_store.data.source
 
 import com.smb.core.extensions.orDefault
 import com.smb.ft_store.data.entity.ProductType

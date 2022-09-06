@@ -1,8 +1,8 @@
 package com.smb.ft_store.data.di
 
 import com.smb.ft_store.data.repository.StoreRepositoryImpl
-import com.smb.ft_store.data.repository.StoreDataMapper
-import com.smb.ft_store.data.repository.StoreDataMapperImpl
+import com.smb.ft_store.data.source.StoreDataMapper
+import com.smb.ft_store.data.source.StoreDataMapperImpl
 import com.smb.ft_store.data.service.StoreApi
 import com.smb.ft_store.data.source.StoreRemoteSource
 import com.smb.ft_store.data.source.StoreRemoteSourceImpl

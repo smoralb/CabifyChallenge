@@ -4,7 +4,6 @@ import com.smb.cabify.data.productDataModelEmptyMock
 import com.smb.cabify.data.productsDataListEntityMock
 import com.smb.cabify.data.productsDataListEntityNullMock
 import com.smb.cabify.data.productsDataListNullEntityMock
-import com.smb.ft_store.data.repository.StoreDataMapper
 import com.smb.ft_store.data.service.StoreApi
 import com.smb.core.extensions.EMPTY_STRING
 import com.smb.core.test.BaseUnitTest
