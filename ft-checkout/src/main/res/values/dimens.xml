@@ -8,4 +8,5 @@
     <dimen name="padding_item_quantity">8dp</dimen>
     <dimen name="margin_horizontal_item_image">10dp</dimen>
     <dimen name="item_icon_size">80dp</dimen>
+    <dimen name="empty_state_icon_size">100dp</dimen>
 </resources>
