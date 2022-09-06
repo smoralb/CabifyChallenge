@@ -2,15 +2,15 @@ package com.smb.core.data.dataStore.repository
 
 import com.smb.core.data.dataStore.source.CheckoutLocalSource
 import com.smb.core.domain.dataStore.model.CheckoutModel
-import com.smb.core.domain.dataStore.repository.CheckoutRepository
+import com.smb.core.domain.dataStore.repository.LocalRepository
 import kotlinx.coroutines.flow.Flow
 
-class CheckoutRepositoryImpl(
+class LocalRepositoryImpl(
     private val localSource: CheckoutLocalSource
-) : CheckoutRepository {
+) : LocalRepository {
 
-    override suspend fun getCheckoutItems(): Flow<List<CheckoutModel>> =
-        localSource.getCheckoutItems()
+    override suspend fun getItems(): Flow<List<CheckoutModel>> =
+        localSource.getItems()
 
     override suspend fun addNewItem(newItem: CheckoutModel) {
         localSource.addNewItem(newItem)

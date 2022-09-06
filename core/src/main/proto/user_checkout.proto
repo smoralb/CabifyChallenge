@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option java_package = "com.smb.ft_checkout";
+option java_package = "com.smb.core";
 option java_multiple_files = true;
 
 message Item {

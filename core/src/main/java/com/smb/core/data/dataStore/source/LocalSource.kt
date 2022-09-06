@@ -1,34 +1,25 @@
 package com.smb.core.data.dataStore.source
 
 import androidx.datastore.core.DataStore
-import com.smb.core.data.dataStore.source.mapper.CheckoutLocalDataMapper
+import com.smb.core.ShoppingCart
+import com.smb.core.data.dataStore.source.mapper.LocalDataMapper
 import com.smb.core.domain.dataStore.model.CheckoutModel
-import com.smb.ft_checkout.Item
-import com.smb.ft_checkout.ShoppingCart
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
 interface CheckoutLocalSource {
-    suspend fun getCheckoutItems(): Flow<List<CheckoutModel>>
+    suspend fun getItems(): Flow<List<CheckoutModel>>
     suspend fun addNewItem(newItem: CheckoutModel)
 }
 
-class CheckoutLocalSourceImpl(
+class LocalSourceImpl(
     private val dataStore: DataStore<ShoppingCart>,
-    private val mapper: CheckoutLocalDataMapper
+    private val mapper: LocalDataMapper
 ) : CheckoutLocalSource {
 
-    override suspend fun getCheckoutItems(): Flow<List<CheckoutModel>> =
+    override suspend fun getItems(): Flow<List<CheckoutModel>> =
         dataStore.data.map {
-            it.itemsList.map { item ->
-                CheckoutModel(
-                    id = item.id,
-                    title = item.name,
-                    image = item.image,
-                    price = item.price,
-                    quantity = item.quantity
-                )
-            }
+            it.itemsList.map { item -> mapper.toDomainModel(item) }
         }
 
     override suspend fun addNewItem(newItem: CheckoutModel) {

@@ -3,7 +3,7 @@ package com.smb.core.data.dataStore.proto
 import androidx.datastore.core.CorruptionException
 import androidx.datastore.core.Serializer
 import com.google.protobuf.InvalidProtocolBufferException
-import com.smb.ft_checkout.ShoppingCart
+import com.smb.core.ShoppingCart
 import java.io.InputStream
 import java.io.OutputStream
 

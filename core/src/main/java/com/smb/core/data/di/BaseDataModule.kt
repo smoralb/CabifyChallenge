@@ -3,12 +3,12 @@ package com.smb.core.data.di
 import androidx.datastore.core.DataStore
 import androidx.datastore.core.DataStoreFactory
 import androidx.datastore.dataStoreFile
+import com.smb.core.ShoppingCart
 import com.smb.core.data.dataStore.proto.Serializer
 import com.smb.core.data.dataStore.source.CheckoutLocalSource
-import com.smb.core.data.dataStore.source.CheckoutLocalSourceImpl
-import com.smb.core.data.dataStore.source.mapper.CheckoutLocalDataMapper
-import com.smb.core.data.dataStore.source.mapper.CheckoutLocalDataMapperImpl
-import com.smb.ft_checkout.ShoppingCart
+import com.smb.core.data.dataStore.source.LocalSourceImpl
+import com.smb.core.data.dataStore.source.mapper.LocalDataMapper
+import com.smb.core.data.dataStore.source.mapper.LocalDataMapperImpl
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import okhttp3.HttpUrl
@@ -70,8 +70,8 @@ val baseDataModule = module {
         )
     }
 
-    factory<CheckoutLocalDataMapper> { CheckoutLocalDataMapperImpl() }
+    factory<LocalDataMapper> { LocalDataMapperImpl() }
 
-    single<CheckoutLocalSource> { CheckoutLocalSourceImpl(dataStore = get(), mapper = get()) }
+    single<CheckoutLocalSource> { LocalSourceImpl(dataStore = get(), mapper = get()) }
 
 }

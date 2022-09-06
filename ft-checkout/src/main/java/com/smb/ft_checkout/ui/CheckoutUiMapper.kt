@@ -10,6 +10,7 @@ interface CheckoutUiMapper {
         items: List<CheckoutModel>,
         onItemClickListener: (String) -> Unit
     ): List<CheckoutDataItem>
+    fun mapTotalPrice(items: List<CheckoutModel>): String
 }
 
 class CheckoutUiMapperImpl(
@@ -30,5 +31,10 @@ class CheckoutUiMapperImpl(
                 onItemClickListener = onItemClickListener
             )
         }
+
+    override fun mapTotalPrice(items: List<CheckoutModel>): String {
+        items.filter { it.id == "" }
+        return ""
+    }
 
 }
