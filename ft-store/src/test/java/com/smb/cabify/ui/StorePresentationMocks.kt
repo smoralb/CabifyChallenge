@@ -2,7 +2,6 @@ package com.smb.cabify.ui
 
 import com.smb.core.extensions.DEFAULT_FLOAT
 import com.smb.core.extensions.EMPTY_STRING
-import com.smb.ft_store.domain.model.ProductModel
 
 private const val PRODUCT_CODE = "PRODUCT CODE"
 private const val PRODUCT_NAME = "PRODUCT NAME"

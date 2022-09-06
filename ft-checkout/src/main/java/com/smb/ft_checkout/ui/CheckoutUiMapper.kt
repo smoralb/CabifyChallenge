@@ -1,16 +1,16 @@
 package com.smb.ft_checkout.ui
 
 import android.content.Context
-import com.smb.core.domain.dataStore.model.CheckoutModel
+import com.smb.core.domain.dataStore.model.ProductModel
 import com.smb.ft_checkout.R
 import com.smb.ft_checkout.ui.adapter.CheckoutDataItems.CheckoutDataItem
 
 interface CheckoutUiMapper {
     fun mapCheckoutItems(
-        items: List<CheckoutModel>,
+        items: List<ProductModel>,
         onItemClickListener: (String) -> Unit
     ): List<CheckoutDataItem>
-    fun mapTotalPrice(items: List<CheckoutModel>): String
+    fun mapTotalPrice(items: List<ProductModel>): String
 }
 
 class CheckoutUiMapperImpl(
@@ -18,7 +18,7 @@ class CheckoutUiMapperImpl(
 ) : CheckoutUiMapper {
 
     override fun mapCheckoutItems(
-        items: List<CheckoutModel>,
+        items: List<ProductModel>,
         onItemClickListener: (String) -> Unit
     ): List<CheckoutDataItem> =
         items.map { product ->
@@ -32,7 +32,7 @@ class CheckoutUiMapperImpl(
             )
         }
 
-    override fun mapTotalPrice(items: List<CheckoutModel>): String {
+    override fun mapTotalPrice(items: List<ProductModel>): String {
         items.filter { it.id == "" }
         return ""
     }

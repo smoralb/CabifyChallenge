@@ -5,7 +5,7 @@ import androidx.datastore.core.DataStoreFactory
 import androidx.datastore.dataStoreFile
 import com.smb.core.ShoppingCart
 import com.smb.core.data.dataStore.proto.Serializer
-import com.smb.core.data.dataStore.source.CheckoutLocalSource
+import com.smb.core.data.dataStore.source.LocalSource
 import com.smb.core.data.dataStore.source.LocalSourceImpl
 import com.smb.core.data.dataStore.source.mapper.LocalDataMapper
 import com.smb.core.data.dataStore.source.mapper.LocalDataMapperImpl
@@ -72,6 +72,6 @@ val baseDataModule = module {
 
     factory<LocalDataMapper> { LocalDataMapperImpl() }
 
-    single<CheckoutLocalSource> { LocalSourceImpl(dataStore = get(), mapper = get()) }
+    single<LocalSource> { LocalSourceImpl(dataStore = get(), mapper = get()) }
 
 }

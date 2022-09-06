@@ -5,7 +5,6 @@ import com.smb.core.extensions.EMPTY_STRING
 import com.smb.ft_store.data.entity.ProductEntity
 import com.smb.ft_store.data.entity.ProductType
 import com.smb.ft_store.data.entity.ProductsListEntity
-import com.smb.ft_store.domain.model.ProductModel
 
 private const val PRODUCT_NAME = "PRODUCT NAME"
 private const val PRODUCT_IMAGE = "PRODUCT IMAGE"

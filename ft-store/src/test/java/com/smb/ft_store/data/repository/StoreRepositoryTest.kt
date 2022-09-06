@@ -4,7 +4,6 @@ import com.smb.ft_store.data.source.StoreRemoteSource
 import com.smb.core.data.Result
 import com.smb.core.data.Result.Success
 import com.smb.core.test.BaseUnitTest
-import com.smb.ft_store.domain.model.ProductModel
 import com.smb.ft_store.domain.repository.StoreRepository
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
