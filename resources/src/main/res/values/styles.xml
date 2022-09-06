@@ -34,12 +34,20 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="TextMedium.Bold.White" parent="TextMediumWhite">
+        <item name="android:textStyle">bold</item>
+    </style>
+
     <style name="TextLarge" parent="TextParent">
         <item name="android:textSize">@dimen/text_l</item>
     </style>
 
     <style name="TextLargeWhite" parent="TextParentWhite">
         <item name="android:textSize">@dimen/text_l</item>
+    </style>
+
+    <style name="TextMediumWhite" parent="TextParentWhite">
+        <item name="android:textSize">@dimen/text_m</item>
     </style>
 
     <style name="TextLarge.Bold" parent="TextLarge">
