@@ -1,13 +1,12 @@
 package com.smb.ft_store.ui.detail
 
 import androidx.lifecycle.MutableLiveData
-import com.smb.core.domain.dataStore.repository.LocalRepository
 import com.smb.core.extensions.DEFAULT_FLOAT
 import com.smb.core.extensions.EMPTY_STRING
 import com.smb.core.extensions.execute
 import com.smb.core.extensions.update
 import com.smb.core.presentation.base.BaseViewModel
-import com.smb.ft_store.domain.usecase.GetProductDetailsUseCase
+import com.smb.ft_store.domain.repository.StoreRepository
 import com.smb.ft_store.ui.detail.DetailState.HideLoading
 import com.smb.ft_store.ui.detail.DetailState.Loading
 import com.smb.ft_store.ui.detail.DetailState.NavigateUp
@@ -18,9 +17,8 @@ import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onStart
 
 class DetailViewModel(
-    private val getProductDetailsUseCase: GetProductDetailsUseCase,
-    private val mapper: DetailUiMapper,
-    private val repository: LocalRepository
+    private val repository: StoreRepository,
+    private val mapper: DetailUiMapper
 ) : BaseViewModel<DetailState>() {
 
     val name: MutableLiveData<String> = MutableLiveData()
@@ -57,7 +55,7 @@ class DetailViewModel(
         this.productId = productId
         viewState update Loading
         execute {
-            getProductDetailsUseCase(GetProductDetailsUseCase.Params(productId)).fold(
+            repository.getProductDetails(productId).fold(
                 handleSuccess = {
                     itemPrice = it.price
                     viewState update HideLoading

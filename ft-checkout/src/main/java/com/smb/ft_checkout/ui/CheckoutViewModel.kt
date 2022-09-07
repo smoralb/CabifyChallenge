@@ -2,12 +2,12 @@ package com.smb.ft_checkout.ui
 
 import android.app.Activity
 import androidx.lifecycle.MutableLiveData
-import com.smb.core.domain.dataStore.repository.LocalRepository
 import com.smb.core.extensions.DEFAULT_INT
 import com.smb.core.extensions.EMPTY_STRING
 import com.smb.core.extensions.execute
 import com.smb.core.extensions.update
 import com.smb.core.presentation.base.BaseViewModel
+import com.smb.ft_checkout.domain.CheckoutRepository
 import com.smb.ft_checkout.ui.CheckoutState.NavigateUp
 import com.smb.ft_checkout.ui.CheckoutState.ShowEmptyLayout
 import com.smb.ft_checkout.ui.CheckoutState.ShowTotalAmount
@@ -17,7 +17,7 @@ import kotlinx.coroutines.flow.collect
 
 class CheckoutViewModel(
     private val mapper: CheckoutUiMapper,
-    private val repository: LocalRepository,
+    private val repository: CheckoutRepository,
     private val navigator: CheckoutNavigator
 ) : BaseViewModel<CheckoutState>() {
 
@@ -30,9 +30,7 @@ class CheckoutViewModel(
     }
 
     private val onItemClickListener: (String) -> Unit = {
-        execute {
-            repository.clearItem(it)
-        }
+        execute { repository.clearItem(it) }
     }
 
     internal fun initialize() {

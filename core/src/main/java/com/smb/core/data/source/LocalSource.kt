@@ -1,9 +1,10 @@
-package com.smb.core.data.dataStore.source
+package com.smb.core.data.source
 
 import androidx.datastore.core.DataStore
 import com.smb.core.ShoppingCart
-import com.smb.core.data.dataStore.source.mapper.LocalDataMapper
-import com.smb.core.domain.dataStore.model.ProductModel
+import com.smb.core.data.source.mapper.LocalDataMapper
+import com.smb.core.domain.model.ProductModelRequest
+import com.smb.core.domain.model.ProductModelResponse
 import com.smb.core.extensions.DEFAULT_INT
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -13,8 +14,8 @@ import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 
 interface LocalSource {
-    suspend fun getItems(): Flow<List<ProductModel>>
-    suspend fun addNewItem(newItem: ProductModel): Flow<Boolean>
+    suspend fun getItems(): Flow<List<ProductModelResponse>>
+    suspend fun addNewItem(newItem: ProductModelRequest): Flow<Boolean>
     suspend fun clearItem(productId: String)
     suspend fun clearAllItems(): Flow<Boolean>
 }
@@ -24,10 +25,10 @@ class LocalSourceImpl(
     private val mapper: LocalDataMapper
 ) : LocalSource {
 
-    override suspend fun getItems(): Flow<List<ProductModel>> =
+    override suspend fun getItems(): Flow<List<ProductModelResponse>> =
         flow {
             dataStore.data.collect {
-                var items = emptyList<ProductModel>()
+                var items = emptyList<ProductModelResponse>()
                 if (it.itemsCount != 0) {
                     items = it.itemsList.map { item -> mapper.toDomainModel(item) }
                 }
@@ -35,7 +36,7 @@ class LocalSourceImpl(
             }
         }
 
-    override suspend fun addNewItem(newItem: ProductModel) =
+    override suspend fun addNewItem(newItem: ProductModelRequest) =
         flow {
             val item = mapper.toDataModel(newItem)
             dataStore.updateData { shoppingCart ->

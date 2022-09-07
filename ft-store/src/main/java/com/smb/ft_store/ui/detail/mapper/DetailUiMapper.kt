@@ -1,6 +1,6 @@
 package com.smb.ft_store.ui.detail.mapper
 
-import com.smb.core.domain.dataStore.model.ProductModel
+import com.smb.core.domain.model.ProductModelRequest
 import com.smb.core.presentation.base.BaseUiMapper
 
 interface DetailUiMapper : BaseUiMapper {
@@ -10,7 +10,7 @@ interface DetailUiMapper : BaseUiMapper {
         image: String?,
         price: Float,
         quantity: Int,
-    ): ProductModel
+    ): ProductModelRequest
 }
 
 class DetailUiMapperImpl : DetailUiMapper {
@@ -21,5 +21,11 @@ class DetailUiMapperImpl : DetailUiMapper {
         image: String?,
         price: Float,
         quantity: Int
-    ) = ProductModel(id, title.orEmpty(), image.orEmpty(), price, quantity)
+    ) = ProductModelRequest(
+        id = id,
+        name = title.orEmpty(),
+        image = image.orEmpty(),
+        price = price,
+        quantity = quantity
+    )
 }

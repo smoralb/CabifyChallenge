@@ -15,5 +15,5 @@ val storePresentationModule = module {
     factory<DetailUiMapper> { DetailUiMapperImpl() }
 
     viewModel { StoreViewModel(get(), get(), get()) }
-    viewModel { DetailViewModel(get(), get(), get()) }
+    viewModel { DetailViewModel(get(), get()) }
 }

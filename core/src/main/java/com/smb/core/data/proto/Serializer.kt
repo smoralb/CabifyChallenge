@@ -1,4 +1,4 @@
-package com.smb.core.data.dataStore.proto
+package com.smb.core.data.proto
 
 import androidx.datastore.core.CorruptionException
 import androidx.datastore.core.Serializer
