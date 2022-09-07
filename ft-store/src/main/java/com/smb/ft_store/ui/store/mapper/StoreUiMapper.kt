@@ -20,6 +20,7 @@ class StoreUiMapperImpl : StoreUiMapper {
             price = mapAmount(it.price),
             image = it.image,
             description = it.description,
+            hasDiscount = it.hasDiscount,
             onItemClickListener = itemClickListener
         )
     }

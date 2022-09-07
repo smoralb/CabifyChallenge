@@ -6,6 +6,7 @@
     <dimen name="padding_bottom_item_store_image">14dp</dimen>
     <dimen name="margin_top_item_store_price">14dp</dimen>
     <dimen name="corner_radius_item_store">20dp</dimen>
+    <dimen name="margin_right_item_store_discount">10dp</dimen>
 
     <!-- Fragment home -->
     <dimen name="padding_items_store">12dp</dimen>

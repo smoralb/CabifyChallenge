@@ -9,6 +9,7 @@ sealed class StoreDataItems : BaseItem {
         val price: String,
         val description: String,
         val image: String,
+        val hasDiscount: Boolean,
         val onItemClickListener: (String) -> Unit
     ) : StoreDataItems() {
         override fun onItemClick() {
