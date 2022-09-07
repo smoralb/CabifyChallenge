@@ -38,10 +38,16 @@ class CheckoutFragment : BaseFragment<CheckoutState, FragmentCheckoutBinding, Ch
         when (state) {
             NavigateUp -> viewModel.navigateBack(requireActivity())
             ShowEmptyLayout -> {
-                binding.emptyLayout.visibility = View.VISIBLE
-                binding.csTotalAmount.visibility = View.GONE
+                with(binding) {
+                    emptyLayout.visibility = View.VISIBLE
+                    csTotalAmount.visibility = View.GONE
+                    btPay.visibility = View.GONE
+                }
             }
-            ShowTotalAmount -> binding.csTotalAmount.visibility = View.VISIBLE
+            ShowTotalAmount -> with(binding) {
+                binding.csTotalAmount.visibility = View.VISIBLE
+                btPay.visibility = View.VISIBLE
+            }
         }
     }
 }
