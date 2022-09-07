@@ -6,12 +6,13 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 import com.smb.core.presentation.adapters.BaseAdapter
-import com.smb.core.presentation.adapters.BaseItem
 import com.smb.ft_store.BR
 import com.smb.ft_store.R
 import com.smb.ft_store.ui.store.adapter.StoreDataItems.StoreDataItem
 
-class StoreAdapter(onItemClicked: (String) -> Unit) : BaseAdapter<StoreDataItem>(onItemClicked) {
+private const val ITEM_TYPE = 0
+
+class StoreAdapter : BaseAdapter<StoreDataItem>() {
 
     override fun updateData(newItems: List<StoreDataItem>) {
         items = newItems
@@ -41,8 +42,4 @@ class StoreAdapter(onItemClicked: (String) -> Unit) : BaseAdapter<StoreDataItem>
 
     inner class StoreItemViewHolder(binding: ViewDataBinding) :
         BaseViewHolder<StoreDataItem>(BR.item, binding)
-
-    companion object {
-        const val ITEM_TYPE = 0
-    }
 }

@@ -12,28 +12,18 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context="com.smb.cabify.ui.main.secondView.SecondFragment">
+        android:layout_height="match_parent">
 
-        <com.google.android.material.appbar.AppBarLayout
+        <com.smb.components.CSHeader
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:theme="@style/AppTheme.AppBarOverlay"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/tbHeader"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="?attr/colorPrimary"
-                app:navigationIcon="@android:drawable/arrow_down_float"
-                app:popupTheme="@style/AppTheme.PopupOverlay"
-                app:title="@string/app_name" />
-
-        </com.google.android.material.appbar.AppBarLayout>
+            app:layout_constraintTop_toTopOf="parent"
+            app:menuIconVisibility="@{false}"
+            app:navigationIconClickListener="@{viewModel.onHeaderNavigationClickListener}"
+            app:navigationIconVisibility="@{true}" />
 
         <ImageView
             android:id="@+id/ivImage"
@@ -80,17 +70,23 @@
             app:layout_constraintTop_toBottomOf="@+id/tvTitle"
             tools:text="Description" />
 
-        <Button
+        <com.smb.components.CSButton
             android:id="@+id/btAddToCart"
-            style="@style/TextLarge.Bold.White"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/margin_add_to_cart_button"
-            android:background="@color/colorPrimary"
-            android:onClick="@{() -> viewModel.addToCart()}"
-            android:text="@string/add_to_cart"
+            app:addToCartClickListener="@{viewModel.onAddToCartListener}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent" />
+
+        <ProgressBar
+            android:id="@+id/plDetailsLoader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -1,5 +1,14 @@
 package com.smb.core.data.di
 
+import androidx.datastore.core.DataStore
+import androidx.datastore.core.DataStoreFactory
+import androidx.datastore.dataStoreFile
+import com.smb.core.ShoppingCart
+import com.smb.core.data.dataStore.proto.Serializer
+import com.smb.core.data.dataStore.source.LocalSource
+import com.smb.core.data.dataStore.source.LocalSourceImpl
+import com.smb.core.data.dataStore.source.mapper.LocalDataMapper
+import com.smb.core.data.dataStore.source.mapper.LocalDataMapperImpl
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import okhttp3.HttpUrl
@@ -7,12 +16,13 @@ import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.logging.HttpLoggingInterceptor
+import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
-
 const val BASE_URL = "https://gist.githubusercontent.com"
+const val DATA_STORE_FILE_NAME = "cart.db"
 
 val baseDataModule = module {
 
@@ -51,5 +61,17 @@ val baseDataModule = module {
     factory { provideHttpClient() }
 
     factory { provideRetrofit(get(), get()) }
+
+    single<DataStore<ShoppingCart>> {
+        DataStoreFactory.create(
+            serializer = Serializer,
+            produceFile = { androidContext().dataStoreFile(DATA_STORE_FILE_NAME) },
+            corruptionHandler = null
+        )
+    }
+
+    factory<LocalDataMapper> { LocalDataMapperImpl() }
+
+    single<LocalSource> { LocalSourceImpl(dataStore = get(), mapper = get()) }
 
 }

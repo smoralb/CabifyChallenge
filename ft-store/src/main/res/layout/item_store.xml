@@ -14,6 +14,8 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:clickable="true"
+        android:onClick="@{() -> item.onItemClick()}"
         app:cardCornerRadius="@dimen/corner_radius_item_store"
         app:cardElevation="@dimen/cardview_default_elevation"
         app:cardPreventCornerOverlap="true"

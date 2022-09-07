@@ -1,27 +1,26 @@
 package com.smb.ft_store.ui.store.mapper
 
+import com.smb.core.presentation.base.BaseUiMapper
 import com.smb.ft_store.domain.model.ProductModel
 import com.smb.ft_store.ui.store.adapter.StoreDataItems.StoreDataItem
 
-interface StoreUiMapper {
-    fun mapItems(model: List<ProductModel>)
+interface StoreUiMapper : BaseUiMapper {
+    fun mapItems(model: List<ProductModel>, itemClickListener: (String) -> Unit)
             : List<StoreDataItem>
 }
 
 class StoreUiMapperImpl : StoreUiMapper {
 
     override fun mapItems(
-        model: List<ProductModel>
+        model: List<ProductModel>, itemClickListener: (String) -> Unit
     ) = model.map {
         StoreDataItem(
-            id = it.code,
+            id = it.id,
             name = it.name,
-            price = mapProductPrice(it.price, it.currency),
+            price = mapAmount(it.price),
             image = it.image,
-            description = it.description
+            description = it.description,
+            onItemClickListener = itemClickListener
         )
     }
-
-    private fun mapProductPrice(price: Float, currency: String) =
-        "$price $currency"
 }

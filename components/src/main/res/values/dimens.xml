@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- CSHEADER -->
+    <dimen name="margin_left_header_title">10dp</dimen>
+    <dimen name="padding_horizontal_header">14dp</dimen>
+    <!-- CSBUTTON -->
+    <dimen name="margin_horizontal_button">12dp</dimen>
+    <dimen name="margin_right_quantity_button">12dp</dimen>
+    <!-- CSTOTAL -->
+    <dimen name="height_total_separator">1dp</dimen>
+    <dimen name="margin_horizontal_separator">14dp</dimen>
+    <dimen name="padding_vertical_total">14dp</dimen>
+    <dimen name="margin_top_total_quantity">18dp</dimen>
+    <dimen name="margin_right_total">14dp</dimen>
+</resources>

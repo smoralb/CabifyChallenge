@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="@dimen/margin_horizontal_button">
+
+        <ImageButton
+            android:id="@+id/btSubtract"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/margin_right_quantity_button"
+            android:background="@drawable/round_shape"
+            android:src="@drawable/ic_subtract"
+            app:layout_constraintBottom_toBottomOf="@+id/btAddToCart"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/tvQuantity"
+            app:layout_constraintTop_toTopOf="@+id/btAddToCart" />
+
+        <TextView
+            android:id="@+id/tvQuantity"
+            style="@style/TextLarge.Bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/margin_right_quantity_button"
+            app:layout_constraintBottom_toBottomOf="@+id/btSubtract"
+            app:layout_constraintLeft_toRightOf="@+id/btSubtract"
+            app:layout_constraintRight_toLeftOf="@+id/btAdd"
+            app:layout_constraintTop_toTopOf="@id/btSubtract"
+            tools:text="1" />
+
+        <ImageButton
+            android:id="@+id/btAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/margin_right_quantity_button"
+            android:background="@drawable/round_shape"
+            android:src="@drawable/ic_add"
+            app:layout_constraintBottom_toBottomOf="@+id/btAddToCart"
+            app:layout_constraintLeft_toRightOf="@+id/tvQuantity"
+            app:layout_constraintRight_toLeftOf="@+id/btAddToCart"
+            app:layout_constraintTop_toTopOf="@+id/btAddToCart" />
+
+        <Button
+            android:id="@+id/btAddToCart"
+            style="@style/TextLarge.Bold.White"
+            android:layout_width="@dimen/match_constraint"
+            android:layout_height="wrap_content"
+            android:background="@drawable/cs_button_shape"
+            android:text="@string/add_to_cart"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/btAdd"
+            app:layout_constraintRight_toRightOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</merge>

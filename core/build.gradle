@@ -1,8 +1,28 @@
-apply plugin: 'com.android.library'
+plugins {
+    id 'com.android.library'
+    id "com.google.protobuf" version "0.8.12"
+}
 apply from: "$project.rootDir/base.gradle"
+
+protobuf {
+    protoc {
+        artifact = "com.google.protobuf:protoc:3.11.0"
+    }
+
+    generateProtoTasks {
+        all().each { task ->
+            task.builtins {
+                java {
+                    option 'lite'
+                }
+            }
+        }
+    }
+}
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation project(':resources')
     api basic.values()
     api koin.values()
     api navigation.values()
@@ -10,4 +30,5 @@ dependencies {
     api network.values()
     implementation coil.values()
     api testing.values()
+    implementation datastore.values()
 }
