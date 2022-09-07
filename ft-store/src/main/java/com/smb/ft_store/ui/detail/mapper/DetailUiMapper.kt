@@ -1,16 +1,25 @@
 package com.smb.ft_store.ui.detail.mapper
 
-import java.util.Currency
-import java.util.Locale
+import com.smb.core.domain.dataStore.model.ProductModel
+import com.smb.core.presentation.base.BaseUiMapper
 
-interface DetailUiMapper {
-    fun mapProductPrice(price: Float): String
+interface DetailUiMapper : BaseUiMapper {
+    fun mapProductItem(
+        id: String,
+        title: String?,
+        image: String?,
+        price: Float,
+        quantity: Int,
+    ): ProductModel
 }
 
 class DetailUiMapperImpl : DetailUiMapper {
 
-    private val currency = Currency.getInstance(Locale.getDefault())
-
-    override fun mapProductPrice(price: Float): String =
-        "$price ${currency.symbol}"
+    override fun mapProductItem(
+        id: String,
+        title: String?,
+        image: String?,
+        price: Float,
+        quantity: Int
+    ) = ProductModel(id, title.orEmpty(), image.orEmpty(), price, quantity)
 }

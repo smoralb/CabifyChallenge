@@ -12,9 +12,8 @@ class LocalRepositoryImpl(
     override suspend fun getItems(): Flow<List<ProductModel>> =
         localSource.getItems()
 
-    override suspend fun addNewItem(newItem: ProductModel) {
+    override suspend fun addNewItem(newItem: ProductModel) =
         localSource.addNewItem(newItem)
-    }
 
     override suspend fun clearItem(productId: String) =
         localSource.clearItem(productId)

@@ -9,4 +9,8 @@
     <dimen name="margin_horizontal_item_image">10dp</dimen>
     <dimen name="item_icon_size">80dp</dimen>
     <dimen name="empty_state_icon_size">100dp</dimen>
+    <dimen name="margin_vertical_discount">12dp</dimen>
+    <dimen name="margin_horizontal_discount">12dp</dimen>
+    <dimen name="margin_horizontal_discount_separator">12dp</dimen>
+    <dimen name="padding_vertical_discount">4dp</dimen>
 </resources>

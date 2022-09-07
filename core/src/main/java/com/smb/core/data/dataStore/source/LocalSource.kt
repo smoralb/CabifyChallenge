@@ -4,7 +4,6 @@ import androidx.datastore.core.DataStore
 import com.smb.core.ShoppingCart
 import com.smb.core.data.dataStore.source.mapper.LocalDataMapper
 import com.smb.core.domain.dataStore.model.ProductModel
-import com.smb.core.extensions.DEFAULT_FLOAT
 import com.smb.core.extensions.DEFAULT_INT
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -15,7 +14,7 @@ import kotlinx.coroutines.flow.map
 
 interface LocalSource {
     suspend fun getItems(): Flow<List<ProductModel>>
-    suspend fun addNewItem(newItem: ProductModel)
+    suspend fun addNewItem(newItem: ProductModel): Flow<Boolean>
     suspend fun clearItem(productId: String)
     suspend fun clearAllItems(): Flow<Boolean>
 }
@@ -36,21 +35,24 @@ class LocalSourceImpl(
             }
         }
 
-    override suspend fun addNewItem(newItem: ProductModel) {
-        val item = mapper.toDataModel(newItem)
-        dataStore.updateData { shoppingCart ->
-            val builder = shoppingCart.toBuilder()
-            val index = builder.itemsList.indexOfFirst { it.id == item.id }
-            if (index != -1) {
-                val storedItem = builder.itemsList[index]
-                val updatedItem =
-                    storedItem.toBuilder()
-                        .setQuantity(storedItem.quantity.plus(item.quantity))
-                builder.setItems(index, updatedItem)
-            } else builder.addItems(item)
-            builder.build()
+    override suspend fun addNewItem(newItem: ProductModel) =
+        flow {
+            val item = mapper.toDataModel(newItem)
+            dataStore.updateData { shoppingCart ->
+                val builder = shoppingCart.toBuilder()
+                val index = builder.itemsList.indexOfFirst { it.id == item.id }
+                if (index != -1) {
+                    val storedItem = builder.itemsList[index]
+                    val updatedItem =
+                        storedItem.toBuilder()
+                            .setQuantity(storedItem.quantity.plus(item.quantity))
+                    builder.setItems(index, updatedItem)
+                } else builder.addItems(item)
+                builder.build()
+            }
+            emit(true)
         }
-    }
+
 
     override suspend fun clearItem(productId: String) {
         dataStore.updateData { shoppingCart ->

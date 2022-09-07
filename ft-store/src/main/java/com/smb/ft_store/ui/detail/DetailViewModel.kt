@@ -1,7 +1,6 @@
 package com.smb.ft_store.ui.detail
 
 import androidx.lifecycle.MutableLiveData
-import com.smb.core.domain.dataStore.model.ProductModel
 import com.smb.core.domain.dataStore.repository.LocalRepository
 import com.smb.core.extensions.DEFAULT_FLOAT
 import com.smb.core.extensions.EMPTY_STRING
@@ -13,6 +12,10 @@ import com.smb.ft_store.ui.detail.DetailState.HideLoading
 import com.smb.ft_store.ui.detail.DetailState.Loading
 import com.smb.ft_store.ui.detail.DetailState.NavigateUp
 import com.smb.ft_store.ui.detail.mapper.DetailUiMapper
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.onCompletion
+import kotlinx.coroutines.flow.onStart
 
 class DetailViewModel(
     private val getProductDetailsUseCase: GetProductDetailsUseCase,
@@ -25,7 +28,6 @@ class DetailViewModel(
     val price: MutableLiveData<String> = MutableLiveData()
     val image: MutableLiveData<String> = MutableLiveData(EMPTY_STRING)
 
-    private val quantity: MutableLiveData<Int> = MutableLiveData()
     private var itemPrice: Float = DEFAULT_FLOAT
     private var productId: String = EMPTY_STRING
 
@@ -36,14 +38,18 @@ class DetailViewModel(
     val onAddToCartListener: (Int) -> Unit = { quantity ->
         execute {
             repository.addNewItem(
-                ProductModel(
-                    id = productId,
-                    title = name.value.orEmpty(),
-                    image = image.value.orEmpty(),
-                    price = itemPrice,
-                    quantity = quantity
+                mapper.mapProductItem(
+                    productId,
+                    name.value,
+                    image.value,
+                    itemPrice,
+                    quantity
                 )
-            )
+            ).onStart {
+                viewState update Loading
+                //Para emular una llamada a servicio y que se pueda ver el loader
+                delay(400)
+            }.onCompletion { viewState update HideLoading }.collect()
         }
     }
 
@@ -58,7 +64,7 @@ class DetailViewModel(
                     name update it.name
                     description update it.description
                     image update it.image
-                    price update mapper.mapProductPrice(it.price)
+                    price update mapper.mapAmount(it.price)
                 },
                 handleError = {
                     viewState update HideLoading
