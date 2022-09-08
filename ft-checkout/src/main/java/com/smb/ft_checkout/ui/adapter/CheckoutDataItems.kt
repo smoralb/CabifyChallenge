@@ -1,5 +1,6 @@
 package com.smb.ft_checkout.ui.adapter
 
+import com.smb.core.domain.model.ItemDiscountType
 import com.smb.core.presentation.adapters.BaseItem
 
 sealed class CheckoutDataItems : BaseItem {
@@ -11,11 +12,16 @@ sealed class CheckoutDataItems : BaseItem {
         val quantity: String,
         val hasDiscount: Boolean,
         val titleDiscount: String,
-        val onOfferClickListener: () -> Unit,
+        val itemDiscountType: ItemDiscountType,
+        val onOfferClickListener: (String, ItemDiscountType) -> Unit,
         val onItemClickListener: (String) -> Unit
     ) : CheckoutDataItems() {
         override fun onItemClick() {
             onItemClickListener(id)
+        }
+
+        fun onOfferClickListener() {
+            onOfferClickListener(id, itemDiscountType)
         }
     }
 }

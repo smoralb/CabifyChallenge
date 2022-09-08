@@ -2,6 +2,7 @@ package com.smb.ft_checkout.ui
 
 import android.app.Activity
 import androidx.lifecycle.MutableLiveData
+import com.smb.core.domain.model.ItemDiscountType
 import com.smb.core.extensions.DEFAULT_INT
 import com.smb.core.extensions.EMPTY_STRING
 import com.smb.core.extensions.execute
@@ -37,9 +38,12 @@ class CheckoutViewModel(
         execute { repository.clearItem(it) }
     }
 
-    private val onItemAddToCartClickListener: () -> Unit = {
-
-    }
+    private val onItemAddToCartClickListener: (String, ItemDiscountType) -> Unit =
+        { productId, itemType ->
+            execute {
+                repository.updateItem(productId, itemType)
+            }
+        }
 
     internal fun initialize() {
         execute {

@@ -14,7 +14,7 @@ interface CheckoutUiMapper : BaseUiMapper {
     fun mapCheckoutItems(
         items: List<ProductModelResponse>,
         onItemClickListener: (String) -> Unit,
-        onOfferClickListener: () -> Unit
+        onOfferClickListener: (String, ItemDiscountType) -> Unit
     ): List<CheckoutDataItem>
 
     fun mapTotalPrice(items: List<ProductModelResponse>): String
@@ -27,7 +27,7 @@ class CheckoutUiMapperImpl(
     override fun mapCheckoutItems(
         items: List<ProductModelResponse>,
         onItemClickListener: (String) -> Unit,
-        onOfferClickListener: () -> Unit
+        onOfferClickListener: (String, ItemDiscountType) -> Unit
     ): List<CheckoutDataItem> =
         if (items.isNotEmpty()) {
             items.map { product ->
@@ -43,7 +43,8 @@ class CheckoutUiMapperImpl(
                     onItemClickListener = onItemClickListener,
                     onOfferClickListener = onOfferClickListener,
                     hasDiscount = product.hasDiscount,
-                    titleDiscount = mapOfferTitle(product.itemDiscountType)
+                    titleDiscount = mapOfferTitle(product.itemDiscountType),
+                    itemDiscountType = product.itemDiscountType
                 )
             }
         } else emptyList()

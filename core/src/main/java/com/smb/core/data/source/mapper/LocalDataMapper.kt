@@ -1,6 +1,5 @@
 package com.smb.core.data.source.mapper
 
-import android.content.Context
 import com.smb.core.DiscountType
 import com.smb.core.Item
 import com.smb.core.domain.model.ItemDiscountType
@@ -28,7 +27,7 @@ class LocalDataMapperImpl : LocalDataMapper {
             image = item.image,
             price = item.price,
             quantity = item.quantity,
-            hasDiscount = item.hasDiscount,
+            hasDiscount = getHasDiscount(item.discountType, item.quantity),
             itemDiscountType = mapToItemDiscountType(item.discountType)
         )
 
@@ -42,5 +41,12 @@ class LocalDataMapperImpl : LocalDataMapper {
         when(type) {
             DISCOUNT_2_X_1 -> DiscountType.DISCOUNT_2_X_1
             else -> DiscountType.DISCOUNT_BULK_PURCHASE
+        }
+
+    private fun getHasDiscount(type: DiscountType, quantity: Int): Boolean =
+        when(type) {
+            DiscountType.DISCOUNT_2_X_1 -> quantity % 2 != 0
+            DiscountType.DISCOUNT_BULK_PURCHASE -> quantity % 3 != 0
+            else -> false
         }
 }

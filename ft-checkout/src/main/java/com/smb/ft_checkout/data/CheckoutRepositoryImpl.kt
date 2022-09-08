@@ -1,6 +1,7 @@
 package com.smb.ft_checkout.data
 
 import com.smb.core.data.source.LocalSource
+import com.smb.core.domain.model.ItemDiscountType
 import com.smb.core.domain.model.ProductModelRequest
 import com.smb.core.domain.model.ProductModelResponse
 import com.smb.ft_checkout.domain.CheckoutRepository
@@ -17,4 +18,7 @@ class CheckoutRepositoryImpl(
 
     override suspend fun clearItem(productId: String) =
         localSource.clearItem(productId)
+
+    override suspend fun updateItem(id: String, itemDiscountType: ItemDiscountType) =
+        localSource.updateItem(id, itemDiscountType)
 }
