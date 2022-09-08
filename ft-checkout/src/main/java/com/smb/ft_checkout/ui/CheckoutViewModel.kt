@@ -2,6 +2,7 @@ package com.smb.ft_checkout.ui
 
 import android.app.Activity
 import androidx.lifecycle.MutableLiveData
+import com.smb.core.domain.model.ProductModelRequest
 import com.smb.core.extensions.DEFAULT_INT
 import com.smb.core.extensions.EMPTY_STRING
 import com.smb.core.extensions.execute
@@ -27,6 +28,10 @@ class CheckoutViewModel(
 
     val onNavigationClickListener: () -> Unit = {
         viewState update NavigateUp
+    }
+
+    fun onPayClickListener ()  {
+        //Emulate payment
     }
 
     private val onItemClickListener: (String) -> Unit = {
