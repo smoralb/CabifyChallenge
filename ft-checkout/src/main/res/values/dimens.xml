@@ -5,7 +5,8 @@
     <dimen name="margin_horizontal_item_price">12dp</dimen>
     <dimen name="margin_horizontal_item_delete">12dp</dimen>
     <dimen name="margin_horizontal_item_quantity">12dp</dimen>
-    <dimen name="padding_item_quantity">8dp</dimen>
+    <dimen name="padding_item_quantity">4dp</dimen>
+    <dimen name="margin_item_quantity">8dp</dimen>
     <dimen name="margin_horizontal_item_image">10dp</dimen>
     <dimen name="item_icon_size">80dp</dimen>
     <dimen name="empty_state_icon_size">100dp</dimen>

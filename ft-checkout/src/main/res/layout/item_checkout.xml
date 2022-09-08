@@ -31,9 +31,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/margin_horizontal_item_title"
+            android:ellipsize="end"
+            android:maxLines="1"
             android:text="@{item.title}"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toRightOf="@id/ivImage"
+            app:layout_constraintLeft_toRightOf="@id/tvQuantity"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Sample title" />
 
@@ -47,7 +49,7 @@
             android:padding="@dimen/padding_item_quantity"
             android:text="@{item.quantity}"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toRightOf="@id/tvName"
+            app:layout_constraintLeft_toRightOf="@id/ivImage"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="x3" />
 
