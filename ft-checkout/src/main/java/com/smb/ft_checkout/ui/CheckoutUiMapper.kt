@@ -57,7 +57,7 @@ class CheckoutUiMapperImpl(
 
     override fun mapTotalPrice(items: List<ProductModelResponse>): String {
         var totalAmount = DEFAULT_FLOAT
-        items.forEach { totalAmount += it.quantity * it.price }
+        items.forEach { totalAmount += it.priceAfterDiscount }
         return mapAmount(totalAmount)
     }
 
