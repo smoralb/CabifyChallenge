@@ -16,5 +16,5 @@
     <dimen name="padding_vertical_discount">4dp</dimen>
     <dimen name="padding_discount">8dp</dimen>
     <dimen name="margin_horizontal_checkout_separator">10dp</dimen>
-    <dimen name="margin_top_item_checkout">8dp</dimen>
+    <dimen name="margin_top_item_checkout">12dp</dimen>
 </resources>

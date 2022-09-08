@@ -21,7 +21,7 @@
 
         <TextView
             android:id="@+id/tvDiscount"
-            style="@style/TextSmall.Bold"
+            style="@style/TextSmall"
             android:layout_width="@dimen/match_constraint"
             android:layout_height="wrap_content"
             app:layout_constraintLeft_toRightOf="@+id/ivDiscount"

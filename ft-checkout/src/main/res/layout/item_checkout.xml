@@ -27,16 +27,14 @@
 
         <TextView
             android:id="@+id/tvName"
-            style="@style/TextLarge"
+            style="@style/TextMedium.Bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/margin_horizontal_item_title"
-            android:ellipsize="end"
-            android:maxLines="1"
             android:text="@{item.title}"
-            app:layout_constraintBottom_toTopOf="@+id/csDiscountAdd"
+            app:layout_constraintBottom_toBottomOf="@+id/tvQuantity"
             app:layout_constraintLeft_toRightOf="@id/tvQuantity"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvQuantity"
             tools:text="Sample title" />
 
         <TextView
@@ -61,9 +59,9 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/margin_horizontal_item_price"
             android:text="@{item.price}"
-            app:layout_constraintBottom_toTopOf="@+id/csDiscountAdd"
+            app:layout_constraintBottom_toBottomOf="@id/tvQuantity"
             app:layout_constraintRight_toLeftOf="@+id/ivRemove"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvQuantity"
             tools:text="10 E" />
 
         <ImageView
@@ -73,9 +71,9 @@
             android:layout_marginHorizontal="@dimen/margin_horizontal_item_delete"
             android:onClick="@{() -> item.onItemClick()}"
             android:src="@drawable/ic_delete"
-            app:layout_constraintBottom_toTopOf="@+id/csDiscountAdd"
+            app:layout_constraintBottom_toBottomOf="@id/tvQuantity"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@id/tvQuantity" />
 
         <com.smb.components.CSDiscount
             android:id="@+id/csDiscountAdd"
