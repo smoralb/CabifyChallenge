@@ -5,6 +5,7 @@ data class ProductModelResponse(
     val name: String,
     val image: String,
     val price: Float,
+    val priceAfterDiscount: Float,
     val quantity: Int,
     val hasDiscount: Boolean,
     val itemDiscountType: ItemDiscountType

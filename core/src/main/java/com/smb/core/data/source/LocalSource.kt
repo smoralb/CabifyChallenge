@@ -6,6 +6,7 @@ import com.smb.core.data.source.mapper.LocalDataMapper
 import com.smb.core.domain.model.ItemDiscountType
 import com.smb.core.domain.model.ItemDiscountType.DISCOUNT_2_X_1
 import com.smb.core.domain.model.ItemDiscountType.DISCOUNT_BULK_PURCHASE
+import com.smb.core.domain.model.ItemDiscountType.NO_DISCOUNT
 import com.smb.core.domain.model.ProductModelRequest
 import com.smb.core.domain.model.ProductModelResponse
 import com.smb.core.extensions.DEFAULT_INT
@@ -93,5 +94,6 @@ class LocalSourceImpl(
         when (itemDiscountType) {
             DISCOUNT_2_X_1 -> quantity.plus(quantity % 2)
             DISCOUNT_BULK_PURCHASE -> quantity.plus(abs(quantity % 3 - 3))
+            NO_DISCOUNT -> quantity
         }
 }

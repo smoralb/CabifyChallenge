@@ -8,6 +8,7 @@ sealed class CheckoutDataItems : BaseItem {
         val id: String,
         val title: String,
         val price: String,
+        val priceDiscount: String,
         val image: String,
         val quantity: String,
         val hasDiscount: Boolean,
@@ -19,7 +20,6 @@ sealed class CheckoutDataItems : BaseItem {
         override fun onItemClick() {
             onItemClickListener(id)
         }
-
         fun onOfferClickListener() {
             onOfferClickListener(id, itemDiscountType)
         }

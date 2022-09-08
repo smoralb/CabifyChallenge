@@ -9,9 +9,10 @@ message Item {
   string description = 3;
   string image = 4;
   float price = 5;
-  int32 quantity = 6;
-  bool hasDiscount = 7;
-  DiscountType discountType = 8;
+  float priceDiscount = 6;
+  int32 quantity = 7;
+  bool hasDiscount = 8;
+  DiscountType discountType = 9;
 }
 
 message ShoppingCart {

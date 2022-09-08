@@ -58,10 +58,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/margin_horizontal_item_price"
+            android:background="@drawable/shape_strike"
             android:text="@{item.price}"
+            android:textColor="@android:color/darker_gray"
             app:layout_constraintBottom_toBottomOf="@id/tvQuantity"
             app:layout_constraintRight_toLeftOf="@+id/ivRemove"
             app:layout_constraintTop_toTopOf="@id/tvQuantity"
+            tools:text="10 E" />
+
+        <TextView
+            android:id="@+id/tvPriceDiscount"
+            style="@style/TextMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_horizontal_item_price"
+            android:text="@{item.priceDiscount}"
+            app:layout_constraintBottom_toBottomOf="@id/tvQuantity"
+            app:layout_constraintRight_toLeftOf="@+id/ivRemove"
+            app:layout_constraintTop_toBottomOf="@+id/tvPrice"
             tools:text="10 E" />
 
         <ImageView

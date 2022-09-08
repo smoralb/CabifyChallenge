@@ -4,8 +4,10 @@ import android.content.Context
 import com.smb.core.domain.model.ItemDiscountType
 import com.smb.core.domain.model.ItemDiscountType.DISCOUNT_2_X_1
 import com.smb.core.domain.model.ItemDiscountType.DISCOUNT_BULK_PURCHASE
+import com.smb.core.domain.model.ItemDiscountType.NO_DISCOUNT
 import com.smb.core.domain.model.ProductModelResponse
 import com.smb.core.extensions.DEFAULT_FLOAT
+import com.smb.core.extensions.EMPTY_STRING
 import com.smb.core.presentation.base.BaseUiMapper
 import com.smb.ft_checkout.R
 import com.smb.ft_checkout.ui.adapter.CheckoutDataItems.CheckoutDataItem
@@ -34,12 +36,13 @@ class CheckoutUiMapperImpl(
                 CheckoutDataItem(
                     id = product.id,
                     title = product.name,
-                    price = product.price.toString(),
+                    price = (product.price * product.quantity).toString(),
                     image = product.image,
                     quantity = String.format(
                         context.getString(R.string.checkout_quantity),
                         product.quantity
                     ),
+                    priceDiscount = product.priceAfterDiscount.toString(),
                     onItemClickListener = onItemClickListener,
                     onOfferClickListener = onOfferClickListener,
                     hasDiscount = product.hasDiscount,
@@ -57,11 +60,10 @@ class CheckoutUiMapperImpl(
     }
 
     private fun mapOfferTitle(type: ItemDiscountType) =
-        context.getString(
-            when(type) {
-                DISCOUNT_2_X_1 -> R.string.checkout_discount_title_2_x_1
-                DISCOUNT_BULK_PURCHASE -> R.string.checkout_discount_title_bulk
-            }
-        )
+        when (type) {
+            DISCOUNT_2_X_1 -> context.getString(R.string.checkout_discount_title_2_x_1)
+            DISCOUNT_BULK_PURCHASE -> context.getString(R.string.checkout_discount_title_bulk)
+            NO_DISCOUNT -> EMPTY_STRING
+        }
 
 }
