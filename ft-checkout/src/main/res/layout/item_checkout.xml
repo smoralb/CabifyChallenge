@@ -19,7 +19,7 @@
             android:layout_width="@dimen/item_icon_size"
             android:layout_height="@dimen/item_icon_size"
             android:layout_marginHorizontal="@dimen/margin_horizontal_item_image"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/csDiscountAdd"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:setImageUrl="@{item.image}"
@@ -34,7 +34,7 @@
             android:ellipsize="end"
             android:maxLines="1"
             android:text="@{item.title}"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/csDiscountAdd"
             app:layout_constraintLeft_toRightOf="@id/tvQuantity"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Sample title" />
@@ -48,7 +48,7 @@
             android:background="@drawable/round_shape"
             android:padding="@dimen/padding_item_quantity"
             android:text="@{item.quantity}"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/csDiscountAdd"
             app:layout_constraintLeft_toRightOf="@id/ivImage"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="x3" />
@@ -60,7 +60,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/margin_horizontal_item_price"
             android:text="@{item.price}"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/csDiscountAdd"
             app:layout_constraintRight_toLeftOf="@+id/ivRemove"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="10 E" />
@@ -72,9 +72,21 @@
             android:layout_marginHorizontal="@dimen/margin_horizontal_item_delete"
             android:onClick="@{() -> item.onItemClick()}"
             android:src="@drawable/ic_delete"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/csDiscountAdd"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <com.smb.components.CSDiscount
+            android:id="@+id/csDiscountAdd"
+            android:layout_width="@dimen/match_constraint"
+            android:layout_height="wrap_content"
+            app:addToCartClickListener="@{item.onOfferClickListener}"
+            app:discountVisibility="@{item.hasDiscount}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/ivImage"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvQuantity"
+            app:setDiscountTitle="@{item.titleDiscount}" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

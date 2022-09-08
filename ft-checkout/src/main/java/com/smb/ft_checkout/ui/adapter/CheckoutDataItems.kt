@@ -9,6 +9,9 @@ sealed class CheckoutDataItems : BaseItem {
         val price: String,
         val image: String,
         val quantity: String,
+        val hasDiscount: Boolean,
+        val titleDiscount: String,
+        val onOfferClickListener: () -> Unit,
         val onItemClickListener: (String) -> Unit
     ) : CheckoutDataItems() {
         override fun onItemClick() {

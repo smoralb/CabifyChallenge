@@ -5,5 +5,7 @@ data class ProductModelRequest(
     val name: String,
     val image: String,
     val price: Float,
-    val quantity: Int
+    val quantity: Int,
+    val hasDiscount: Boolean,
+    val itemDiscountType: ItemDiscountType
 )

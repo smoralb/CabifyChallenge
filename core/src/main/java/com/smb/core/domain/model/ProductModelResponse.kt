@@ -7,11 +7,5 @@ data class ProductModelResponse(
     val price: Float,
     val quantity: Int,
     val hasDiscount: Boolean,
-    val discountType: DiscountType
+    val itemDiscountType: ItemDiscountType
 )
-
-enum class DiscountType {
-    DISCOUNT_2_X_1,
-    DISCOUNT_BULK_PURCHASE,
-    NO_DISCOUNT,
-}

@@ -2,7 +2,6 @@ package com.smb.ft_checkout.ui
 
 import android.app.Activity
 import androidx.lifecycle.MutableLiveData
-import com.smb.core.domain.model.ProductModelRequest
 import com.smb.core.extensions.DEFAULT_INT
 import com.smb.core.extensions.EMPTY_STRING
 import com.smb.core.extensions.execute
@@ -30,7 +29,7 @@ class CheckoutViewModel(
         viewState update NavigateUp
     }
 
-    fun onPayClickListener ()  {
+    fun onPayClickListener() {
         //Emulate payment
     }
 
@@ -38,10 +37,18 @@ class CheckoutViewModel(
         execute { repository.clearItem(it) }
     }
 
+    private val onItemAddToCartClickListener: () -> Unit = {
+
+    }
+
     internal fun initialize() {
         execute {
             repository.getItems().collect {
-                items update mapper.mapCheckoutItems(it, onItemClickListener)
+                items update mapper.mapCheckoutItems(
+                    it,
+                    onItemClickListener,
+                    onItemAddToCartClickListener
+                )
                 if (it.isNotEmpty()) {
                     viewState update ShowTotalAmount
                     total update mapper.mapTotalPrice(it)
