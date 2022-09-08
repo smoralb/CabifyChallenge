@@ -1,6 +1,7 @@
 package com.smb.ft_checkout.ui
 
 import android.content.Context
+import android.view.View
 import com.smb.core.domain.model.ItemDiscountType
 import com.smb.core.domain.model.ItemDiscountType.DISCOUNT_2_X_1
 import com.smb.core.domain.model.ItemDiscountType.DISCOUNT_BULK_PURCHASE
@@ -47,7 +48,8 @@ class CheckoutUiMapperImpl(
                     onOfferClickListener = onOfferClickListener,
                     hasDiscount = product.hasDiscount,
                     titleDiscount = mapOfferTitle(product.itemDiscountType),
-                    itemDiscountType = product.itemDiscountType
+                    itemDiscountType = product.itemDiscountType,
+                    showPriceDiscount = showPriceDiscount(product.itemDiscountType)
                 )
             }
         } else emptyList()
@@ -64,6 +66,12 @@ class CheckoutUiMapperImpl(
             DISCOUNT_2_X_1 -> context.getString(R.string.checkout_discount_title_2_x_1)
             DISCOUNT_BULK_PURCHASE -> context.getString(R.string.checkout_discount_title_bulk)
             NO_DISCOUNT -> EMPTY_STRING
+        }
+
+    private fun showPriceDiscount(type: ItemDiscountType): Int =
+        when (type) {
+            DISCOUNT_2_X_1, DISCOUNT_BULK_PURCHASE -> View.VISIBLE
+            NO_DISCOUNT -> View.GONE
         }
 
 }

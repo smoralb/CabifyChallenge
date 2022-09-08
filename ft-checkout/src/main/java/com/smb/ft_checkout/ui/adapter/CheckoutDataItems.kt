@@ -12,6 +12,7 @@ sealed class CheckoutDataItems : BaseItem {
         val image: String,
         val quantity: String,
         val hasDiscount: Boolean,
+        val showPriceDiscount: Int,
         val titleDiscount: String,
         val itemDiscountType: ItemDiscountType,
         val onOfferClickListener: (String, ItemDiscountType) -> Unit,

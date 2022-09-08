@@ -5,6 +5,7 @@ import com.smb.core.Item
 import com.smb.core.domain.model.ItemDiscountType
 import com.smb.core.domain.model.ItemDiscountType.DISCOUNT_2_X_1
 import com.smb.core.domain.model.ItemDiscountType.DISCOUNT_BULK_PURCHASE
+import com.smb.core.domain.model.ItemDiscountType.NO_DISCOUNT
 import com.smb.core.domain.model.ProductModelRequest
 import com.smb.core.domain.model.ProductModelResponse
 
@@ -40,7 +41,8 @@ class LocalDataMapperImpl : LocalDataMapper {
     private fun mapToItemDiscountType(type: DiscountType): ItemDiscountType =
         when (type) {
             DiscountType.DISCOUNT_2_X_1 -> DISCOUNT_2_X_1
-            else -> DISCOUNT_BULK_PURCHASE
+            DiscountType.DISCOUNT_BULK_PURCHASE -> DISCOUNT_BULK_PURCHASE
+            else -> NO_DISCOUNT
         }
 
     private fun mapToDiscountType(type: ItemDiscountType): DiscountType =
