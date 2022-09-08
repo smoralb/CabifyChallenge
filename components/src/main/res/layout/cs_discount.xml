@@ -8,7 +8,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/clDiscountContent"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:padding="@dimen/padding_discount">
 
         <ImageView
             android:id="@+id/ivDiscount"
@@ -33,7 +34,7 @@
             style="@style/TextSmall"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
-            android:layout_margin="@dimen/margin_button_offer"
+            android:layout_marginTop="@dimen/margin_top_button_offer"
             android:background="@drawable/cs_button_offer_shape"
             android:paddingHorizontal="@dimen/padding_horizontal_button_offer"
             android:text="@string/discount_button_title"

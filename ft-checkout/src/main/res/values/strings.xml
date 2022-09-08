@@ -4,5 +4,5 @@
     <string name="checkout_quantity">x %d</string>
     <string name="empty_title">Add items to your shopping cart!</string>
     <string name="checkout_discount_title_2_x_1">¿Quieres disfrutar de la oferta 2x1?</string>
-    <string name="checkout_discount_title_bulk">¿Quieres disfrutar del 5% comprando más de 3?</string>
+    <string name="checkout_discount_title_bulk">¿Quieres disfrutar del 5% comprando 3 o más?</string>
 </resources>
