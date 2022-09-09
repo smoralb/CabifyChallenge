@@ -4,11 +4,11 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.core.DataStoreFactory
 import androidx.datastore.dataStoreFile
 import com.smb.core.ShoppingCart
-import com.smb.core.data.dataStore.proto.Serializer
-import com.smb.core.data.dataStore.source.LocalSource
-import com.smb.core.data.dataStore.source.LocalSourceImpl
-import com.smb.core.data.dataStore.source.mapper.LocalDataMapper
-import com.smb.core.data.dataStore.source.mapper.LocalDataMapperImpl
+import com.smb.core.data.proto.Serializer
+import com.smb.core.data.source.LocalSource
+import com.smb.core.data.source.LocalSourceImpl
+import com.smb.core.data.source.mapper.LocalDataMapper
+import com.smb.core.data.source.mapper.LocalDataMapperImpl
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import okhttp3.HttpUrl

@@ -6,6 +6,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="item"
             type="com.smb.ft_store.ui.store.adapter.StoreDataItems.StoreDataItem" />
@@ -37,6 +39,15 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:setImageUrl="@{item.image}"
                 tools:src="@drawable/ic_launcher_foreground" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/margin_right_item_store_discount"
+                android:src="@drawable/ic_discount"
+                android:visibility="@{item.hasDiscount? View.VISIBLE : View.GONE}"
+                app:layout_constraintBottom_toBottomOf="@id/ivProduct"
+                app:layout_constraintRight_toRightOf="@id/ivProduct" />
 
             <TextView
                 android:id="@+id/tvProductName"

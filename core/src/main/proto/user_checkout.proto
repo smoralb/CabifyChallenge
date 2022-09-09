@@ -6,12 +6,22 @@ option java_multiple_files = true;
 message Item {
   string id = 1;
   string name = 2;
-  string image = 3;
-  int32 quantity = 4;
+  string description = 3;
+  string image = 4;
   float price = 5;
+  float priceDiscount = 6;
+  int32 quantity = 7;
+  bool hasDiscount = 8;
+  DiscountType discountType = 9;
 }
 
 message ShoppingCart {
   string id = 1;
-  repeated Item items  = 2; // repeated => list
+  repeated Item items = 2; // repeated => list
+}
+
+enum DiscountType {
+  DISCOUNT_2_X_1 = 0;
+  DISCOUNT_BULK_PURCHASE = 1;
+  NO_DISCOUNT = 2;
 }

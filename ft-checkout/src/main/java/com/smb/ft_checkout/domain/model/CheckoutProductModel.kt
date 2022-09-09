@@ -1,6 +1,6 @@
-package com.smb.core.domain.dataStore.model
+package com.smb.ft_checkout.domain.model
 
-data class ProductModel(
+data class CheckoutProductModel(
     val id: String,
     val title: String,
     val image: String,

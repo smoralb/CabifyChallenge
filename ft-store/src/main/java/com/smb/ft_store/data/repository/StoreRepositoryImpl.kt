@@ -1,16 +1,24 @@
 package com.smb.ft_store.data.repository
 
 import com.smb.core.data.Result
-import com.smb.ft_store.data.source.StoreRemoteSource
-import com.smb.ft_store.domain.model.ProductModel
+import com.smb.core.data.source.LocalSource
+import com.smb.core.domain.model.ProductModelRequest
+import com.smb.ft_store.data.source.remote.StoreRemoteSource
+import com.smb.ft_store.domain.model.StoreProductModel
 import com.smb.ft_store.domain.repository.StoreRepository
+import kotlinx.coroutines.flow.Flow
 
-class StoreRepositoryImpl(private val remoteSource: StoreRemoteSource) :
-    StoreRepository {
+class StoreRepositoryImpl(
+    private val localSource: LocalSource,
+    private val remoteSource: StoreRemoteSource
+) : StoreRepository {
 
-    override suspend fun getProductList(): Result<List<ProductModel>> =
+    override suspend fun getProductList(): Result<List<StoreProductModel>> =
         remoteSource.getProductList()
 
-    override suspend fun getProductDetails(productId: String): Result<ProductModel> =
+    override suspend fun getProductDetails(productId: String): Result<StoreProductModel> =
         remoteSource.getProductDetails(productId)
+
+    override suspend fun addNewItem(newItem: ProductModelRequest): Flow<Boolean> =
+        localSource.addNewItem(newItem)
 }

@@ -7,6 +7,9 @@ import com.smb.cabify.data.productsDataListNullEntityMock
 import com.smb.ft_store.data.service.StoreApi
 import com.smb.core.extensions.EMPTY_STRING
 import com.smb.core.test.BaseUnitTest
+import com.smb.ft_store.data.source.remote.StoreRemoteSource
+import com.smb.ft_store.data.source.remote.StoreRemoteSourceImpl
+import com.smb.ft_store.data.source.remote.mapper.StoreDataMapper
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
 import okhttp3.ResponseBody.Companion.toResponseBody
@@ -32,11 +35,11 @@ class StoreRemoteSourceTest : BaseUnitTest() {
     @Mock
     private lateinit var mapper: StoreDataMapper
 
-    private lateinit var remoteSource: com.smb.ft_store.data.source.StoreRemoteSource
+    private lateinit var remoteSource: StoreRemoteSource
 
     @BeforeEach
     fun setUp() {
-        remoteSource = com.smb.ft_store.data.source.StoreRemoteSourceImpl(api, mapper)
+        remoteSource = StoreRemoteSourceImpl(api, mapper)
     }
 
     @TestFactory

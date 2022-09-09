@@ -1,4 +1,4 @@
-package com.smb.ft_store.data.source
+package com.smb.ft_store.data.source.remote.mapper
 
 import com.smb.core.extensions.orDefault
 import com.smb.ft_store.data.entity.ProductType
@@ -6,7 +6,11 @@ import com.smb.ft_store.data.entity.ProductType.MUG
 import com.smb.ft_store.data.entity.ProductType.TSHIRT
 import com.smb.ft_store.data.entity.ProductType.VOUCHER
 import com.smb.ft_store.data.entity.ProductsListEntity
-import com.smb.ft_store.domain.model.ProductModel
+import com.smb.ft_store.domain.model.DiscountType
+import com.smb.ft_store.domain.model.DiscountType.DISCOUNT_2_X_1
+import com.smb.ft_store.domain.model.DiscountType.DISCOUNT_BULK_PURCHASE
+import com.smb.ft_store.domain.model.DiscountType.NO_DISCOUNT
+import com.smb.ft_store.domain.model.StoreProductModel
 
 private const val VOUCHER_IMAGE_URL =
     "https://images.unsplash.com/photo-1494426383302-7b9d36a1a028?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1738&q=80"
@@ -21,35 +25,55 @@ private const val FAKE_DESCRIPTION =
 
 interface StoreDataMapper {
 
-    fun toDomainModel(entity: ProductsListEntity): List<ProductModel>
+    fun toDomainModel(entity: ProductsListEntity): List<StoreProductModel>
 
-    fun toDomainModelDetails(productId: String, entity: ProductsListEntity): ProductModel
+    fun toDomainModelDetails(productId: String, entity: ProductsListEntity): StoreProductModel
+}
+
+val discountType: (ProductType?) -> DiscountType = {
+    when (it) {
+        VOUCHER -> DISCOUNT_2_X_1
+        TSHIRT -> DISCOUNT_BULK_PURCHASE
+        else -> NO_DISCOUNT
+    }
 }
 
 class StoreDataMapperImpl : StoreDataMapper {
 
-    override fun toDomainModel(entity: ProductsListEntity): List<ProductModel> =
+    override fun toDomainModel(entity: ProductsListEntity): List<StoreProductModel> =
         entity.products?.map { product ->
-            ProductModel(
+            StoreProductModel(
                 id = product.code?.value.orEmpty(),
                 name = product.name.orEmpty(),
                 description = FAKE_DESCRIPTION,
                 price = product.price.orDefault(),
-                image = getFakeImage(product.code)
+                image = getFakeImage(product.code),
+                hasDiscount = hasDiscount(product.code),
+                discountType = discountType(product.code)
             )
         }.orEmpty()
 
-    override fun toDomainModelDetails(productId: String, entity: ProductsListEntity): ProductModel {
+    override fun toDomainModelDetails(
+        productId: String,
+        entity: ProductsListEntity
+    ): StoreProductModel {
         val product = entity.products?.first { it.code?.value == productId }
-        return ProductModel(
+        return StoreProductModel(
             id = product?.code?.value.orEmpty(),
             name = product?.name.orEmpty(),
             description = FAKE_DESCRIPTION,
             price = product?.price.orDefault(),
-            image = getFakeImage(product?.code)
+            image = getFakeImage(product?.code),
+            hasDiscount = hasDiscount(product?.code),
+            discountType = discountType(product?.code)
         )
     }
 
+    private fun hasDiscount(productType: ProductType?) =
+        when (productType) {
+            VOUCHER, TSHIRT -> true
+            else -> false
+        }
 
     private fun getFakeImage(code: ProductType?): String =
         when (code) {

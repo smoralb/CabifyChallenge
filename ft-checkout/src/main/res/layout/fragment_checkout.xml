@@ -41,9 +41,9 @@
             android:id="@+id/csTotalAmount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/btPay"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rvCheckout"
             app:totalQuantity="@{viewModel.total}"
             app:visibility="@{viewModel.visibility}" />
 
@@ -83,6 +83,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/margin_pay_button"
             android:background="@drawable/cs_button_shape"
+            android:onClick="@{() -> viewModel.onPayClickListener()}"
             android:text="@string/checkout_proceed_payment"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"

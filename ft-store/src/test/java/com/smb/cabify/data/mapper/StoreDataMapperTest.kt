@@ -5,8 +5,8 @@ import com.smb.cabify.data.productDataModelMock
 import com.smb.cabify.data.productsDataListEntityMock
 import com.smb.cabify.data.productsDataListEntityNullMock
 import com.smb.cabify.data.productsDataListNullEntityMock
-import com.smb.ft_store.data.source.StoreDataMapper
-import com.smb.ft_store.data.source.StoreDataMapperImpl
+import com.smb.ft_store.data.source.remote.mapper.StoreDataMapper
+import com.smb.ft_store.data.source.remote.mapper.StoreDataMapperImpl
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DynamicTest

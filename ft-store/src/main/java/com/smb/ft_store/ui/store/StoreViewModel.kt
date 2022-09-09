@@ -6,7 +6,7 @@ import com.smb.core.extensions.EMPTY_STRING
 import com.smb.core.extensions.execute
 import com.smb.core.extensions.update
 import com.smb.core.presentation.base.BaseViewModel
-import com.smb.ft_store.domain.usecase.GetProductListUseCase
+import com.smb.ft_store.domain.repository.StoreRepository
 import com.smb.ft_store.ui.navigation.StoreNavigator
 import com.smb.ft_store.ui.store.StoreState.HideLoading
 import com.smb.ft_store.ui.store.StoreState.Loading
@@ -16,7 +16,7 @@ import com.smb.ft_store.ui.store.adapter.StoreDataItems.StoreDataItem
 import com.smb.ft_store.ui.store.mapper.StoreUiMapper
 
 class StoreViewModel(
-    private val getProductListUseCase: GetProductListUseCase,
+    private val repository: StoreRepository,
     private val mapper: StoreUiMapper,
     private val navigator: StoreNavigator
 ) : BaseViewModel<StoreState>() {
@@ -32,7 +32,7 @@ class StoreViewModel(
         viewState update NavigateToStore
     }
 
-    internal fun initialize() {
+    init {
         getProductList()
     }
 
@@ -43,7 +43,7 @@ class StoreViewModel(
     private fun getProductList() {
         viewState update Loading
         execute {
-            getProductListUseCase(Unit).fold(
+            repository.getProductList().fold(
                 handleSuccess = { productList ->
                     itemList update mapper.mapItems(productList, onItemClickListener)
                     viewState update HideLoading
