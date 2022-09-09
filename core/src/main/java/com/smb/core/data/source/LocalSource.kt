@@ -7,8 +7,8 @@ import com.smb.core.domain.model.ItemDiscountType
 import com.smb.core.domain.model.ItemDiscountType.DISCOUNT_2_X_1
 import com.smb.core.domain.model.ItemDiscountType.DISCOUNT_BULK_PURCHASE
 import com.smb.core.domain.model.ItemDiscountType.NO_DISCOUNT
-import com.smb.core.domain.model.ProductModelRequest
 import com.smb.core.domain.model.ProductModelResponse
+import com.smb.core.domain.model.ProductRequest
 import com.smb.core.extensions.DEFAULT_INT
 import kotlin.math.abs
 import kotlinx.coroutines.Dispatchers
@@ -20,7 +20,7 @@ import kotlinx.coroutines.flow.map
 
 interface LocalSource {
     suspend fun getItems(): Flow<List<ProductModelResponse>>
-    suspend fun addNewItem(newItem: ProductModelRequest): Flow<Boolean>
+    suspend fun addNewItem(newItem: ProductRequest): Flow<Boolean>
     suspend fun clearItem(productId: String)
     suspend fun clearAllItems(): Flow<Boolean>
     suspend fun updateItem(id: String, itemDiscountType: ItemDiscountType)
@@ -42,7 +42,7 @@ class LocalSourceImpl(
             }
         }
 
-    override suspend fun addNewItem(newItem: ProductModelRequest) =
+    override suspend fun addNewItem(newItem: ProductRequest) =
         flow {
             val item = mapper.toDataModel(newItem)
             dataStore.updateData { shoppingCart ->

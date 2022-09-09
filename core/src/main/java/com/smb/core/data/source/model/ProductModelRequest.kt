@@ -1,4 +1,6 @@
-package com.smb.core.domain.model
+package com.smb.core.data.source.model
+
+import com.smb.core.domain.model.ItemDiscountType
 
 data class ProductModelRequest(
     val id: String,

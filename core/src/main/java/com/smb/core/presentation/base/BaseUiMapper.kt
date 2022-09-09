@@ -8,6 +8,5 @@ interface BaseUiMapper {
     private val currency: Currency
         get() = Currency.getInstance(Locale.getDefault())
 
-    fun mapAmount(price: Float) =
-        "$price ${currency.symbol}"
+    fun mapAmount(price: Float) = "$price ${currency.symbol}"
 }

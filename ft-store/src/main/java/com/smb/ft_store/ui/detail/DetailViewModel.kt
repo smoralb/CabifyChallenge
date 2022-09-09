@@ -45,7 +45,7 @@ class DetailViewModel(
                 )
             ).onStart {
                 viewState update Loading
-                //Para emular una llamada a servicio y que se pueda ver el loader
+                //Para emular una llamada a servicio
                 delay(400)
             }.onCompletion { viewState update HideLoading }.collect()
         }
