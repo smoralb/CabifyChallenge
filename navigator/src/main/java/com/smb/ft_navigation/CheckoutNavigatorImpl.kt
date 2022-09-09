@@ -7,6 +7,6 @@ import com.smb.ft_store.StoreActivity
 class CheckoutNavigatorImpl : CheckoutNavigator {
 
     override fun navigateBack(context: Context) {
-        with(context) { navigateUp(context, StoreActivity.newIntent(this)) }
+        with(context) { navigateClearTop(context, StoreActivity.newIntent(this)) }
     }
 }

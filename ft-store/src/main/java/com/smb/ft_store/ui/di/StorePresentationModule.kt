@@ -12,8 +12,8 @@ import org.koin.dsl.module
 val storePresentationModule = module {
 
     factory<StoreUiMapper> { StoreUiMapperImpl() }
-    factory<DetailUiMapper> { DetailUiMapperImpl(get()) }
+    factory<DetailUiMapper> { DetailUiMapperImpl(context = get()) }
 
-    viewModel { StoreViewModel(get(), get(), get()) }
-    viewModel { DetailViewModel(get(), get()) }
+    viewModel { StoreViewModel(repository = get(), mapper = get(), navigator = get()) }
+    viewModel { DetailViewModel(repository = get(), mapper = get()) }
 }

@@ -13,8 +13,6 @@ class StoreActivity : BaseActivity(layoutRes = R.layout.activity_main) {
     }
 
     companion object {
-        fun newIntent(context: Context) = Intent(context, StoreActivity::class.java).apply {
-            flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-        }
+        fun newIntent(context: Context) = Intent(context, StoreActivity::class.java)
     }
 }

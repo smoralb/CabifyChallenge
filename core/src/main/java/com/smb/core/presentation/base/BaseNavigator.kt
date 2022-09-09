@@ -25,7 +25,7 @@ interface BaseNavigator {
         }
     }
 
-    fun navigateUp(context: Context, intent: Intent) {
+    fun navigateClearTop(context: Context, intent: Intent) {
         ActivityNavigator(context).apply {
             this.navigate(
                 this.createDestination()
@@ -34,8 +34,12 @@ interface BaseNavigator {
                 NavOptions.Builder()
                     .setEnterAnim(R.anim.slide_in_right)
                     .setExitAnim(R.anim.slide_out_right)
+                    .setPopEnterAnim(R.anim.slide_in_right)
+                    .setPopExitAnim(R.anim.slide_out_right)
                     .build(),
-                null
+                ActivityNavigator.Extras.Builder()
+                    .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                    .build()
             )
         }
     }
