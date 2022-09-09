@@ -36,13 +36,13 @@ class CheckoutUiMapperImpl(
                 CheckoutDataItem(
                     id = product.id,
                     title = product.name,
-                    price = (product.price * product.quantity).toString(),
+                    price = mapAmount(product.price * product.quantity),
                     image = product.image,
                     quantity = String.format(
                         context.getString(R.string.checkout_quantity),
                         product.quantity
                     ),
-                    priceDiscount = product.priceAfterDiscount.toString(),
+                    priceDiscount = mapAmount(product.priceAfterDiscount),
                     onItemClickListener = onItemClickListener,
                     onOfferClickListener = onOfferClickListener,
                     hasDiscount = product.hasDiscount,
