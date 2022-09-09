@@ -3,11 +3,10 @@ package com.smb.ft_checkout.ui
 import android.content.Context
 import android.view.View
 import com.smb.core.domain.model.ItemDiscountType
-import com.smb.core.domain.model.ItemDiscountType.DISCOUNT_2_X_1
-import com.smb.core.domain.model.ItemDiscountType.DISCOUNT_BULK_PURCHASE
 import com.smb.core.domain.model.ItemDiscountType.NO_DISCOUNT
 import com.smb.core.domain.model.ProductModelResponse
 import com.smb.core.extensions.DEFAULT_FLOAT
+import com.smb.core.extensions.DEFAULT_INT
 import com.smb.core.extensions.EMPTY_STRING
 import com.smb.core.presentation.base.BaseUiMapper
 import com.smb.ft_checkout.R
@@ -47,7 +46,7 @@ class CheckoutUiMapperImpl(
                     onItemClickListener = onItemClickListener,
                     onOfferClickListener = onOfferClickListener,
                     hasDiscount = product.hasDiscount,
-                    titleDiscount = mapOfferTitle(product.itemDiscountType),
+                    titleDiscount = mapTitleDiscount(product.itemDiscountType.resource),
                     itemDiscountType = product.itemDiscountType,
                     showPriceDiscount = showPriceDiscount(product.itemDiscountType)
                 )
@@ -61,17 +60,16 @@ class CheckoutUiMapperImpl(
         return mapAmount(totalAmount)
     }
 
-    private fun mapOfferTitle(type: ItemDiscountType) =
-        when (type) {
-            DISCOUNT_2_X_1 -> context.getString(R.string.checkout_discount_title_2_x_1)
-            DISCOUNT_BULK_PURCHASE -> context.getString(R.string.checkout_discount_title_bulk)
-            NO_DISCOUNT -> EMPTY_STRING
-        }
+    private fun mapTitleDiscount(resource: Int): String =
+        if (resource != DEFAULT_INT)
+            context.getString(resource)
+        else EMPTY_STRING
+
 
     private fun showPriceDiscount(type: ItemDiscountType): Int =
         when (type) {
-            DISCOUNT_2_X_1, DISCOUNT_BULK_PURCHASE -> View.VISIBLE
             NO_DISCOUNT -> View.GONE
+            else -> View.VISIBLE
         }
 
 }

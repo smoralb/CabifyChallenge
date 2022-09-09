@@ -45,7 +45,7 @@ class DetailViewModel(
                 )
             ).onStart {
                 viewState update Loading
-                //Para emular una llamada a servicio
+                //Emulates API call delay
                 delay(400)
             }.onCompletion { viewState update HideLoading }.collect()
         }
