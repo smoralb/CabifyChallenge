@@ -1,7 +1,9 @@
 package com.smb.ft_store.domain.model
 
+import com.smb.ft_store.data.entity.ProductType
+
 data class StoreProductModel(
-    val id: String,
+    val id: ProductType?,
     val name: String,
     val description: String,
     val image: String,

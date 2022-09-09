@@ -43,7 +43,7 @@ class StoreDataMapperImpl : StoreDataMapper {
     override fun toDomainModel(entity: ProductsListEntity): List<StoreProductModel> =
         entity.products?.map { product ->
             StoreProductModel(
-                id = product.code?.value.orEmpty(),
+                id = product.code,
                 name = product.name.orEmpty(),
                 description = FAKE_DESCRIPTION,
                 price = product.price.orDefault(),
@@ -59,7 +59,7 @@ class StoreDataMapperImpl : StoreDataMapper {
     ): StoreProductModel {
         val product = entity.products?.first { it.code?.value == productId }
         return StoreProductModel(
-            id = product?.code?.value.orEmpty(),
+            id = product?.code,
             name = product?.name.orEmpty(),
             description = FAKE_DESCRIPTION,
             price = product?.price.orDefault(),

@@ -4,4 +4,6 @@
     <string name="store_view_label">Store view</string>
     <!-- Details view -->
     <string name="details_view_label">Details view</string>
+    <string name="details_view_discount_2_x_1">2x1</string>
+    <string name="details_view_discount_bulk">Pack 3 o más</string>
 </resources>

@@ -25,6 +25,8 @@ class DetailViewModel(
     val description: MutableLiveData<String> = MutableLiveData()
     val price: MutableLiveData<String> = MutableLiveData()
     val image: MutableLiveData<String> = MutableLiveData(EMPTY_STRING)
+    val discountType : MutableLiveData<String> = MutableLiveData(EMPTY_STRING)
+    val hasDiscount : MutableLiveData<Boolean> = MutableLiveData(false)
 
     private var itemPrice: Float = DEFAULT_FLOAT
     private var productId: String = EMPTY_STRING
@@ -63,6 +65,8 @@ class DetailViewModel(
                     description update it.description
                     image update it.image
                     price update mapper.mapAmount(it.price)
+                    hasDiscount update it.hasDiscount
+                    discountType update mapper.mapDiscountType(it.discountType)
                 },
                 handleError = {
                     viewState update HideLoading

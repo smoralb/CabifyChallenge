@@ -61,8 +61,7 @@ class CheckoutUiMapperImpl(
     }
 
     private fun mapTitleDiscount(resource: Int): String =
-        if (resource != DEFAULT_INT)
-            context.getString(resource)
+        if (resource != DEFAULT_INT) context.getString(resource)
         else EMPTY_STRING
 
 
