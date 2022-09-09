@@ -31,7 +31,6 @@ class CheckoutFragment : BaseFragment<CheckoutState, FragmentCheckoutBinding, Ch
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.rvCheckout.adapter = CheckoutAdapter()
-        viewModel.initialize()
     }
 
     override fun checkViewState(state: CheckoutState) {

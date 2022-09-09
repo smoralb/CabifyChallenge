@@ -45,7 +45,7 @@ class CheckoutViewModel(
             }
         }
 
-    internal fun initialize() {
+    init {
         execute {
             repository.getItems().collect {
                 items update mapper.mapCheckoutItems(
