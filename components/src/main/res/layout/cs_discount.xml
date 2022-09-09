@@ -29,8 +29,8 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Este producto tiene oferta de 2x1" />
 
-        <Button
-            android:id="@+id/btAddToCart"
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btAddToCartDiscount"
             style="@style/TextSmall"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
