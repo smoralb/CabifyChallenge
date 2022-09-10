@@ -44,6 +44,44 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="@id/tvTotal"
             tools:text="120.0" />
+
+        <FrameLayout
+            android:id="@+id/flResult"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_horizontal_button_payment"
+            android:layout_marginTop="@dimen/margin_top_button"
+            android:background="@drawable/cs_button_shape"
+            android:paddingVertical="@dimen/padding_vertical_button"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTotalQuantity">
+
+            <TextView
+                android:id="@+id/btnTitle"
+                style="@style/TextLarge.Bold.White"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/proceed_to_pay"
+                tools:text="PROCEED TO PAY" />
+
+            <ProgressBar
+                android:id="@+id/btnLoader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:visibility="gone"
+                app:indicatorColor="@android:color/white" />
+
+            <ImageView
+                android:id="@+id/btnResult"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_check"
+                android:visibility="gone" />
+        </FrameLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </merge>

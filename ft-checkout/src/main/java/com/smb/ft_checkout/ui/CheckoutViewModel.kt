@@ -14,7 +14,9 @@ import com.smb.ft_checkout.ui.CheckoutState.ShowEmptyLayout
 import com.smb.ft_checkout.ui.CheckoutState.ShowTotalAmount
 import com.smb.ft_checkout.ui.adapter.CheckoutDataItems.CheckoutDataItem
 import com.smb.ft_checkout.ui.navigator.CheckoutNavigator
+import kotlin.random.Random
 import kotlinx.coroutines.flow.collect
+import java.lang.Math.random
 
 class CheckoutViewModel(
     private val mapper: CheckoutUiMapper,
@@ -30,8 +32,8 @@ class CheckoutViewModel(
         viewState update NavigateUp
     }
 
-    fun onPayClickListener() {
-        //Emulate payment
+    val onBtnPaymentClickListener: () -> Unit = {
+        execute { repository.clearAllItems() }
     }
 
     private val onItemClickListener: (String) -> Unit = {

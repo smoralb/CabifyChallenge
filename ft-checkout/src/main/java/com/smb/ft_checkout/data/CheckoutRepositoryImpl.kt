@@ -21,4 +21,7 @@ class CheckoutRepositoryImpl(
 
     override suspend fun updateItem(id: String, itemDiscountType: ItemDiscountType) =
         localSource.updateItem(id, itemDiscountType)
+
+    override suspend fun clearAllItems() =
+        localSource.clearAllItems()
 }

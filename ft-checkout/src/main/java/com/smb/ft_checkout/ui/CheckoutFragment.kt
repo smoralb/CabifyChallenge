@@ -40,13 +40,9 @@ class CheckoutFragment : BaseFragment<CheckoutState, FragmentCheckoutBinding, Ch
                 with(binding) {
                     emptyLayout.visibility = View.VISIBLE
                     csTotalAmount.visibility = View.GONE
-                    btPay.visibility = View.GONE
                 }
             }
-            ShowTotalAmount -> with(binding) {
-                binding.csTotalAmount.visibility = View.VISIBLE
-                btPay.visibility = View.VISIBLE
-            }
+            ShowTotalAmount -> binding.csTotalAmount.visibility = View.VISIBLE
         }
     }
 }

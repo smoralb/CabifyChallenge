@@ -12,6 +12,9 @@
     <dimen name="padding_vertical_total">14dp</dimen>
     <dimen name="margin_top_total_quantity">18dp</dimen>
     <dimen name="margin_right_total">14dp</dimen>
+    <dimen name="padding_vertical_button">10dp</dimen>
+    <dimen name="margin_top_button">12dp</dimen>
+    <dimen name="margin_horizontal_button_payment">14dp</dimen>
     <!-- CSOFFER -->
     <dimen name="margin_top_button_offer">10dp</dimen>
     <dimen name="padding_horizontal_button_offer">10dp</dimen>
