@@ -32,7 +32,7 @@ class StoreViewModel(
         viewState update NavigateToStore
     }
 
-    init {
+    internal fun initialize() {
         getProductList()
     }
 

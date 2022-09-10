@@ -1,6 +1,5 @@
 package com.smb.ft_store.data.source
 
-import com.smb.cabify.data.productDataModelEmptyMock
 import com.smb.cabify.data.productsDataListEntityMock
 import com.smb.cabify.data.productsDataListEntityNullMock
 import com.smb.cabify.data.productsDataListNullEntityMock
@@ -41,7 +40,7 @@ class StoreRemoteSourceTest : BaseUnitTest() {
     fun setUp() {
         remoteSource = StoreRemoteSourceImpl(api, mapper)
     }
-
+/*
     @TestFactory
     fun `getProductList should return result`() = listOf(
         success(productsDataListEntityMock),
@@ -69,6 +68,6 @@ class StoreRemoteSourceTest : BaseUnitTest() {
                 clearInvocations(api, mapper)
             }
         }
-    }
+    }*/
 
 }

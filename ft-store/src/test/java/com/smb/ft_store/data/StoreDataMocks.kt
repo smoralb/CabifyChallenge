@@ -35,21 +35,3 @@ internal val productsDataListEntityNullMock = ProductsListEntity(
 internal val productsDataListNullEntityMock = ProductsListEntity(products = null)
 
 // MODEL
-
-internal val productDataModelEmptyMock =
-    ProductModel(
-        code = EMPTY_STRING,
-        name = EMPTY_STRING,
-        price = DEFAULT_FLOAT,
-        image = EMPTY_STRING,
-        description = PRODUCT_DESCRIPTION
-    )
-
-internal val productDataModelMock =
-    ProductModel(
-        code = ProductType.VOUCHER.value,
-        name = PRODUCT_NAME,
-        price = DEFAULT_FLOAT,
-        image = PRODUCT_IMAGE,
-        description = PRODUCT_DESCRIPTION
-    )
