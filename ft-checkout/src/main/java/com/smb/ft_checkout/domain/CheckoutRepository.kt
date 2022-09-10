@@ -11,5 +11,5 @@ interface CheckoutRepository {
     suspend fun addNewItem(newItem: ProductRequest): Flow<Boolean>
     suspend fun updateItem(id: String, itemDiscountType: ItemDiscountType)
     suspend fun clearItem(productId: String)
-    suspend fun clearAllItems()
+    suspend fun clearAllItems(): Flow<Boolean>
 }

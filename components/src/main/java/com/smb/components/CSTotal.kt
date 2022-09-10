@@ -15,7 +15,7 @@ class CSTotal(context: Context, attributeSet: AttributeSet) :
     private val binding = CsTotalBinding.inflate(LayoutInflater.from(context), this)
 
     private fun timer(action: () -> Unit) {
-        object : CountDownTimer(8000, 100) {
+        object : CountDownTimer(5000, 100) {
             override fun onTick(millisUntilFinished: Long) {}
 
             override fun onFinish() {
@@ -37,9 +37,7 @@ class CSTotal(context: Context, attributeSet: AttributeSet) :
             binding.btnTitle.visibility = View.GONE
             binding.btnLoader.visibility = View.VISIBLE
             timer { binding.btnLoader.visibility = View.GONE }
-            timer { binding.btnResult.visibility = View.VISIBLE }
-            timer { binding.btnResult.setImageDrawable(context.getDrawable(R.drawable.ic_check)) }
-            timer { action() }
+            action()
         }
     }
 

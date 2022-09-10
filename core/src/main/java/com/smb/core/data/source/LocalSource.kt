@@ -22,7 +22,7 @@ interface LocalSource {
     suspend fun getItems(): Flow<List<ProductModelResponse>>
     suspend fun addNewItem(newItem: ProductRequest): Flow<Boolean>
     suspend fun clearItem(productId: String)
-    suspend fun clearAllItems()
+    suspend fun clearAllItems(): Flow<Boolean>
     suspend fun updateItem(id: String, itemDiscountType: ItemDiscountType)
 }
 
@@ -82,9 +82,11 @@ class LocalSourceImpl(
         }
     }
 
-    override suspend fun clearAllItems() {
-        dataStore.updateData { it.toBuilder().clearItems().build() }
-    }
+    override suspend fun clearAllItems() =
+        flow {
+            dataStore.updateData { it.toBuilder().clearItems().build() }
+            emit(true)
+        }
 
 
     private fun updateQuantity(itemDiscountType: ItemDiscountType, quantity: Int): Int =

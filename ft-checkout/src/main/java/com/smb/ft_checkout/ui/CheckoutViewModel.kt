@@ -10,13 +10,13 @@ import com.smb.core.extensions.update
 import com.smb.core.presentation.base.BaseViewModel
 import com.smb.ft_checkout.domain.CheckoutRepository
 import com.smb.ft_checkout.ui.CheckoutState.NavigateUp
+import com.smb.ft_checkout.ui.CheckoutState.ShowCheckoutCompleted
 import com.smb.ft_checkout.ui.CheckoutState.ShowEmptyLayout
 import com.smb.ft_checkout.ui.CheckoutState.ShowTotalAmount
 import com.smb.ft_checkout.ui.adapter.CheckoutDataItems.CheckoutDataItem
 import com.smb.ft_checkout.ui.navigator.CheckoutNavigator
-import kotlin.random.Random
 import kotlinx.coroutines.flow.collect
-import java.lang.Math.random
+import kotlinx.coroutines.flow.onCompletion
 
 class CheckoutViewModel(
     private val mapper: CheckoutUiMapper,
@@ -33,7 +33,11 @@ class CheckoutViewModel(
     }
 
     val onBtnPaymentClickListener: () -> Unit = {
-        execute { repository.clearAllItems() }
+        execute {
+            repository.clearAllItems().onCompletion {
+                viewState update ShowCheckoutCompleted
+            }.collect()
+        }
     }
 
     private val onItemClickListener: (String) -> Unit = {

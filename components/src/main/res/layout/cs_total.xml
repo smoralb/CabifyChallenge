@@ -73,14 +73,6 @@
                 android:layout_gravity="center"
                 android:visibility="gone"
                 app:indicatorColor="@android:color/white" />
-
-            <ImageView
-                android:id="@+id/btnResult"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_check"
-                android:visibility="gone" />
         </FrameLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
