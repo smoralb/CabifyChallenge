@@ -19,8 +19,6 @@ the price after discount applied.
 
 ![](images/checkout_after_discounts_screenshot.png)
 
-![](images/app_navigation.gif)
-
 ## ARCHITECTURE
 
 The architecture is based on MVI, using the state classes as the single source of truth.
