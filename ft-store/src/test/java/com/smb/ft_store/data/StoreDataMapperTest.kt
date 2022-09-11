@@ -1,8 +1,6 @@
 package com.smb.ft_store.data
 
-import com.smb.cabify.data.productsDataListEntityMock
-import com.smb.cabify.data.productsDataListEntityNullMock
-import com.smb.cabify.data.productsDataListNullEntityMock
+import com.smb.ft_store.data.productsDataListNullEntityMock
 import com.smb.ft_store.data.source.remote.mapper.StoreDataMapper
 import com.smb.ft_store.data.source.remote.mapper.StoreDataMapperImpl
 import org.junit.jupiter.api.Assertions.assertEquals
