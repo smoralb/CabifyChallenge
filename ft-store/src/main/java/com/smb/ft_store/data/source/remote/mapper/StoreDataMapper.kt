@@ -30,20 +30,20 @@ interface StoreDataMapper {
     fun toDomainModelDetails(productId: String, entity: ProductsListEntity): StoreProductModel
 }
 
-val discountType: (ProductType?) -> DiscountType = {
-    when (it) {
-        VOUCHER -> DISCOUNT_2_X_1
-        TSHIRT -> DISCOUNT_BULK_PURCHASE
-        else -> NO_DISCOUNT
-    }
-}
-
 class StoreDataMapperImpl : StoreDataMapper {
+
+    val discountType: (ProductType?) -> DiscountType = {
+        when (it) {
+            VOUCHER -> DISCOUNT_2_X_1
+            TSHIRT -> DISCOUNT_BULK_PURCHASE
+            else -> NO_DISCOUNT
+        }
+    }
 
     override fun toDomainModel(entity: ProductsListEntity): List<StoreProductModel> =
         entity.products?.map { product ->
             StoreProductModel(
-                id = product.code?.value.orEmpty(),
+                id = product.code,
                 name = product.name.orEmpty(),
                 description = FAKE_DESCRIPTION,
                 price = product.price.orDefault(),
@@ -59,7 +59,7 @@ class StoreDataMapperImpl : StoreDataMapper {
     ): StoreProductModel {
         val product = entity.products?.first { it.code?.value == productId }
         return StoreProductModel(
-            id = product?.code?.value.orEmpty(),
+            id = product?.code,
             name = product?.name.orEmpty(),
             description = FAKE_DESCRIPTION,
             price = product?.price.orDefault(),

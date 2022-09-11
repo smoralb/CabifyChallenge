@@ -15,7 +15,7 @@ class CSDiscount(context: Context, attributeSet: AttributeSet) :
         CsDiscountBinding.inflate(LayoutInflater.from(context), this)
 
     fun setAddToCartListener(action: () -> Unit) {
-        binding.btAddToCart.setOnClickListener { action() }
+        binding.btAddToCartDiscount.setOnClickListener { action() }
     }
 
     fun setDiscountTitle(title: String) {

@@ -21,6 +21,7 @@ class StoreFragment : BaseFragment<StoreState, FragmentStoreBinding, StoreViewMo
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.rvProducts.adapter = StoreAdapter()
+        viewModel.initialize()
     }
 
     override fun checkViewState(state: StoreState) {
@@ -29,7 +30,7 @@ class StoreFragment : BaseFragment<StoreState, FragmentStoreBinding, StoreViewMo
             is HideLoading -> binding.plItemsLoader.visibility = View.GONE
             is NavigateToProductDetail ->
                 navigateTo(StoreFragmentDirections.toDetailFragment(state.code))
-            is NavigateToStore -> viewModel.navigateToStore(requireActivity())
+            is NavigateToStore -> viewModel.navigateToCheckout(requireContext())
 
         }
     }

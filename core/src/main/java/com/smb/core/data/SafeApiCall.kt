@@ -1,6 +1,5 @@
 package com.smb.core.data
 
-import retrofit2.HttpException
 import retrofit2.Response
 
 suspend fun <T, R> safeApiCall(
@@ -10,11 +9,8 @@ suspend fun <T, R> safeApiCall(
     val response: Response<T>
     return try {
         response = apiCall.invoke()
-        Result.Success(mapper(response.body()!!))
+        Result.success(mapper(response.body()!!))
     } catch (exception: Throwable) {
-        when (exception) {
-            is HttpException -> Result.Error(exception.code(), exception.message())
-            else -> Result.Error(null, null)
-        }
+        Result.failure(exception)
     }
 }

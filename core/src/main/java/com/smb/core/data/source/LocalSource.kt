@@ -7,22 +7,19 @@ import com.smb.core.domain.model.ItemDiscountType
 import com.smb.core.domain.model.ItemDiscountType.DISCOUNT_2_X_1
 import com.smb.core.domain.model.ItemDiscountType.DISCOUNT_BULK_PURCHASE
 import com.smb.core.domain.model.ItemDiscountType.NO_DISCOUNT
-import com.smb.core.domain.model.ProductModelRequest
 import com.smb.core.domain.model.ProductModelResponse
+import com.smb.core.domain.model.ProductRequest
 import com.smb.core.extensions.DEFAULT_INT
 import kotlin.math.abs
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOn
-import kotlinx.coroutines.flow.map
 
 interface LocalSource {
     suspend fun getItems(): Flow<List<ProductModelResponse>>
-    suspend fun addNewItem(newItem: ProductModelRequest): Flow<Boolean>
+    suspend fun addNewItem(newItem: ProductRequest): Result<Unit>
     suspend fun clearItem(productId: String)
-    suspend fun clearAllItems(): Flow<Boolean>
+    suspend fun clearAllItems(): Result<Unit>
     suspend fun updateItem(id: String, itemDiscountType: ItemDiscountType)
 }
 
@@ -35,15 +32,15 @@ class LocalSourceImpl(
         flow {
             dataStore.data.collect {
                 var items = emptyList<ProductModelResponse>()
-                if (it.itemsCount != 0) {
+                if (it.itemsCount != DEFAULT_INT) {
                     items = it.itemsList.map { item -> mapper.toDomainModel(item) }
                 }
                 emit(items)
             }
         }
 
-    override suspend fun addNewItem(newItem: ProductModelRequest) =
-        flow {
+    override suspend fun addNewItem(newItem: ProductRequest): Result<Unit> =
+        runCatching {
             val item = mapper.toDataModel(newItem)
             dataStore.updateData { shoppingCart ->
                 val builder = shoppingCart.toBuilder()
@@ -57,7 +54,6 @@ class LocalSourceImpl(
                 } else builder.addItems(item)
                 builder.build()
             }
-            emit(true)
         }
 
 
@@ -82,13 +78,9 @@ class LocalSourceImpl(
         }
     }
 
-    override suspend fun clearAllItems() =
-        flow {
-            dataStore.updateData { it.toBuilder().clearItems().build() }
-            dataStore.data.map {
-                emit(it.itemsCount == DEFAULT_INT)
-            }
-        }.flowOn(Dispatchers.IO)
+    override suspend fun clearAllItems(): Result<Unit> = runCatching {
+        dataStore.updateData { it.toBuilder().clearItems().build() }
+    }
 
     private fun updateQuantity(itemDiscountType: ItemDiscountType, quantity: Int): Int =
         when (itemDiscountType) {

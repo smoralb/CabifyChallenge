@@ -12,19 +12,18 @@ import com.smb.ft_store.ui.detail.DetailState.Loading
 import com.smb.ft_store.ui.detail.DetailState.NavigateUp
 import com.smb.ft_store.ui.detail.mapper.DetailUiMapper
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.onCompletion
-import kotlinx.coroutines.flow.onStart
 
 class DetailViewModel(
     private val repository: StoreRepository,
     private val mapper: DetailUiMapper
 ) : BaseViewModel<DetailState>() {
 
-    val name: MutableLiveData<String> = MutableLiveData()
-    val description: MutableLiveData<String> = MutableLiveData()
-    val price: MutableLiveData<String> = MutableLiveData()
+    val name: MutableLiveData<String> = MutableLiveData(EMPTY_STRING)
+    val description: MutableLiveData<String> = MutableLiveData(EMPTY_STRING)
+    val price: MutableLiveData<String> = MutableLiveData(EMPTY_STRING)
     val image: MutableLiveData<String> = MutableLiveData(EMPTY_STRING)
+    val discountType: MutableLiveData<String> = MutableLiveData(EMPTY_STRING)
+    val hasDiscount: MutableLiveData<Boolean> = MutableLiveData(false)
 
     private var itemPrice: Float = DEFAULT_FLOAT
     private var productId: String = EMPTY_STRING
@@ -35,19 +34,17 @@ class DetailViewModel(
 
     val onAddToCartListener: (Int) -> Unit = { quantity ->
         execute {
-            repository.addNewItem(
-                mapper.mapProductItem(
-                    productId,
-                    name.value,
-                    image.value,
-                    itemPrice,
-                    quantity
-                )
-            ).onStart {
-                viewState update Loading
-                //Para emular una llamada a servicio y que se pueda ver el loader
-                delay(400)
-            }.onCompletion { viewState update HideLoading }.collect()
+            viewState update Loading
+            //Emulates API call delay
+            val item = mapper.mapProductItem(
+                productId,
+                name.value,
+                image.value,
+                itemPrice,
+                quantity
+            )
+            delay(400)
+            repository.addNewItem(item).onSuccess { viewState update HideLoading }
         }
     }
 
@@ -55,20 +52,16 @@ class DetailViewModel(
         this.productId = productId
         viewState update Loading
         execute {
-            repository.getProductDetails(productId).fold(
-                handleSuccess = {
-                    itemPrice = it.price
-                    viewState update HideLoading
-                    name update it.name
-                    description update it.description
-                    image update it.image
-                    price update mapper.mapAmount(it.price)
-                },
-                handleError = {
-                    viewState update HideLoading
-                }
-            )
+            repository.getProductDetails(productId).onSuccess {
+                itemPrice = it.price
+                viewState update HideLoading
+                name update it.name
+                description update it.description
+                image update it.image
+                price update mapper.mapAmount(it.price)
+                hasDiscount update it.hasDiscount
+                discountType update mapper.mapDiscountType(it.discountType)
+            }.onFailure { viewState update HideLoading }
         }
-
     }
 }

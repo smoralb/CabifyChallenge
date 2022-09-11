@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="android.view.View"/>
+
         <variable
             name="viewModel"
             type="com.smb.ft_store.ui.detail.DetailViewModel" />
@@ -33,6 +35,19 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/toolbar"
             app:setImageUrl="@{viewModel.image}" />
+
+        <com.google.android.material.chip.Chip
+            style="@style/TextLarge.Bold.White"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/margin_right_item_store_discount"
+            android:text="@{viewModel.discountType}"
+            android:visibility="@{viewModel.hasDiscount? View.VISIBLE : View.GONE}"
+            app:chipBackgroundColor="@color/colorPrimary"
+            app:chipIcon="@drawable/ic_discount"
+            app:chipIconTint="@android:color/white"
+            app:layout_constraintBottom_toBottomOf="@id/ivImage"
+            app:layout_constraintRight_toRightOf="parent" />
 
         <TextView
             android:id="@+id/tvTitle"

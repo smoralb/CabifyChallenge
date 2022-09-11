@@ -1,18 +1,18 @@
 package com.smb.ft_store.data.source
 
-import com.smb.cabify.data.productDataModelEmptyMock
-import com.smb.cabify.data.productsDataListEntityMock
-import com.smb.cabify.data.productsDataListEntityNullMock
-import com.smb.cabify.data.productsDataListNullEntityMock
-import com.smb.ft_store.data.service.StoreApi
 import com.smb.core.extensions.EMPTY_STRING
 import com.smb.core.test.BaseUnitTest
+import com.smb.ft_store.data.productDataModelMugMock
+import com.smb.ft_store.data.productsDataListEntityMock
+import com.smb.ft_store.data.productsDataListEntityNullMock
+import com.smb.ft_store.data.service.StoreApi
 import com.smb.ft_store.data.source.remote.StoreRemoteSource
 import com.smb.ft_store.data.source.remote.StoreRemoteSourceImpl
 import com.smb.ft_store.data.source.remote.mapper.StoreDataMapper
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
 import okhttp3.ResponseBody.Companion.toResponseBody
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DynamicTest
@@ -46,7 +46,6 @@ class StoreRemoteSourceTest : BaseUnitTest() {
     fun `getProductList should return result`() = listOf(
         success(productsDataListEntityMock),
         success(productsDataListEntityNullMock),
-        success(productsDataListNullEntityMock),
         error(500, EMPTY_STRING.toResponseBody())
     ).map { testCase ->
         DynamicTest.dynamicTest(" $testCase") {
@@ -56,15 +55,52 @@ class StoreRemoteSourceTest : BaseUnitTest() {
 
                 if (testCase.isSuccessful)
                     whenever(mapper.toDomainModel(any())).thenReturn(
-                        listOf(productDataModelEmptyMock)
+                        listOf(productDataModelMugMock)
                     )
 
                 val result = remoteSource.getProductList()
 
                 when (testCase.isSuccessful) {
                     true -> assertTrue(result.isSuccess)
-                    else -> assertTrue(result.isError)
+                    else -> assertTrue(result.isFailure)
                 }
+                if (testCase.isSuccessful)
+                    assertEquals(result.getOrNull()?.first(), productDataModelMugMock)
+                else assertEquals(result.getOrNull()?.first(), null)
+                verify(api, times(1)).getProductList()
+                clearInvocations(api, mapper)
+            }
+        }
+    }
+
+    @TestFactory
+    fun `getProductDetails should return result`() = listOf(
+        success(productsDataListEntityMock),
+        success(productsDataListEntityNullMock),
+        error(500, EMPTY_STRING.toResponseBody())
+    ).map { testCase ->
+        DynamicTest.dynamicTest(" $testCase") {
+            runBlockingTest {
+
+                whenever(api.getProductList()).thenReturn(
+                    if (testCase.isSuccessful)
+                        testCase
+                    else null
+                )
+
+                if (testCase.isSuccessful)
+                    whenever(mapper.toDomainModelDetails(any(), any()))
+                        .thenReturn(productDataModelMugMock)
+
+                val result = remoteSource.getProductDetails(EMPTY_STRING)
+
+                when (testCase.isSuccessful) {
+                    true -> assertTrue(result.isSuccess)
+                    else -> assertTrue(result.isFailure)
+                }
+                if (testCase.isSuccessful)
+                    assertEquals(result.getOrNull(), productDataModelMugMock)
+                else assertEquals(result.getOrNull(), null)
                 verify(api, times(1)).getProductList()
                 clearInvocations(api, mapper)
             }

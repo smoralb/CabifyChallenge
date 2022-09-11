@@ -1,13 +1,13 @@
 package com.smb.ft_store.ui.detail.mapper
 
 import android.content.Context
-import com.smb.core.domain.model.ItemDiscountType
-import com.smb.core.domain.model.ItemDiscountType.DISCOUNT_2_X_1
-import com.smb.core.domain.model.ItemDiscountType.DISCOUNT_BULK_PURCHASE
-import com.smb.core.domain.model.ItemDiscountType.NO_DISCOUNT
-import com.smb.core.domain.model.ProductModelRequest
-import com.smb.core.extensions.DEFAULT_FLOAT
+import com.smb.core.domain.model.ProductRequest
+import com.smb.core.extensions.EMPTY_STRING
 import com.smb.core.presentation.base.BaseUiMapper
+import com.smb.ft_store.R
+import com.smb.ft_store.domain.model.DiscountType
+import com.smb.ft_store.domain.model.DiscountType.DISCOUNT_2_X_1
+import com.smb.ft_store.domain.model.DiscountType.DISCOUNT_BULK_PURCHASE
 
 interface DetailUiMapper : BaseUiMapper {
     fun mapProductItem(
@@ -16,20 +16,14 @@ interface DetailUiMapper : BaseUiMapper {
         image: String?,
         price: Float,
         quantity: Int,
-    ): ProductModelRequest
+    ): ProductRequest
+
+    fun mapDiscountType(type: DiscountType): String
 }
 
 class DetailUiMapperImpl(
     private val context: Context
 ) : DetailUiMapper {
-
-    val itemType: (String) -> ItemDiscountType = { id ->
-        when (id) {
-            "VOUCHER" -> DISCOUNT_2_X_1
-            "TSHIRT" -> DISCOUNT_BULK_PURCHASE
-            else -> NO_DISCOUNT
-        }
-    }
 
     override fun mapProductItem(
         id: String,
@@ -37,39 +31,18 @@ class DetailUiMapperImpl(
         image: String?,
         price: Float,
         quantity: Int
-    ) = ProductModelRequest(
+    ) = ProductRequest(
         id = id,
         name = title.orEmpty(),
         image = image.orEmpty(),
         price = price,
-        quantity = quantity,
-        hasDiscount = itemHasDiscount(id),
-        itemDiscountType = mapOfferTitle(id),
-        priceDiscount = mapPriceDiscount(itemType(id), price, quantity)
+        quantity = quantity
     )
 
-    private fun itemHasDiscount(id: String) =
-        when (id) {
-            "VOUCHER", "TSHIRT" -> true
-            else -> false
-        }
-
-    private fun mapOfferTitle(type: String) =
+    override fun mapDiscountType(type: DiscountType): String =
         when (type) {
-            "VOUCHER" -> DISCOUNT_2_X_1
-            "TSHIRT" -> DISCOUNT_BULK_PURCHASE
-            else -> NO_DISCOUNT
+            DISCOUNT_2_X_1 -> context.getString(R.string.details_view_discount_2_x_1)
+            DISCOUNT_BULK_PURCHASE -> context.getString(R.string.details_view_discount_bulk)
+            else -> EMPTY_STRING
         }
-
-    private fun mapPriceDiscount(
-        itemDiscountType: ItemDiscountType,
-        price: Float,
-        quantity: Int
-    ): Float =
-        when (itemDiscountType) {
-            DISCOUNT_2_X_1 -> if (quantity % 2 == 0) price * quantity * 0.5f else price
-            DISCOUNT_BULK_PURCHASE -> if (quantity % 3 == 0) (price * quantity) - (price * quantity * 0.05f) else price
-            else -> price
-        }
-
 }

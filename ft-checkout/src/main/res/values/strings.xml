@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="checkout_proceed_payment">Proceed to pay</string>
     <string name="checkout_quantity">x %d</string>
-    <string name="empty_title">Add items to your shopping cart!</string>
-    <string name="checkout_discount_title_2_x_1">¿Quieres disfrutar de la oferta 2x1?</string>
-    <string name="checkout_discount_title_bulk">¿Quieres disfrutar del 5% comprando 3 o más?</string>
+    <string name="empty_title">¡Añade items a tu carrito!</string>
+    <string name="dialog_checkout_completed_title">¡Muchas gracias!</string>
+    <string name="dialog_checkout_completed_message">¡Pedido realizado con éxito!</string>
 </resources>

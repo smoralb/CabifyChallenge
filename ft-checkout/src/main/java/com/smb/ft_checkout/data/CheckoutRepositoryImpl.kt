@@ -2,8 +2,8 @@ package com.smb.ft_checkout.data
 
 import com.smb.core.data.source.LocalSource
 import com.smb.core.domain.model.ItemDiscountType
-import com.smb.core.domain.model.ProductModelRequest
 import com.smb.core.domain.model.ProductModelResponse
+import com.smb.core.domain.model.ProductRequest
 import com.smb.ft_checkout.domain.CheckoutRepository
 import kotlinx.coroutines.flow.Flow
 
@@ -13,7 +13,7 @@ class CheckoutRepositoryImpl(
     override suspend fun getItems(): Flow<List<ProductModelResponse>> =
         localSource.getItems()
 
-    override suspend fun addNewItem(newItem: ProductModelRequest) =
+    override suspend fun addNewItem(newItem: ProductRequest) =
         localSource.addNewItem(newItem)
 
     override suspend fun clearItem(productId: String) =
@@ -21,4 +21,7 @@ class CheckoutRepositoryImpl(
 
     override suspend fun updateItem(id: String, itemDiscountType: ItemDiscountType) =
         localSource.updateItem(id, itemDiscountType)
+
+    override suspend fun clearAllItems() =
+        localSource.clearAllItems()
 }

@@ -1,6 +1,7 @@
 package com.smb.ft_checkout.ui
 
 import android.app.Activity
+import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import com.smb.core.domain.model.ItemDiscountType
 import com.smb.core.extensions.DEFAULT_INT
@@ -10,6 +11,7 @@ import com.smb.core.extensions.update
 import com.smb.core.presentation.base.BaseViewModel
 import com.smb.ft_checkout.domain.CheckoutRepository
 import com.smb.ft_checkout.ui.CheckoutState.NavigateUp
+import com.smb.ft_checkout.ui.CheckoutState.ShowCheckoutCompleted
 import com.smb.ft_checkout.ui.CheckoutState.ShowEmptyLayout
 import com.smb.ft_checkout.ui.CheckoutState.ShowTotalAmount
 import com.smb.ft_checkout.ui.adapter.CheckoutDataItems.CheckoutDataItem
@@ -30,8 +32,12 @@ class CheckoutViewModel(
         viewState update NavigateUp
     }
 
-    fun onPayClickListener() {
-        //Emulate payment
+    val onBtnPaymentClickListener: () -> Unit = {
+        execute {
+            repository.clearAllItems().onSuccess {
+                viewState update ShowCheckoutCompleted
+            }
+        }
     }
 
     private val onItemClickListener: (String) -> Unit = {
@@ -45,7 +51,7 @@ class CheckoutViewModel(
             }
         }
 
-    init {
+    fun initialize() {
         execute {
             repository.getItems().collect {
                 items update mapper.mapCheckoutItems(
@@ -61,7 +67,7 @@ class CheckoutViewModel(
         }
     }
 
-    internal fun navigateBack(activity: Activity) {
-        navigator.navigateBack(activity)
+    internal fun navigateBack(context: Context) {
+        navigator.navigateBack(context)
     }
 }
