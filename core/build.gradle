@@ -22,13 +22,12 @@ protobuf {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation project(':resources')
+    api project (':components')
     api basic.values()
     api koin.values()
     api navigation.values()
-    //Retrofit, okhttp3, moshi
     api network.values()
     implementation coil.values()
     api testing.values()
-    implementation datastore.values()
+    api datastore.values()
 }

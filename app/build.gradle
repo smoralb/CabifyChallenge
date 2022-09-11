@@ -1,13 +1,9 @@
 apply plugin: 'com.android.application'
 apply from: "$project.rootDir/base.gradle"
-apply plugin: 'androidx.navigation.safeargs.kotlin'
 
 dependencies {
     implementation project (':core')
     implementation project (':ft-store')
     implementation project (':ft-checkout')
     implementation project (':navigator')
-    implementation project (':components')
-    implementation basic.values()
-    implementation koin.values()
 }

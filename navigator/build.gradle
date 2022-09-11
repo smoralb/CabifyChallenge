@@ -1,16 +1,8 @@
-plugins {
-    id 'com.android.library'
-    id 'kotlin-android'
-    id 'androidx.navigation.safeargs.kotlin'
-}
+apply plugin: 'com.android.library'
 apply from: "$project.rootDir/base.gradle"
 
 dependencies {
     implementation project (':core')
     implementation project (':ft-store')
     implementation project (':ft-checkout')
-    implementation basic.values()
-    implementation navigation.values()
-    implementation koin.values()
-    implementation testing.values()
 }
