@@ -36,7 +36,7 @@ class StoreViewModel(
         getProductList()
     }
 
-    internal fun navigateToStore(context: Context) {
+    internal fun navigateToCheckout(context: Context) {
         navigator.navigateToShoppingCart(context)
     }
 
@@ -44,12 +44,12 @@ class StoreViewModel(
         viewState update Loading
         execute {
             repository.getProductList().fold(
-                handleSuccess = { productList ->
-                    itemList update mapper.mapItems(productList, onItemClickListener)
+                onSuccess = {
+                    itemList update mapper.mapItems(it, onItemClickListener)
                     viewState update HideLoading
                 },
-                handleError = {
-                    errorMessage update "Error"
+                onFailure = {
+                    errorMessage update mapper.mapErrorMessage()
                     viewState update HideLoading
                 }
             )

@@ -1,21 +1,19 @@
-package com.smb.ft_store.ui
+package com.smb.ft_store.ui.store
 
-import com.smb.core.data.Result.Error
-import com.smb.core.data.Result.Success
+import android.content.Context
 import com.smb.core.test.BaseViewModelUnitTest
-import com.smb.ft_store.data.entity.ProductType
-import com.smb.ft_store.data.entity.ProductType.TSHIRT
-import com.smb.ft_store.data.entity.ProductType.VOUCHER
 import com.smb.ft_store.domain.repository.StoreRepository
 import com.smb.ft_store.ui.navigation.StoreNavigator
+import com.smb.ft_store.ui.productPresentationUiModelMock
 import com.smb.ft_store.ui.store.StoreState.HideLoading
-import com.smb.ft_store.ui.store.StoreViewModel
+import com.smb.ft_store.ui.store.StoreState.NavigateToStore
 import com.smb.ft_store.ui.store.mapper.StoreUiMapper
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DynamicTest
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestFactory
 import org.mockito.Mock
 import org.mockito.kotlin.any
@@ -25,6 +23,9 @@ import org.mockito.kotlin.whenever
 
 @ExperimentalCoroutinesApi
 class StoreViewModelTest : BaseViewModelUnitTest() {
+
+    @Mock
+    private lateinit var context: Context
 
     @Mock
     private lateinit var repository: StoreRepository
@@ -44,8 +45,8 @@ class StoreViewModelTest : BaseViewModelUnitTest() {
 
     @TestFactory
     fun `getProductList should return items with result`() = listOf(
-        Success(listOf(productPresentationUiModelMock)),
-        Error()
+        Result.success(listOf(productPresentationUiModelMock)),
+        Result.failure(Exception())
     ).map { testCase ->
         DynamicTest.dynamicTest(" $testCase") {
             runBlockingTest {
@@ -55,14 +56,26 @@ class StoreViewModelTest : BaseViewModelUnitTest() {
 
                 if (testCase.isSuccess) {
                     verify(mapper).mapItems(any(), any())
-                } else if (testCase.isError) {
-                    assertTrue(viewModel.errorMessage.value == "Error")
+                } else if (testCase.isFailure) {
+                    verify(mapper).mapErrorMessage()
                 }
 
                 assertTrue(viewModel._viewState.value == HideLoading)
             }
             clearInvocations(repository, mapper)
         }
+    }
+
+    @Test
+    fun `navigateToStore should navigate to Store`() {
+        viewModel.navigateToCheckout(context)
+        verify(navigator).navigateToShoppingCart(context)
+    }
+
+    @Test
+    fun `onHeaderClickListener should modify ui state`() {
+        viewModel.onHeaderClickListener()
+        assertTrue(viewModel._viewState.value == NavigateToStore)
     }
 
 

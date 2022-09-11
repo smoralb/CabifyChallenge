@@ -1,15 +1,20 @@
 package com.smb.ft_store.ui.store.mapper
 
+import android.content.Context
 import com.smb.core.presentation.base.BaseUiMapper
+import com.smb.ft_store.R
 import com.smb.ft_store.domain.model.StoreProductModel
 import com.smb.ft_store.ui.store.adapter.StoreDataItems.StoreDataItem
 
 interface StoreUiMapper : BaseUiMapper {
     fun mapItems(model: List<StoreProductModel>, itemClickListener: (String) -> Unit)
             : List<StoreDataItem>
+    fun mapErrorMessage(): String
 }
 
-class StoreUiMapperImpl : StoreUiMapper {
+class StoreUiMapperImpl(
+    private val context: Context
+) : StoreUiMapper {
 
     override fun mapItems(
         model: List<StoreProductModel>, itemClickListener: (String) -> Unit
@@ -24,4 +29,7 @@ class StoreUiMapperImpl : StoreUiMapper {
             onItemClickListener = itemClickListener
         )
     }
+
+    override fun mapErrorMessage() =
+        context.getString(R.string.generic_error_message)
 }

@@ -30,7 +30,7 @@ class StoreFragment : BaseFragment<StoreState, FragmentStoreBinding, StoreViewMo
             is HideLoading -> binding.plItemsLoader.visibility = View.GONE
             is NavigateToProductDetail ->
                 navigateTo(StoreFragmentDirections.toDetailFragment(state.code))
-            is NavigateToStore -> viewModel.navigateToStore(requireActivity())
+            is NavigateToStore -> viewModel.navigateToCheckout(requireContext())
 
         }
     }

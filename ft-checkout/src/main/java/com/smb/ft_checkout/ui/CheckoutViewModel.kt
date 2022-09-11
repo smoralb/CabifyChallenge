@@ -16,7 +16,6 @@ import com.smb.ft_checkout.ui.CheckoutState.ShowTotalAmount
 import com.smb.ft_checkout.ui.adapter.CheckoutDataItems.CheckoutDataItem
 import com.smb.ft_checkout.ui.navigator.CheckoutNavigator
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.onCompletion
 
 class CheckoutViewModel(
     private val mapper: CheckoutUiMapper,
@@ -34,9 +33,9 @@ class CheckoutViewModel(
 
     val onBtnPaymentClickListener: () -> Unit = {
         execute {
-            repository.clearAllItems().onCompletion {
+            repository.clearAllItems().onSuccess {
                 viewState update ShowCheckoutCompleted
-            }.collect()
+            }
         }
     }
 
