@@ -58,6 +58,7 @@ I could have used Room or [Preferences DataStore](https://developer.android.com/
 [Moshi](https://github.com/square/moshi) -> JSON parser
 [Kotlin Coroutines](https://developer.android.com/kotlin/coroutines?gclid=Cj0KCQjwjvaYBhDlARIsAO8PkE0nwKJG8Fi5ksddI5GwB5Vw6gjui_Iim4SsbkTaCHwRqQgRhb89FN4aAssjEALw_wcB&gclsrc=aw.ds)
 [Kotlin flows](https://developer.android.com/kotlin/flow) -> It's used in JetPack Proto DataStore and I would love to migrate the project to use Flows and StateFlow instead of LiveData (running out of time)
+[Koin](https://insert-koin.io/) for di
 ### Testing
 [JUnit 5](https://junit.org/junit5/docs/current/user-guide/) -> For testing
 [Mockito](https://site.mockito.org/)
