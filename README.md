@@ -6,18 +6,18 @@ It consists in three different views.
 
 1. **Store** -> It will be the main view and the user could check all the items listed and which items has discounts.
 
-![](images/store_view_screenshot.png)
+![](images/store_view_screenshot.png  width="200" height="400" )
 
 2. **Detail** -> It shows the product details as well as the discounts and the option to add items to the shopping cart.
 
-![](images/detail_view_screenshot.png)
+![](images/detail_view_screenshot.png  width="200" height="400" )
 
 3. **Checkout** -> The final step before proceeding with the payment. Shows all the items added and those items that has discounts, it will show the original price and also
 the price after discount applied.
 
-![](images/checkout_before_discounts_screenshot.png)
+![](images/checkout_before_discounts_screenshot.png  width="200" height="400" )
 
-![](images/checkout_after_discounts_screenshot.png)
+![](images/checkout_after_discounts_screenshot.png  width="200" height="400" )
 
 ## ARCHITECTURE
 
