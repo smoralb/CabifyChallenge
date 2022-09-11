@@ -15,8 +15,6 @@ It consists in three different views.
 3. **Checkout** -> The final step before proceeding with the payment. Shows all the items added and those items that has discounts, it will show the original price and also
 the price after discount applied.
 
-![](images/checkout_before_discounts_screenshot.png)
-
 ![](images/checkout_after_discounts_screenshot.png)
 
 ## ARCHITECTURE
