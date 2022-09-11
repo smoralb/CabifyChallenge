@@ -25,7 +25,7 @@ class CheckoutFragment : BaseFragment<CheckoutState, FragmentCheckoutBinding, Ch
         super.onCreate(savedInstanceState)
         activity?.onBackPressedDispatcher?.addCallback(this, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                viewModel.navigateBack(requireActivity())
+                viewModel.navigateBack(requireContext())
             }
         })
     }
@@ -33,11 +33,12 @@ class CheckoutFragment : BaseFragment<CheckoutState, FragmentCheckoutBinding, Ch
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.rvCheckout.adapter = CheckoutAdapter()
+        viewModel.initialize()
     }
 
     override fun checkViewState(state: CheckoutState) {
         when (state) {
-            NavigateUp -> viewModel.navigateBack(requireActivity())
+            NavigateUp -> viewModel.navigateBack(requireContext())
             ShowEmptyLayout -> showEmptyState()
             ShowTotalAmount -> binding.csTotalAmount.visibility = View.VISIBLE
             ShowCheckoutCompleted -> {

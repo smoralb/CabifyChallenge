@@ -1,6 +1,7 @@
 package com.smb.ft_checkout.ui
 
 import android.app.Activity
+import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import com.smb.core.domain.model.ItemDiscountType
 import com.smb.core.extensions.DEFAULT_INT
@@ -50,7 +51,7 @@ class CheckoutViewModel(
             }
         }
 
-    init {
+    fun initialize() {
         execute {
             repository.getItems().collect {
                 items update mapper.mapCheckoutItems(
@@ -66,7 +67,7 @@ class CheckoutViewModel(
         }
     }
 
-    internal fun navigateBack(activity: Activity) {
-        navigator.navigateBack(activity)
+    internal fun navigateBack(context: Context) {
+        navigator.navigateBack(context)
     }
 }
