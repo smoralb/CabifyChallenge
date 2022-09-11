@@ -1,9 +1,9 @@
-name: Build & Publish Debug APK
+name: Build & Publish APK
 
 on:
  push:
   branches:
-   - master
+   - main
    
 jobs:
   build:
@@ -18,8 +18,8 @@ jobs:
       run: chmod +x ./gradlew
     - name: Build with Gradle
       run: ./gradlew build
-    - name: Build Debug APK
-      run: ./gradlew assembleDebug
+    - name: Build APK
+      run: ./gradlew assembleRelease
     - name: Releasing using Hub
       uses: ShaunLWM/action-release-debugapk@master
       env:
