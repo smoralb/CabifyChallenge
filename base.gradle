@@ -1,5 +1,4 @@
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-parcelize'
 apply plugin: "kotlin-kapt"
 apply plugin: "de.mannodermaus.android-junit5"
 apply from: "$project.rootDir/dependencies.gradle"

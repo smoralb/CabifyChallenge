@@ -1,14 +1,11 @@
-package com.smb.ft_checkout
+package com.smb.ft_checkout.ui
 
 import android.content.Context
 import com.smb.core.extensions.EMPTY_STRING
 import com.smb.core.test.BaseViewModelUnitTest
 import com.smb.ft_checkout.domain.CheckoutRepository
 import com.smb.ft_checkout.ui.CheckoutState.NavigateUp
-import com.smb.ft_checkout.ui.CheckoutState.ShowCheckoutCompleted
 import com.smb.ft_checkout.ui.CheckoutState.ShowTotalAmount
-import com.smb.ft_checkout.ui.CheckoutUiMapper
-import com.smb.ft_checkout.ui.CheckoutViewModel
 import com.smb.ft_checkout.ui.navigator.CheckoutNavigator
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flowOf

@@ -1,4 +1,4 @@
-package com.smb.ft_checkout
+package com.smb.ft_checkout.ui
 
 import android.view.View
 import com.smb.core.domain.model.ItemDiscountType

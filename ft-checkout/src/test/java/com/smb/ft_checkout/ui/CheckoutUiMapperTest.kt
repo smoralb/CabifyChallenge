@@ -1,12 +1,10 @@
-package com.smb.ft_checkout
+package com.smb.ft_checkout.ui
 
 import android.content.Context
 import com.smb.core.domain.model.ItemDiscountType
 import com.smb.core.extensions.DEFAULT_FLOAT
 import com.smb.core.extensions.EMPTY_STRING
 import com.smb.core.test.BaseUnitTest
-import com.smb.ft_checkout.ui.CheckoutUiMapper
-import com.smb.ft_checkout.ui.CheckoutUiMapperImpl
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach

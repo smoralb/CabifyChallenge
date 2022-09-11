@@ -90,16 +90,4 @@ class LocalDataMapperImpl : LocalDataMapper {
             DISCOUNT_BULK_PURCHASE -> if (quantity % 3 == 0) (price * quantity) - (price * quantity * 0.05f) else price
             else -> price
         }
-
-    /*
-
-    private fun mapOfferTitle(type: String) =
-        when (type) {
-            "VOUCHER" -> DISCOUNT_2_X_1
-            "TSHIRT" -> DISCOUNT_BULK_PURCHASE
-            else -> NO_DISCOUNT
-        }
-
-
-     */
 }
