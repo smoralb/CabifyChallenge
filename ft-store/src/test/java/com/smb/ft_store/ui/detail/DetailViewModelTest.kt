@@ -14,7 +14,6 @@ import com.smb.ft_store.ui.productRequestMock
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.test.runBlockingTest
-import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
@@ -23,7 +22,6 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestFactory
 import org.mockito.Mock
 import org.mockito.kotlin.any
-import org.mockito.kotlin.eq
 import org.mockito.kotlin.whenever
 
 @ExperimentalCoroutinesApi
@@ -50,13 +48,13 @@ class DetailViewModelTest : BaseViewModelUnitTest() {
 
     @Test
     fun `onAddToCartListener should add new item`() =
-        runTest {
+        runBlockingTest {
             whenever(mapper.mapProductItem(any<String>(), any(), any(), any(), any()))
                 .thenReturn(productRequestMock)
             whenever(repository.addNewItem(any())).thenReturn(Result.success(any()))
 
             viewModel.onAddToCartListener(DEFAULT_INT)
-            delay(400)
+
             assertEquals(Loading, viewModel._viewState.value)
         }
 
@@ -67,7 +65,7 @@ class DetailViewModelTest : BaseViewModelUnitTest() {
         Result.failure(Exception())
     ).map { testCase ->
         DynamicTest.dynamicTest(" $testCase") {
-            runTest {
+            runBlockingTest {
                 whenever(repository.getProductDetails(EMPTY_STRING)).thenReturn(testCase)
                 if (testCase.isSuccess) {
                     whenever(mapper.mapAmount(any())).thenReturn(EMPTY_STRING)
