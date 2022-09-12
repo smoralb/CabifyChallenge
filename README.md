@@ -6,7 +6,7 @@ It consists in three different views.
 
 1. **Store** -> It will be the main view and the user could check all the items listed and which items has discounts.
 
-<img src="images/store_view_screenshot.png" width="300" height="150">
+<img src="images/store_view_screenshot.png" width="150" height="300">
 
 2. **Detail** -> It shows the product details as well as the discounts and the option to add items to the shopping cart.
 
