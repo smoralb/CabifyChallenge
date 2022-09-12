@@ -49,17 +49,27 @@ The gradle files are structured in the following way
 ## LIBRARIES USED
 
 ### Storage
-[JetPack DataStore](https://developer.android.com/topic/libraries/architecture/datastore?gclid=Cj0KCQjwjvaYBhDlARIsAO8PkE3d_r8Vqt6QMHbUVloXAcexqAx5fvQY84OSW6Rh-2ZsRfm8miDGl88aAtgGEALw_wcB&gclsrc=aw.ds) -> It lets to save data locally and manage in an asynchronous way. I have used Proto DataStore because it is type safe.
+
+- [JetPack DataStore](https://developer.android.com/topic/libraries/architecture/datastore?gclid=Cj0KCQjwjvaYBhDlARIsAO8PkE3d_r8Vqt6QMHbUVloXAcexqAx5fvQY84OSW6Rh-2ZsRfm8miDGl88aAtgGEALw_wcB&gclsrc=aw.ds) -> It lets to save data locally and manage in an asynchronous way. I have used Proto DataStore because it is type safe.
 I could have used Room or [Preferences DataStore](https://developer.android.com/jetpack/androidx/releases/datastore?hl=es-419#preferences-datastore-dependencies) but I'd preferred to investigate this library (I haven't used before)
+
 ### Basic
-[JetPack Navigation](https://developer.android.com/guide/navigation) -> To manage all the navigation between features and also navigation inside modules.
-[Moshi](https://github.com/square/moshi) -> JSON parser
-[Kotlin Coroutines](https://developer.android.com/kotlin/coroutines?gclid=Cj0KCQjwjvaYBhDlARIsAO8PkE0nwKJG8Fi5ksddI5GwB5Vw6gjui_Iim4SsbkTaCHwRqQgRhb89FN4aAssjEALw_wcB&gclsrc=aw.ds)
-[Kotlin flows](https://developer.android.com/kotlin/flow) -> It's used in JetPack Proto DataStore and I would love to migrate the project to use Flows and StateFlow instead of LiveData (running out of time)
-[Koin](https://insert-koin.io/) for di
+
+- [JetPack Navigation](https://developer.android.com/guide/navigation) -> To manage all the navigation between features and also navigation inside modules.
+
+- [Moshi](https://github.com/square/moshi) -> JSON parser
+
+- [Kotlin Coroutines](https://developer.android.com/kotlin/coroutines?gclid=Cj0KCQjwjvaYBhDlARIsAO8PkE0nwKJG8Fi5ksddI5GwB5Vw6gjui_Iim4SsbkTaCHwRqQgRhb89FN4aAssjEALw_wcB&gclsrc=aw.ds)
+
+- [Kotlin flows](https://developer.android.com/kotlin/flow) -> It's used in JetPack Proto DataStore and I would love to migrate the project to use Flows and StateFlow instead of LiveData (running out of time)
+
+- [Koin](https://insert-koin.io/) for di
+
 ### Testing
-[JUnit 5](https://junit.org/junit5/docs/current/user-guide/) -> For testing
-[Mockito](https://site.mockito.org/)
+
+- [JUnit 5](https://junit.org/junit5/docs/current/user-guide/) -> For testing
+
+- [Mockito](https://site.mockito.org/)
 
 
 ## Future work
