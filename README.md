@@ -23,20 +23,35 @@ The architecture is based on MVI, using the state classes as the single source o
 
 The project is divided in different modules:
 
-1. app -> Only contains the Application class to initialize Koin and all the modules.
+###app
 
-2. components -> this module contains all the custom views used in the app.
+Only contains the Application class to initialize Koin and all the modules.
 
-3. -> core -> It contains all the logic and dependencies that will be required for the rest of the app. All the rest of modules will be dependant of this module.
+###components
 
-4. ft-store -> Module that holds the logic for the store feature (the main view with all the items and the details)
+This module contains all the custom views used in the app.
 
-5. ft-checkout -> Module that contains all the logic for the payment process.
+###core
 
-6. navigator -> Module that contains the navigation between different modules. Each module will have the interface declaring the navigation and this module holds the implementation.
- This module will be at the same level as core module so it knows about every module in the app.
+It contains all the logic and dependencies that will be required for the rest of the app. All the rest of modules will be dependant of this module.
 
- 7. resources -> The intention of that module is to make app module even easier and to holds all the resources that will be used for the entire app. All the rest of resources used only by a specific module, will be stored in that module.
+###ft-store
+
+Module that holds the logic for the store feature (the main view with all the items and the details)
+
+###ft-checkout
+
+Module that contains all the logic for the payment process.
+
+###navigator
+
+Module that contains the navigation between different modules. Each module will have the interface declaring the navigation and this module holds the implementation.
+
+This module will be at the same level as core module so it knows about every module in the app.
+
+###resources
+
+The intention of that module is to make app module even easier and to holds all the resources that will be used for the entire app. All the rest of resources used only by a specific module, will be stored in that module.
 
 ## GRADLE
 
